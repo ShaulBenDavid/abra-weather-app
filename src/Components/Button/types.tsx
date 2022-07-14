@@ -1,1 +1,1 @@
-export type ButtonVariants = "primary" | "white" | "ghost" | "link";
+export type ButtonVariants = "primary" | "white" | "inverted" | "link";

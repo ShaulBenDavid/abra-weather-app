@@ -1,4 +1,27 @@
-const baseTheme = {
+// Types
+export type Theme = {
+    // Colors
+    black: string,
+    white: string,
+    primary: string,
+    secondary: string,
+    fadeText: string,
+    gray: string,
+    grayBg: string,
+    errorRed: string,
+    yellow: string,
+    // Fonts
+    buttonDefaultSize: string,
+    // Line Height
+    buttonLineHeight: string,
+}
+
+type LightModeTheme = {
+  primary: string;
+}
+
+
+const baseTheme: Theme = {
   // Colors
   black: "#222222",
   white: "#FFFFFF",
@@ -10,17 +33,19 @@ const baseTheme = {
   errorRed: "#F0274B",
   yellow: "#FFD130",
   // Fonts
-  buttonDefaultSize: "18px",
+  buttonDefaultSize: "1.125rem",
+  // Line Height
+  buttonLineHeight: "1.2",
 };
 
-const lightModeTheme = {
+const lightModeTheme: LightModeTheme = {
   primary: "#48BAE4",
 };
 
-const darkModeTheme = {
-  primary: "#48BAE4",
-};
+// const darkModeTheme = {
+//   primary: "#48BAE4",
+// };
 
 const lightMode = { ...baseTheme, ...lightModeTheme };
-const darkMode = { ...baseTheme, ...darkModeTheme };
+// const darkMode = { ...baseTheme, ...darkModeTheme };
 export default lightMode;
