@@ -1,7 +1,8 @@
 import React from "react";
-import "./App.css";
 // import Button from "./Components/Button/style";
+// Components
 import FromInput from "./Components/FromInput";
+import ToggleSwitch from "./Components/ToggleSwitch";
 
 const App: React.FC = () => {
   return (
@@ -12,6 +13,7 @@ const App: React.FC = () => {
         <Button variant="inverted">Log in</Button>
         <Button variant="link">Log in with google</Button> */}
         <FromInput label="ff" placeholder="aasdasd" validError={false} />
+        <ToggleSwitch switchType="temp" />
       </div>
     </>
   );
