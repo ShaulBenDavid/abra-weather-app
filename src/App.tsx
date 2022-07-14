@@ -8,7 +8,7 @@ const App: React.FC = () => {
   return (
     <>
       <div style={{ width: "350px", padding: "20px" }}>
-        {/* <Button variant="primary">Log in</Button>
+        {/* <Button variant="primary" disabled>Log in</Button>
         <Button variant="white">Log in</Button>
         <Button variant="inverted">Log in</Button>
         <Button variant="link">Log in with google</Button> */}
