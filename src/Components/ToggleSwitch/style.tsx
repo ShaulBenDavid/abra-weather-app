@@ -2,7 +2,7 @@ import styled from "styled-components";
 // Components
 import { IconMoonDark, IconSunDrak } from "../IconsComponent";
 
-export const ToggleSwitchWrapper = styled.label`
+export const ToggleSwitchWrapper = styled.div`
   position: relative;
   display: inline-block;
   border-radius: 100px;
@@ -14,7 +14,7 @@ export const ToggleSwitchWrapper = styled.label`
 `;
 
 // The Switch Button
-export const SwitchButton = styled.span`
+export const SwitchButton = styled.label`
   position: absolute;
   z-index: 1;
   top: 50%;
@@ -24,15 +24,14 @@ export const SwitchButton = styled.span`
   height: 32px;
   border-radius: 50%;
   background-color: ${({ theme }) => theme.fadeText};
-  transition: .3s;
+  transition: all .25s linear;
 `;
 // Check box
 export const FunctionCheckBox = styled.input.attrs({ type: 'checkbox' })`   
     opacity: 0;
 
     &:checked ~ ${SwitchButton} {
-        right: 4px;
-        left: auto;
+        left: 35px;
     }
 `;
 

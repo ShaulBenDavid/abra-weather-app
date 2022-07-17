@@ -1,14 +1,8 @@
 import styled, { css } from "styled-components";
 // Types
-import { Theme } from "../../GlobalStyle/theme";
-import { ButtonVariants } from "./types";
+import { ButtonStyledProps } from "./types";
 
-interface ButtonProps {
-  variant?: ButtonVariants;
-  theme?: Theme;
-}
-
-export const Button = styled.button<ButtonProps>`
+export const StyledButton = styled.button<ButtonStyledProps>`
   width: 100%;
   height: 54px;
   font-size: ${({ theme }) => theme.buttonDefaultSize};
@@ -21,7 +15,7 @@ export const Button = styled.button<ButtonProps>`
   justify-content: center;
   align-items: center;
   /* Primary */
-  ${(props: ButtonProps) =>
+  ${(props: ButtonStyledProps) =>
     props.variant === ("primary" || "") &&
     css`
       color: ${({ theme }) => theme.white};
@@ -36,7 +30,7 @@ export const Button = styled.button<ButtonProps>`
       }
     `}
   /* White button  */
-    ${(props: ButtonProps) =>
+    ${(props: ButtonStyledProps) =>
     props.variant === "white" &&
     css`
       color: ${({ theme }) => theme.secondary};
@@ -45,7 +39,7 @@ export const Button = styled.button<ButtonProps>`
         inset 2px -3px 6px 0 rgba(0, 0, 0, 0.1);
     `}
     /* Inverted button  */
-    ${(props: ButtonProps) =>
+    ${(props: ButtonStyledProps) =>
     props.variant === "inverted" &&
     css`
       color: ${({ theme }) => theme.white};
@@ -53,7 +47,7 @@ export const Button = styled.button<ButtonProps>`
       border: solid 1px ${({ theme }) => theme.white};
     `}
     /* Link button  */
-    ${(props: ButtonProps) =>
+    ${(props: ButtonStyledProps) =>
     props.variant === "link" &&
     css`
       color: #222;
@@ -63,4 +57,3 @@ export const Button = styled.button<ButtonProps>`
     `}
 `;
 
-export default Button;

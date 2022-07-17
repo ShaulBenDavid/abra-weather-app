@@ -1,20 +1,19 @@
 import React from "react";
 // Style
 import * as S from "./style";
+// Types
+import { ToggleSwitchProps } from './types';
 
 // Values
 const FARENHEIT: string = "F";
 const CELCIUES: string = "C";
-// Types
-interface ToggleSwitchProps {
-  switchType: "mode" | "temp";
-}
 
-const ToggleSwitch = ({ switchType }: ToggleSwitchProps) => {
+const ToggleSwitch = ({ switchType, id }: ToggleSwitchProps) => {
   return (
     <S.ToggleSwitchWrapper>
-      <S.FunctionCheckBox />
-      <S.SwitchButton />
+      {/* CheckBox */}
+      <S.FunctionCheckBox id={id}/>
+      <S.SwitchButton htmlFor={id} />
       {/* icons */}
       <S.ToggleIconWrapper>
         {switchType === "mode" && (

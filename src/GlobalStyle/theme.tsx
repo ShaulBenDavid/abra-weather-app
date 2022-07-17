@@ -1,24 +1,5 @@
 // Types
-export type Theme = {
-    // Colors
-    black: string,
-    white: string,
-    primary: string,
-    secondary: string,
-    fadeText: string,
-    gray: string,
-    grayBg: string,
-    errorRed: string,
-    yellow: string,
-    // Fonts
-    buttonDefaultSize: string,
-    // Line Height
-    buttonLineHeight: string,
-}
-
-type LightModeTheme = {
-  primary: string;
-}
+import { Theme, LightModeTheme } from './types';
 
 
 const baseTheme: Theme = {
