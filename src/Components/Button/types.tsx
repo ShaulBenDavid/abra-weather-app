@@ -5,7 +5,8 @@ export type ButtonVariants = "primary" | "white" | "inverted" | "link";
 export interface ButtonProps {
     children: React.ReactNode;
     variant: ButtonVariants;
-    disabled?: boolean
+    disabled?: boolean;
+    type?: "button" | "submit" | "reset" | undefined;
 }
 
 export interface ButtonStyledProps {

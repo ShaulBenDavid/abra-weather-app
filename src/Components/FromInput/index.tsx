@@ -12,13 +12,13 @@ const FromInput = ({
   ...otherprops
 }: FormInputProps) => {
   return (
-    <>
+    <div>
       <FormInputContainer validError={validError}>
         <label>{label}</label>
         <StyledInput type={type} {...otherprops} onChange={onChange} />
       </FormInputContainer>
       <ErrorP>asdasdasfda</ErrorP>
-    </>
+    </div>
   );
 };
 

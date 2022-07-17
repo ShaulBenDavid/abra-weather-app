@@ -1,21 +1,14 @@
 import React from "react";
-import Button from "./Components/Button/index";
 // Components
-import FromInput from "./Components/FromInput";
-import ToggleSwitch from "./Components/ToggleSwitch";
+import Login from "./Pages/Login";
+//Styles
+import { AppWrapper } from './style';
 
 const App: React.FC = () => {
   return (
-    <>
-      <div style={{ width: "350px", padding: "20px" }}>
-        <Button variant="primary">Log in</Button>
-        <Button variant="white">Log in</Button>
-        <Button variant="inverted">Log in</Button>
-        <Button variant="link">Log in with google</Button> 
-        <FromInput label="ff" placeholder="aasdasd" validError={false} type="text" onChange={() => {}} />
-        <ToggleSwitch switchType="mode" id="1s" />
-      </div>
-    </>
+    <AppWrapper>
+      <Login />
+    </AppWrapper>
   );
 };
 

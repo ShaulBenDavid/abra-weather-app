@@ -14,10 +14,11 @@ export const StyledButton = styled.button<ButtonStyledProps>`
   display: flex;
   justify-content: center;
   align-items: center;
+  column-gap: 8px;
   cursor: pointer;
   /* Primary */
   ${(props: ButtonStyledProps) =>
-    props.variant === ("primary" || "") &&
+    props.variant === ("primary" || '') &&
     css`
       color: ${({ theme }) => theme.white};
       box-shadow: -4px 8px 50px 4px rgba(0, 0, 0, 0.16),
@@ -55,6 +56,9 @@ export const StyledButton = styled.button<ButtonStyledProps>`
       background-color: inherit;
       text-decoration: underline;
       font-weight: 500;
+      padding: 0;
+      height: 30px;
+      width: auto;
     `}
 `;
 

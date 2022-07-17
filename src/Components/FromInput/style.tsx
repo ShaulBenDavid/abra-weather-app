@@ -10,6 +10,7 @@ export const ErrorP = styled.p`
     margin-top: 4px;
     color: ${({ theme }) => theme.errorRed};
     display: none;
+    position: absolute;
 `;
 // Form container
 export const FormInputContainer = styled.div<FormInputContainerProps>`

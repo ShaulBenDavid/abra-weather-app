@@ -20,6 +20,7 @@ import { ReactComponent as IconSearchWhite } from '../../Assets/Icons/search-whi
 import { ReactComponent as IconSearchPlus } from '../../Assets/Icons/search+.svg';
 import { ReactComponent as IconSunDrak } from '../../Assets/Icons/sun-dark.svg';
 import { ReactComponent as IconSunFlat } from '../../Assets/Icons/sun-flat.svg';
+import { ReactComponent as IconLogo } from '../../Assets/Icons/appLogo.svg';
 
 export {
     IconFacebookLogo,
@@ -44,4 +45,5 @@ export {
     IconSearchPlus,
     IconSunDrak,
     IconSunFlat,
+    IconLogo,
 };
