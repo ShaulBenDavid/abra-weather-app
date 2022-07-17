@@ -4,7 +4,6 @@ import { IconMoonDark, IconSunDrak } from "../IconsComponent";
 
 export const ToggleSwitchWrapper = styled.div`
   position: relative;
-  display: inline-block;
   border-radius: 100px;
   width: 73px;
   height: 40px;
@@ -25,6 +24,7 @@ export const SwitchButton = styled.label`
   border-radius: 50%;
   background-color: ${({ theme }) => theme.fadeText};
   transition: all .25s linear;
+  cursor: pointer;
 `;
 // Check box
 export const FunctionCheckBox = styled.input.attrs({ type: 'checkbox' })`   

@@ -14,6 +14,7 @@ export const StyledButton = styled.button<ButtonStyledProps>`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   /* Primary */
   ${(props: ButtonStyledProps) =>
     props.variant === ("primary" || "") &&

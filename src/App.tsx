@@ -12,8 +12,8 @@ const App: React.FC = () => {
         <Button variant="white">Log in</Button>
         <Button variant="inverted">Log in</Button>
         <Button variant="link">Log in with google</Button> 
-        <FromInput label="ff" placeholder="aasdasd" validError={false} />
-        <ToggleSwitch switchType="temp" id="1s" />
+        <FromInput label="ff" placeholder="aasdasd" validError={false} type="text" onChange={() => {}} />
+        <ToggleSwitch switchType="mode" id="1s" />
       </div>
     </>
   );
