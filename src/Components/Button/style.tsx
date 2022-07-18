@@ -59,6 +59,7 @@ export const StyledButton = styled.button<ButtonStyledProps>`
       padding: 0;
       height: 30px;
       width: auto;
+      white-space: nowrap;
     `}
 `;
 

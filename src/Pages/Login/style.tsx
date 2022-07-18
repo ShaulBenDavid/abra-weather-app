@@ -8,8 +8,13 @@ export const LoginWrapper = styled.div`
   height: 100%;
   position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* 414px Screen */
+  @media (max-width: 414px) {
+    justify-content: flex-end;
+  }
 `;
 // Logo
 export const StyledLogo = styled(IconLogo)`
@@ -18,15 +23,39 @@ export const StyledLogo = styled(IconLogo)`
   left: 74px;
   width: 122px;
   height: 79px;
+  
+  /* 1280px Screen */
+  @media (max-width: 1280px) {
+    left: 50px;
+  }
+  /* 414px Screen */
+  @media (max-width: 414px) {
+    top: 56px;
+    left: 50%;
+    transform: translate(-50%);
+  }
 `;
 // Login container
 export const LoginContainer = styled.div`
   width: 732px;
+  z-index: 1;
   /* height: 649px; */
   border-radius: 30px;
   box-shadow: 0 4px 40px 0 rgba(0, 0, 0, 0.16);
   background-color: ${({ theme }) => theme.white};
   padding: 54px;
+  /* 1280px Screen */
+  @media (max-width: 1280px) {
+    width: 508px;
+    padding: 40px 54px;
+  }
+  /* 414px Screen */
+  @media (max-width: 414px) {
+    width: 100%;
+    padding: 54px 30px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 `;
 // Title
 export const LoginTitle = styled.h1`
@@ -34,6 +63,11 @@ export const LoginTitle = styled.h1`
   font-size: 3.125rem;
   font-weight: 900;
   color: ${({ theme }) => theme.secondary};
+  /* 414px Screen */
+  @media (max-width: 414px) {
+    font-size: 2rem;
+    font-weight: bold;
+  }
 `;
 // Form
 export const StyledLoginForm = styled.form`
@@ -44,6 +78,15 @@ export const StyledLoginForm = styled.form`
   flex-direction: column;
   row-gap: 32px;
   height: fit-content;
+  /* 1280px Screen */
+  @media (max-width: 1280px) {
+    margin-top: 24px;
+  }
+  /* 414px Screen */
+  @media (max-width: 414px) {
+    margin-top: 40px;
+    width: 100%;
+  } 
 `;
 // Button
 export const ButtonWrapper = styled.div`
@@ -56,10 +99,14 @@ export const BreakLineWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  /* 1280px Screen */
+  @media (max-width: 1280px) {
+    margin-top: 32px;
+  }
 `;
 // Line breaker p
 export const BreakLineP = styled.div`
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1.25;
   text-align: center;
   color: ${({ theme }) => theme.secondary};
@@ -79,6 +126,15 @@ export const LoginButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   column-gap: 16px;
+  /* 1280px Screen */
+  @media (max-width: 1280px) {
+    margin-top: 32px;
+  }
+  /* 414px Screen */
+  @media (max-width: 414px) {
+    flex-direction: column;
+    row-gap: 39px;
+  } 
 `;
 // Internet Error
 export const InternetError = styled.div`
@@ -96,13 +152,22 @@ export const InternetError = styled.div`
   row-gap: 16px;
 
   p {
-  font-size: 14px;
-  /* line-height: 1.25; */
-  color: #4d4d4d;
-  width: 262px;
+    font-size: 14px;
+    /* line-height: 1.25; */
+    color: #4d4d4d;
+    width: 262px;
   }
 
   & ~ ${StyledLoginForm} {
     margin-top: 32px;
   }
+  /* 1280px Screen */
+  @media (max-width: 1280px) {
+    margin-top: 24px;
+  }
+  /* 414px Screen */
+  @media (max-width: 414px) {
+    margin-top: 40px;
+    width: 100%;
+  } 
 `;
