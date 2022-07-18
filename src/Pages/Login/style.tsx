@@ -33,6 +33,8 @@ export const StyledLogo = styled(IconLogo)`
     top: 56px;
     left: 50%;
     transform: translate(-50%);
+    width: 148px;
+    height: 97px;
   }
 `;
 // Login container
@@ -55,6 +57,7 @@ export const LoginContainer = styled.div`
     padding: 54px 30px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+    margin-top: 184px;
   }
 `;
 // Title
