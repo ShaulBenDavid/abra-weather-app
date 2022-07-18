@@ -70,22 +70,4 @@ export const StyledInput = styled.input`
     color: ${({ theme }) => theme.gray};
   }
 
-  &:invalid {
-    
-    ${FormInputContainer} {
-      border-color: ${({ theme }) => theme.errorRed};
-
-      &:focus-within {
-        border-color: ${({ theme }) => theme.errorRed};
-      }
-
-      label {
-        color: ${({ theme }) => theme.errorRed};
-      }
-
-      ${ErrorP} {
-        display: block;
-      }
-    }
-  }
 `;

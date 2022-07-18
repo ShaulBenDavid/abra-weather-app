@@ -10,7 +10,7 @@ import {
 // Styles
 import * as S from "./style";
 // Types
-import { LoginChangeEventProps } from "./types";
+import { LoginChangeEventProps, FormFieldProps } from "./types";
 // values
 const INPUT_DEFAULT = {
   username: '',
@@ -19,7 +19,7 @@ const INPUT_DEFAULT = {
 
 const Login = () => {
   // State
-  const [formField, setFormField] = useState(INPUT_DEFAULT);
+  const [formField, setFormField] = useState<FormFieldProps>(INPUT_DEFAULT);
   const { username, password } = formField;
 
   // Handle submit
@@ -28,7 +28,7 @@ const Login = () => {
   }
   // Handle input value
   const handleChange = (event: LoginChangeEventProps) => {
-    const { value, name } = event.target
+    const { value, name } = event.target;
     setFormField({ ...formField, [name]: value });
   }
   return (
@@ -56,7 +56,6 @@ const Login = () => {
             value={username}
             name='username'
             pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"
-            validError={false}
             required
             errMessage="Invalid email address. Please try again"
             />
@@ -68,7 +67,6 @@ const Login = () => {
             value={password}
             name="password"
             pattern='^[A-Za-z0-9]{6,16}'
-            validError={false}
             required
             errMessage="Invalid password. Please try again"
           />
