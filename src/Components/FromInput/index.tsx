@@ -9,15 +9,17 @@ const FromInput = ({
   validError,
   type,
   onChange,
+  required,
+  errMessage,
   ...otherprops
 }: FormInputProps) => {
   return (
     <div>
-      <FormInputContainer validError={validError}>
+      <FormInputContainer validError={validError} className="FormInputContainer">
         <label>{label}</label>
         <StyledInput type={type} {...otherprops} onChange={onChange} />
       </FormInputContainer>
-      <ErrorP>asdasdasfda</ErrorP>
+      <ErrorP>{errMessage}</ErrorP>
     </div>
   );
 };

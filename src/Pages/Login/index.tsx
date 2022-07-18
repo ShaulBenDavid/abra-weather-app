@@ -1,16 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 // Components
 import Button from "../../Components/Button";
 import FromInput from "../../Components/FromInput";
 import {
   IconFacebookLogo,
   IconGoogleLogo,
+  IconInfoCircle,
 } from "../../Components/IconsComponent";
-
 // Styles
 import * as S from "./style";
+// Types
+import { LoginChangeEventProps } from "./types";
+// values
+const INPUT_DEFAULT = {
+  username: '',
+  password: '',
+}
 
 const Login = () => {
+  // State
+  const [formField, setFormField] = useState(INPUT_DEFAULT);
+  const { username, password } = formField;
+
+  // Handle submit
+  const handleSubmit = (event: React.SyntheticEvent) => {
+    event.preventDefault();
+  }
+  // Handle input value
+  const handleChange = (event: LoginChangeEventProps) => {
+    const { value, name } = event.target
+    setFormField({ ...formField, [name]: value });
+  }
   return (
     <S.LoginWrapper>
       {/* Logo */}
@@ -18,24 +38,43 @@ const Login = () => {
       {/* Login box */}
       <S.LoginContainer>
         <S.LoginTitle>Log in</S.LoginTitle>
+          {/* Error message */}
+          <S.InternetError>
+            <IconInfoCircle />
+            <p>
+              Connection is lost. Please check your connection device and try
+              again.
+            </p>
+          </S.InternetError>
         {/* Form */}
-        <S.StyledLoginForm>
+        <S.StyledLoginForm onSubmit={handleSubmit}>
           <FromInput
+            type="email"
             label="Email Account"
             placeholder="example@example.com..."
-            onChange={() => {}}
-            type="email"
+            onChange={handleChange}
+            value={username}
+            name='username'
+            pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"
             validError={false}
-          />
+            required
+            errMessage="Invalid email address. Please try again"
+            />
           <FromInput
+            type="password"
             label="Password"
             placeholder="6 characters and digit numbers..."
-            onChange={() => {}}
-            type="password"
+            onChange={handleChange}
+            value={password}
+            name="password"
+            pattern='^[A-Za-z0-9]{6,16}'
             validError={false}
+            required
+            errMessage="Invalid password. Please try again"
           />
+          {/* Submit */}
           <S.ButtonWrapper>
-            <Button variant="primary" disabled={true} type="submit">
+            <Button variant="primary" type="submit">
               Log in
             </Button>
           </S.ButtonWrapper>

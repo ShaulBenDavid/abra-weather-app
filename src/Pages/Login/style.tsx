@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { FormInputContainer } from "../../Components/FromInput/style";
 // Components
 import { IconLogo } from "../../Components/IconsComponent";
 // Page wrapper
@@ -21,7 +22,7 @@ export const StyledLogo = styled(IconLogo)`
 // Login container
 export const LoginContainer = styled.div`
   width: 732px;
-  height: 649px;
+  /* height: 649px; */
   border-radius: 30px;
   box-shadow: 0 4px 40px 0 rgba(0, 0, 0, 0.16);
   background-color: ${({ theme }) => theme.white};
@@ -78,4 +79,30 @@ export const LoginButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   column-gap: 16px;
+`;
+// Internet Error
+export const InternetError = styled.div`
+  width: 354px;
+  height: 84px;
+  margin: 0 auto;
+  margin-top: 32px;
+  background-color: #ffe7e7;
+  padding: 24px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  row-gap: 16px;
+
+  p {
+  font-size: 14px;
+  /* line-height: 1.25; */
+  color: #4d4d4d;
+  width: 262px;
+  }
+
+  & ~ ${StyledLoginForm} {
+    margin-top: 32px;
+  }
 `;

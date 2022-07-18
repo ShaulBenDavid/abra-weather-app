@@ -6,11 +6,11 @@ interface FormInputContainerProps {
 
 // Error P
 export const ErrorP = styled.p`
-    margin: 0;
-    margin-top: 4px;
-    color: ${({ theme }) => theme.errorRed};
-    display: none;
-    position: absolute;
+  margin: 0;
+  margin-top: 4px;
+  color: ${({ theme }) => theme.errorRed};
+  display: none;
+  position: absolute;
 `;
 // Form container
 export const FormInputContainer = styled.div<FormInputContainerProps>`
@@ -65,7 +65,27 @@ export const StyledInput = styled.input`
   line-height: 1.5;
   font-size: 1.125rem;
   color: #4d4d4d;
+
   &::placeholder {
     color: ${({ theme }) => theme.gray};
+  }
+
+  &:invalid {
+    
+    ${FormInputContainer} {
+      border-color: ${({ theme }) => theme.errorRed};
+
+      &:focus-within {
+        border-color: ${({ theme }) => theme.errorRed};
+      }
+
+      label {
+        color: ${({ theme }) => theme.errorRed};
+      }
+
+      ${ErrorP} {
+        display: block;
+      }
+    }
   }
 `;

@@ -6,5 +6,10 @@ export interface FormInputProps {
   placeholder: string;
   validError: boolean;
   type: string;
+  value: string;
+  name: string;
+  required: boolean;
+  errMessage: string;
+  pattern?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
