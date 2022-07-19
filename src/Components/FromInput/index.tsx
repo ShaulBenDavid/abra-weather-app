@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // Style
 import { ErrorP, FormInputContainer, StyledInput } from "./style";
 // Types
@@ -15,16 +15,21 @@ const FromInput = ({
   ...otherprops
 }: FormInputProps) => {
   const [validError, setValidError] = useState(false);
-  // Check valid
+  const [isBlur, setIsBlur] = useState(false);
+  // Handle blur
   const handleBlur = () => {
-    let re = new RegExp(pattern);
-    value.match(re) ? setValidError(false) : setValidError(true);
+    setIsBlur(true);
   };
+  // Check valid
+  useEffect(() => {
+    let re = new RegExp(pattern);
+    re.test(value) ? setValidError(false) : setValidError(true);
+  },[value, pattern])
 
   return (
     <div>
       <FormInputContainer
-        validError={validError}
+        validError={isBlur? validError : false}
         className="FormInputContainer"
       >
         <label>{label}</label>
@@ -33,7 +38,8 @@ const FromInput = ({
           {...otherprops}
           onChange={onChange}
           onBlur={handleBlur}
-          onFocus={() => type === "password" && handleBlur}
+          // Checking the value when the user focus
+          onFocus={() => type === "password" && setIsBlur(true)}
         />
       </FormInputContainer>
       <ErrorP>{errMessage}</ErrorP>

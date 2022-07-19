@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // Components
 import Button from "../../Components/Button";
 import FromInput from "../../Components/FromInput";
@@ -11,26 +11,37 @@ import {
 import * as S from "./style";
 // Types
 import { LoginChangeEventProps, FormFieldProps } from "./types";
-// values
+// DEFAULT VALUES
 const INPUT_DEFAULT = {
   username: '',
-  password: '',
+  password: ''
 }
 
 const Login = () => {
   // State
   const [formField, setFormField] = useState<FormFieldProps>(INPUT_DEFAULT);
+  const [formValid, setFormValid] = useState(true);
   const { username, password } = formField;
-
+  
   // Handle submit
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
   }
-  // Handle input value
+  // Handle input value and check validation
   const handleChange = (event: LoginChangeEventProps) => {
-    const { value, name } = event.target;
-    setFormField({ ...formField, [name]: value });
+    const { value, name} = event.target;
+    const newObj = { ...formField, [name]: value }
+    setFormField(newObj);
   }
+
+  // Disabled button
+  useEffect(() => {
+    if (/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(username) && /^[A-Za-z0-9]{6,16}/.test(password)) {
+      setFormValid(false)
+    } else {
+      setFormValid(true)
+    }
+  }, [username, password])
   return (
     <S.LoginWrapper>
       {/* Logo */}
@@ -66,13 +77,13 @@ const Login = () => {
             onChange={handleChange}
             value={password}
             name="password"
-            pattern='^[A-Za-z0-9]{6,16}'
+            pattern="^[A-Za-z0-9]{6,16}"
             required
             errMessage="Invalid password. Please try again"
           />
           {/* Submit */}
           <S.ButtonWrapper>
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" disabled={formValid}>
               Log in
             </Button>
           </S.ButtonWrapper>
