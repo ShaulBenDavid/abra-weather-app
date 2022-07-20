@@ -5,7 +5,7 @@ import { IconLogo } from "../../Components/IconsComponent";
 // Page wrapper
 export const LoginWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -57,7 +57,6 @@ export const LoginContainer = styled.div`
     padding: 54px 30px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    margin-top: 184px;
   }
 `;
 // Title
