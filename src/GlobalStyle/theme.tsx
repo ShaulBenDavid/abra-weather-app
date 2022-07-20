@@ -19,14 +19,14 @@ const baseTheme: Theme = {
   buttonLineHeight: "1.2",
 };
 
-const lightModeTheme: LightModeTheme = {
+export const lightModeTheme: LightModeTheme = {
   primary: "#48BAE4",
 };
 
-// const darkModeTheme = {
-//   primary: "#48BAE4",
-// };
+export const darkModeTheme = {
+  primary: "#48BAE4",
+};
 
-const lightMode = { ...baseTheme, ...lightModeTheme };
-// const darkMode = { ...baseTheme, ...darkModeTheme };
+export const lightMode = { ...baseTheme, ...lightModeTheme };
+export const darkMode = { ...baseTheme, ...darkModeTheme };
 export default lightMode;

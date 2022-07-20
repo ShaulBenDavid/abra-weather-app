@@ -6,7 +6,7 @@ export interface ButtonProps {
     children: React.ReactNode;
     variant: ButtonVariants;
     disabled?: boolean;
-    type?: "button" | "submit" | "reset" | undefined;
+    type?: "button" | "submit" | "reset";
 }
 
 export interface ButtonStyledProps {
