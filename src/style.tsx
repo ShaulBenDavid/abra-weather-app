@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import getMediaQuery from "./Utils/GetMediaQuery";
 
 export const AppWrapper = styled.div`
   display: flex;
@@ -7,7 +8,7 @@ export const AppWrapper = styled.div`
   height: 100vh;
 
   /* 414px Screen */
-  @media (max-width: 414px) {
+   ${getMediaQuery.lessThan("mobile")`
     height: 100%;
-  }
+  `}
 `;

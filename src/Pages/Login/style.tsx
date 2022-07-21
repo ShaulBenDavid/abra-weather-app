@@ -1,20 +1,22 @@
 import styled from "styled-components";
 import { FormInputContainer } from "../../Components/FromInput/style";
 // Components
+import getMediaQuery from "../../Utils/GetMediaQuery";
 import { IconLogo } from "../../Components/IconsComponent";
 // Page wrapper
 export const LoginWrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow-y: scroll;
   /* 414px Screen */
-  @media (max-width: 414px) {
+  ${getMediaQuery.lessThan("mobile")`
     justify-content: flex-end;
-  }
+  `}
 `;
 // Logo
 export const StyledLogo = styled(IconLogo)`
@@ -25,17 +27,17 @@ export const StyledLogo = styled(IconLogo)`
   height: 79px;
   
   /* 1280px Screen */
-  @media (max-width: 1280px) {
+  ${getMediaQuery.between("tablet", "mobile")`
     left: 50px;
-  }
+  `}
   /* 414px Screen */
-  @media (max-width: 414px) {
+  ${getMediaQuery.lessThan("mobile")`
     top: 56px;
     left: 50%;
     transform: translate(-50%);
     width: 148px;
     height: 97px;
-  }
+  `}
 `;
 // Login container
 export const LoginContainer = styled.div`
@@ -47,17 +49,18 @@ export const LoginContainer = styled.div`
   background-color: ${({ theme }) => theme.white};
   padding: 54px;
   /* 1280px Screen */
-  @media (max-width: 1280px) {
+  ${getMediaQuery.between("tablet", "mobile")`
     width: 508px;
     padding: 40px 54px;
-  }
+  `}
   /* 414px Screen */
-  @media (max-width: 414px) {
+  ${getMediaQuery.lessThan("mobile")`
     width: 100%;
     padding: 54px 30px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-  }
+    margin-top: 184px;
+  `}
 `;
 // Title
 export const LoginTitle = styled.h1`
@@ -66,10 +69,10 @@ export const LoginTitle = styled.h1`
   font-weight: 900;
   color: ${({ theme }) => theme.secondary};
   /* 414px Screen */
-  @media (max-width: 414px) {
+  ${getMediaQuery.lessThan("mobile")`
     font-size: 2rem;
     font-weight: bold;
-  }
+  `}
 `;
 // Form
 export const StyledLoginForm = styled.form`
@@ -81,14 +84,14 @@ export const StyledLoginForm = styled.form`
   row-gap: 32px;
   height: fit-content;
   /* 1280px Screen */
-  @media (max-width: 1280px) {
+  ${getMediaQuery.between("tablet", "mobile")`
     margin-top: 24px;
-  }
+  `}
   /* 414px Screen */
-  @media (max-width: 414px) {
+  ${getMediaQuery.lessThan("mobile")`
     margin-top: 40px;
     width: 100%;
-  } 
+  `} 
 `;
 // Button
 export const ButtonWrapper = styled.div`
@@ -102,9 +105,9 @@ export const BreakLineWrapper = styled.div`
   justify-content: center;
   align-items: center;
   /* 1280px Screen */
-  @media (max-width: 1280px) {
+  ${getMediaQuery.lessThan("tablet")`
     margin-top: 32px;
-  }
+  `}
 `;
 // Line breaker p
 export const BreakLineP = styled.div`
@@ -129,14 +132,14 @@ export const LoginButtonWrapper = styled.div`
   justify-content: center;
   column-gap: 16px;
   /* 1280px Screen */
-  @media (max-width: 1280px) {
+  ${getMediaQuery.lessThan("tablet")`
     margin-top: 32px;
-  }
+  `}
   /* 414px Screen */
-  @media (max-width: 414px) {
+  ${getMediaQuery.lessThan("mobile")`
     flex-direction: column;
     row-gap: 39px;
-  } 
+  `} 
 `;
 // Internet Error
 export const InternetError = styled.div`
@@ -151,25 +154,24 @@ export const InternetError = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  row-gap: 16px;
 
   p {
     font-size: 14px;
-    /* line-height: 1.25; */
     color: #4d4d4d;
-    width: 262px;
+    width: 100%;
+    margin-left: 16px;
   }
 
   & ~ ${StyledLoginForm} {
     margin-top: 32px;
   }
   /* 1280px Screen */
-  @media (max-width: 1280px) {
+  ${getMediaQuery.between("tablet", "mobile")`
     margin-top: 24px;
-  }
+  `}
   /* 414px Screen */
-  @media (max-width: 414px) {
+  ${getMediaQuery.lessThan("mobile")`
     margin-top: 40px;
     width: 100%;
-  } 
+  `} 
 `;
