@@ -50,13 +50,10 @@ const Login = () => {
       <S.LoginContainer>
         <S.LoginTitle>Log in</S.LoginTitle>
           {/* Error message */}
-          <S.InternetError>
-            <IconInfoCircle />
-            <p>
+          <S.StyledErrorBox>
               Connection is lost. Please check your connection device and try
               again.
-            </p>
-          </S.InternetError>
+          </S.StyledErrorBox>
         {/* Form */}
         <S.StyledLoginForm onSubmit={handleSubmit}>
           <FromInput

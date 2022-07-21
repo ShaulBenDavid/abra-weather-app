@@ -20,6 +20,13 @@ const FromInput = ({
   const handleBlur = () => {
     setIsBlur(true);
   };
+  // Handle focus
+  const handleFocus = () => {
+    setTimeout(() => {
+      setIsBlur(true);
+    }, 3000)
+  };
+
   // Check valid
   useEffect(() => {
     let re = new RegExp(pattern);
@@ -39,7 +46,7 @@ const FromInput = ({
           onChange={onChange}
           onBlur={handleBlur}
           // Checking the value when the user focus
-          onFocus={() => type === "password" && setIsBlur(true)}
+          onFocus={() => type === "password" && handleFocus()}
         />
       </FormInputContainer>
       <ErrorP>{errMessage}</ErrorP>

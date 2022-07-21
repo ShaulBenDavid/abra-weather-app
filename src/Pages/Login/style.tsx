@@ -3,6 +3,7 @@ import { FormInputContainer } from "../../Components/FromInput/style";
 // Components
 import getMediaQuery from "../../Utils/GetMediaQuery";
 import { IconLogo } from "../../Components/IconsComponent";
+import ErrorBox from "../../Components/ErrorBox";
 // Page wrapper
 export const LoginWrapper = styled.div`
   width: 100%;
@@ -142,18 +143,9 @@ export const LoginButtonWrapper = styled.div`
   `} 
 `;
 // Internet Error
-export const InternetError = styled.div`
-  width: 354px;
-  height: 84px;
+export const StyledErrorBox = styled(ErrorBox)`
   margin: 0 auto;
   margin-top: 32px;
-  background-color: #ffe7e7;
-  padding: 24px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
 
   p {
     font-size: 14px;
