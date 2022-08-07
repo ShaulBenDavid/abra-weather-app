@@ -3,7 +3,7 @@ import { FormInputContainer } from "../../Components/FromInput/style";
 // Components
 import getMediaQuery from "../../Utils/GetMediaQuery";
 import { IconLogo } from "../../Components/IconsComponent";
-import ErrorBox from "../../Components/ErrorBox";
+import Alert from "../../Components/Alert";
 // Page wrapper
 export const LoginWrapper = styled.div`
   width: 100%;
@@ -143,7 +143,7 @@ export const LoginButtonWrapper = styled.div`
   `} 
 `;
 // Internet Error
-export const StyledErrorBox = styled(ErrorBox)`
+export const StyledErrorBox = styled(Alert)`
   margin: 0 auto;
   margin-top: 32px;
 

@@ -5,7 +5,6 @@ import FromInput from "../../Components/FromInput";
 import {
   IconFacebookLogo,
   IconGoogleLogo,
-  IconInfoCircle,
 } from "../../Components/IconsComponent";
 // Styles
 import * as S from "./style";
@@ -13,35 +12,39 @@ import * as S from "./style";
 import { LoginChangeEventProps, FormFieldProps } from "./types";
 // DEFAULT VALUES
 const INPUT_DEFAULT = {
-  username: '',
-  password: ''
-}
+  username: "",
+  password: "",
+};
 
 const Login = () => {
   // State
   const [formField, setFormField] = useState<FormFieldProps>(INPUT_DEFAULT);
   const [formValid, setFormValid] = useState(true);
   const { username, password } = formField;
-  
+
   // Handle submit
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
-  }
+  };
   // Handle input value and check validation
   const handleChange = (event: LoginChangeEventProps) => {
-    const { value, name} = event.target;
-    const newObj = { ...formField, [name]: value }
+    const { value, name } = event.target;
+    const newObj = { ...formField, [name]: value };
     setFormField(newObj);
-  }
+  };
 
   // Disabled button
   useEffect(() => {
-    if (/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(username) && /^[A-Za-z0-9]{6,16}/.test(password)) {
-      setFormValid(false)
+    if (
+      /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(username) &&
+      /^[A-Za-z0-9]{6,16}/.test(password)
+    ) {
+      setFormValid(false);
     } else {
-      setFormValid(true)
+      setFormValid(true);
     }
-  }, [username, password])
+  }, [username, password]);
+
   return (
     <S.LoginWrapper>
       {/* Logo */}
@@ -49,11 +52,10 @@ const Login = () => {
       {/* Login box */}
       <S.LoginContainer>
         <S.LoginTitle>Log in</S.LoginTitle>
-          {/* Error message */}
-          <S.StyledErrorBox>
-              Connection is lost. Please check your connection device and try
-              again.
-          </S.StyledErrorBox>
+        {/* Error message */}
+        <S.StyledErrorBox severity="error">
+          Connection is lost. Please check your connection device and try again.
+        </S.StyledErrorBox>
         {/* Form */}
         <S.StyledLoginForm onSubmit={handleSubmit}>
           <FromInput
@@ -62,11 +64,11 @@ const Login = () => {
             placeholder="example@example.com..."
             onChange={handleChange}
             value={username}
-            name='username'
+            name="username"
             pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"
             required
             errMessage="Invalid email address. Please try again"
-            />
+          />
           <FromInput
             type="password"
             label="Password"
