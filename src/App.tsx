@@ -4,7 +4,7 @@ import Favorites from "./Pages/Favorites";
 import Home from "./Pages/Home";
 // Components
 import Login from "./Pages/Login";
-import Navigation from "./Pages/Navigation";
+import Navigation from "./Layouts/Navigation";
 //Styles
 import { AppWrapper } from './style';
 

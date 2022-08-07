@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import ToggleSwitch from '../Components/ToggleSwitch';
+import ToggleSwitch from '../Components/Ui/ToggleSwitch';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

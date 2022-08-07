@@ -1,5 +1,5 @@
 import { Outlet, useLocation } from "react-router-dom";
-import Button from "../../Components/Button";
+import Button from "../../Components/Ui/Button";
 // Components
 import {
   IconFavFull,
@@ -8,9 +8,9 @@ import {
   IconHomeOutline,
   IconLogout,
   IconMap,
-} from "../../Components/IconsComponent";
-import SearchBox from "../../Components/SearchBox";
-import ToggleSwitch from "../../Components/ToggleSwitch";
+} from "../../Components/Ui/IconsComponent";
+import SearchBox from "../../Components/Ui/SearchBox";
+import ToggleSwitch from "../../Components/Ui/ToggleSwitch";
 
 // Styles
 import * as S from "./style";

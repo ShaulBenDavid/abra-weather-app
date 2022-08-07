@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import { FormInputContainer } from "../../Components/FromInput/style";
 // Components
 import getMediaQuery from "../../Utils/GetMediaQuery";
-import { IconLogo } from "../../Components/IconsComponent";
-import Alert from "../../Components/Alert";
+import { IconLogo } from "../../Components/Ui/IconsComponent";
+import Alert from "../../Components/Ui/Alert";
 // Page wrapper
 export const LoginWrapper = styled.div`
   width: 100%;

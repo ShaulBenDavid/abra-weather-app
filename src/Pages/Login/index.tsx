@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 // Components
-import Button from "../../Components/Button";
-import FromInput from "../../Components/FromInput";
+import Button from "../../Components/Ui/Button";
+import FromInput from "../../Components/Ui/FromInput";
 import {
   IconFacebookLogo,
   IconGoogleLogo,
-} from "../../Components/IconsComponent";
+} from "../../Components/Ui/IconsComponent";
 // Styles
 import * as S from "./style";
 // Types

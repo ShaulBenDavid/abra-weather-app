@@ -1,4 +1,4 @@
-import { Theme } from "../../GlobalStyle/types";
+import { Theme } from "../../../GlobalStyle/types";
 
 export type ButtonVariants = "primary" | "white" | "inverted" | "link";
 

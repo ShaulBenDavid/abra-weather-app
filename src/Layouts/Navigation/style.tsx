@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 // Components
-import { IconLogo } from "../../Components/IconsComponent";
+import { IconLogo } from "../../Components/Ui/IconsComponent";
 import getMediaQuery from "../../Utils/GetMediaQuery";
 // Types
 import { StyleNavProps } from "./types";
