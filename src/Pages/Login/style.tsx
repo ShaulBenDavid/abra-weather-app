@@ -13,7 +13,7 @@ export const LoginWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow-y: scroll;
+  overflow-y: auto;
   /* 414px Screen */
   ${getMediaQuery.lessThan("mobile")`
     justify-content: flex-end;
