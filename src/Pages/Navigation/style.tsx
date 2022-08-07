@@ -15,6 +15,11 @@ export const NavigationWrapper = styled.header`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  /* 1280px Screen */
+  ${getMediaQuery.between("mobile", "desktop")`
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    padding: 0 50px;
+  `}
 `;
 // Logo
 export const NavBarLogo = styled(IconLogo)`
@@ -23,15 +28,12 @@ export const NavBarLogo = styled(IconLogo)`
   min-height: 72px;
   max-height: 72px;
   display: inline-block;
-  margin-right: 176px;
-  margin-top: 11px;
   /* 1280px Screen */
   ${getMediaQuery.between("mobile", "desktop")`
     min-width: 86px;
     max-width: 86px;
     min-height: 56px;
     max-height: 56px;
-    margin-right: 16px;
   `}
 `;
 
@@ -40,9 +42,11 @@ export const LinksWrapper = styled.nav`
   display: flex;
   column-gap: 63px;
   height: 100%;
+  margin-left: 176px;
   /* 1280px Screen */
   ${getMediaQuery.between("mobile", "desktop")`
     column-gap: 8px;
+    margin-left: 16px;
   `}
 `;
 export const NavLink = styled(Link)`
