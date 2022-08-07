@@ -18,8 +18,8 @@ const ToggleSwitch = ({ switchType, id }: ToggleSwitchProps) => {
       <S.ToggleIconWrapper>
         {switchType === "mode" && (
           <>
-            <S.StyledIconMoonDark />
             <S.StyledIconSunDrak />
+            <S.StyledIconMoonDark />
           </>
         )}
         {switchType === "temp" && (

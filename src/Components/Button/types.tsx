@@ -7,6 +7,7 @@ export interface ButtonProps {
     variant: ButtonVariants;
     disabled?: boolean;
     type?: "button" | "submit" | "reset";
+    style?: React.CSSProperties;
 }
 
 export interface ButtonStyledProps {
