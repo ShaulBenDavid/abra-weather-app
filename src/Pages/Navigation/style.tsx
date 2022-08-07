@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 // Components
 import { IconLogo } from "../../Components/IconsComponent";
 import getMediaQuery from "../../Utils/GetMediaQuery";
-
+// Types
+import { StyleNavProps } from "./types";
 // Navigation wrapper
 export const NavigationWrapper = styled.header`
   width: 100%;
@@ -64,16 +65,18 @@ export const NavLink = styled(Link)`
     margin-top: 5px;
   }
 
-  &::before {
-    content: "";
-    width: 100%;
-    height: 5px;
-    background-color: ${({ theme }) => theme.white};
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
+  ${(props: StyleNavProps) => props.active && css`
+    &::before {
+      content: "";
+      width: 100%;
+      height: 5px;
+      background-color: ${({ theme }) => theme.white};
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    } 
+  `}
 
     /* 1280px Screen */
   ${getMediaQuery.between("mobile", "desktop")`

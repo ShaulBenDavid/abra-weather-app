@@ -1,9 +1,11 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Button from "../../Components/Button";
 // Components
 import {
+  IconFavFull,
   IconFavOutline,
   IconHomeFull,
+  IconHomeOutline,
   IconLogout,
   IconMap,
 } from "../../Components/IconsComponent";
@@ -14,6 +16,11 @@ import ToggleSwitch from "../../Components/ToggleSwitch";
 import * as S from "./style";
 
 const Navigation = () => {
+  // Get current path
+  const location = useLocation();
+  const { pathname } = location;
+  const currentPath = pathname.split("/")[1];
+
   return (
     <>
       {/* Navbar */}
@@ -21,12 +28,12 @@ const Navigation = () => {
         <S.NavBarLogo />
         {/* Nav link */}
         <S.LinksWrapper>
-          <S.NavLink to="/">
-            <IconHomeFull />
+          <S.NavLink to="/" active={currentPath === '' ? true : false}>
+          {currentPath === ''? <IconHomeFull /> : <IconHomeOutline /> }
             <p>Home</p>
           </S.NavLink>
-          <S.NavLink to="/">
-            <IconFavOutline />
+          <S.NavLink to="/favorites" active={currentPath === 'favorites'? true : false}>
+            {currentPath === 'favorites'? <IconFavFull /> : <IconFavOutline /> }
             <p>Favorites</p>
           </S.NavLink>
         </S.LinksWrapper>
