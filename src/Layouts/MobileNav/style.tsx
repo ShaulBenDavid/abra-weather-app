@@ -6,7 +6,7 @@ export const MobileNavbar = styled.nav`
   position: absolute;
   bottom: 0;
   width: 100%;
-  padding: 12px 41px;
+  padding: 12px 0px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -23,6 +23,7 @@ export const MobileNavLink = styled(Link)`
   flex-direction: column;
   align-items: center;
   row-gap: 4px;
+  margin: 0 auto;
 
   p {
     font-size: 0.875rem;
