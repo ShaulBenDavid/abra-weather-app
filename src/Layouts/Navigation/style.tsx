@@ -103,12 +103,16 @@ export const HoverEffect = styled(WindowHover)`
 export const SwitchButtonWrapper = styled.div`
   margin-left: 124px;
   /* 1280px Screen */
-  ${getMediaQuery.between("mobile", "desktop")`
+  ${getMediaQuery.lessThan("desktop")`
     order: 5;
 
     &:hover ${HoverEffect} {
       opacity: 1;
     }
+  `}
+  /* Between mobile and tablet */
+  ${getMediaQuery.between("mobile", "tablet")`
+      margin-left: 20px;
   `}
 `;
 
@@ -118,8 +122,13 @@ export const SwitchBoxWrapper = styled.div`
   column-gap: 30px;
   margin-left: 80px;
   /* 1280px Screen */
-  ${getMediaQuery.between("mobile", "desktop")`
+  ${getMediaQuery.between("tablet", "desktop")`
     margin-left: 40px;
+  `}
+  /* Between mobile and tablet */
+  ${getMediaQuery.between("mobile", "tablet")`
+      margin-left: 20px;
+      column-gap: 20px;
   `}
 `;
 
