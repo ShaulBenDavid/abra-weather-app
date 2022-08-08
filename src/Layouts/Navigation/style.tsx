@@ -65,7 +65,7 @@ export const NavLink = styled(Link)`
     margin-top: 5px;
   }
 
-  ${(props: StyleNavProps) => props.active && css`
+  ${(props: StyleNavProps) => props.active === "true" && css`
     &::before {
       content: "";
       width: 100%;

@@ -1,24 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+// Components
 import Favorites from "./Pages/Favorites";
 import Home from "./Pages/Home";
-// Components
 import Login from "./Pages/Login";
 import Navigation from "./Layouts/Navigation";
 //Styles
-import { AppWrapper } from './style';
+import { darkMode, lightMode } from "./GlobalStyle/theme";
+import { AppWrapper } from "./style";
+
+const themes: any = {
+  light: lightMode,
+  dark: darkMode,
+};
 
 const App: React.FC = () => {
+  // Theme mode
+  const [theme, setTheme] = useState("light");
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+  };
   return (
-    <AppWrapper>
-      <Routes>
-        <Route path="login" element={<Login />} />
-        <Route path="/" element={<Navigation />}>
-          <Route index element={<Home />} />
-          <Route path="favorites" element={<Favorites />} />
-        </Route>
-      </Routes>
-    </AppWrapper>
+    <>
+      <ThemeProvider theme={themes[theme]}>
+        <AppWrapper>
+          <Routes>
+            <Route path="login" element={<Login />} />
+            <Route path="/" element={<Navigation toggleTheme={toggleTheme} />}>
+              <Route index element={<Home />} />
+              <Route path="favorites" element={<Favorites />} />
+            </Route>
+          </Routes>
+        </AppWrapper>
+      </ThemeProvider>
+    </>
   );
 };
 

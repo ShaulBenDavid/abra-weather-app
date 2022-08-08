@@ -11,11 +11,12 @@ import {
 } from "../../Components/Ui/IconsComponent";
 import SearchBox from "../../Components/Ui/SearchBox";
 import ToggleSwitch from "../../Components/Ui/ToggleSwitch";
-
+// Types
+import { NavigationProps } from "./types";
 // Styles
 import * as S from "./style";
 
-const Navigation = () => {
+const Navigation = ({ toggleTheme }: NavigationProps) => {
   // Get current path
   const location = useLocation();
   const { pathname } = location;
@@ -28,11 +29,11 @@ const Navigation = () => {
         <S.NavBarLogo />
         {/* Nav link */}
         <S.LinksWrapper>
-          <S.NavLink to="/" active={currentPath === '' ? true : false}>
+          <S.NavLink to="/" active={currentPath === '' ? true.toString() : false.toString()}>
           {currentPath === ''? <IconHomeFull /> : <IconHomeOutline /> }
             <p>Home</p>
           </S.NavLink>
-          <S.NavLink to="/favorites" active={currentPath === 'favorites'? true : false}>
+          <S.NavLink to="/favorites" active={currentPath === 'favorites'? true.toString() : false.toString()}>
             {currentPath === 'favorites'? <IconFavFull /> : <IconFavOutline /> }
             <p>Favorites</p>
           </S.NavLink>
@@ -51,7 +52,7 @@ const Navigation = () => {
         {/* Type Switch box */}
         <S.SwitchBoxWrapper>
           <ToggleSwitch switchType="temp" id="temp" />
-          <ToggleSwitch switchType="mode" id="mode" />
+          <ToggleSwitch switchType="mode" id="mode" onChange={() => toggleTheme()} defaultChecked={true}  />
         </S.SwitchBoxWrapper>
         {/* Logout button */}
         <S.LogoutButtonWrapper>

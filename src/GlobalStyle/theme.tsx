@@ -1,8 +1,8 @@
 // Types
-import { Theme, LightModeTheme } from './types';
+import { Theme, DarkModeTheme } from './types';
 
 
-const baseTheme: Theme = {
+export const lightMode: Theme = {
   // Colors
   black: "#222222",
   white: "#FFFFFF",
@@ -17,16 +17,20 @@ const baseTheme: Theme = {
   buttonDefaultSize: "1.125rem",
   // Line Height
   buttonLineHeight: "1.2",
+
+  // bg
+  gradientColor1: "#47bfdf", 
+  gradientColor2: "#4a91ff",
+  gradientDeg: "241deg",
 };
 
-export const lightModeTheme: LightModeTheme = {
-  primary: "#48BAE4",
+
+export const darkModeTheme: DarkModeTheme = {
+  primary: "#1a2b55",
+  gradientColor1: "#191634", 
+  gradientColor2: "#1e437c",
+  gradientDeg: "226deg",
 };
 
-export const darkModeTheme = {
-  primary: "#48BAE4",
-};
+export const darkMode = { ...lightMode, ...darkModeTheme };
 
-export const lightMode = { ...baseTheme, ...lightModeTheme };
-export const darkMode = { ...baseTheme, ...darkModeTheme };
-export default lightMode;

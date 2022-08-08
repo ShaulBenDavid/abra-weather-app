@@ -13,8 +13,14 @@ export type Theme = {
   buttonDefaultSize: string;
   // Line Height
   buttonLineHeight: string;
+  gradientColor1: string; 
+  gradientColor2: string;
+  gradientDeg: string;
 };
 
-export type LightModeTheme = {
+export type DarkModeTheme = {
   primary: string;
+  gradientColor1: string;
+  gradientColor2: string;
+  gradientDeg: string;
 };

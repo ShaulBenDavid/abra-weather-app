@@ -4,11 +4,15 @@ import getMediaQuery from "./Utils/GetMediaQuery";
 export const AppWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-image: linear-gradient(241deg, #47bfdf, #4a91ff), linear-gradient(to bottom, #fff, #fff);
+  background-image: linear-gradient(
+    ${({ theme }) => theme.gradientDeg}, 
+    ${({ theme }) => theme.gradientColor1}, 
+    ${({ theme }) => theme.gradientColor2}
+    ),
+    linear-gradient(to bottom, #fff, #fff);
   height: 100vh;
-
   /* 414px Screen */
-   ${getMediaQuery.lessThan("mobile")`
+  ${getMediaQuery.lessThan("mobile")`
     height: 100%;
   `}
 `;

@@ -1,3 +1,7 @@
 export interface StyleNavProps {
-  active: boolean;
+  active: string;
+}
+
+export interface NavigationProps {
+  toggleTheme: () => void;
 }
