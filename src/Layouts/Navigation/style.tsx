@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 // Components
 import { IconLogo } from "../../Components/Ui/IconsComponent";
 import getMediaQuery from "../../Utils/GetMediaQuery";
+import WindowHover from "./Components/HoverWindow";
 // Types
 import { StyleNavProps } from "./types";
 // Navigation wrapper
@@ -94,12 +95,20 @@ export const SearchWrapper = styled.div`
     margin: 0 auto;
   `}
 `;
+// Button hover effect
+export const HoverEffect = styled(WindowHover)`
+  opacity: 0;
+`
 // Switch button wrapper map
 export const SwitchButtonWrapper = styled.div`
   margin-left: 124px;
   /* 1280px Screen */
   ${getMediaQuery.between("mobile", "desktop")`
     order: 5;
+
+    &:hover ${HoverEffect} {
+      opacity: 1;
+    }
   `}
 `;
 
@@ -121,6 +130,10 @@ export const LogoutButtonWrapper = styled.div`
   ${getMediaQuery.between("mobile", "desktop")`
     order: 6;
     margin-left: 32px;
+    
+    &:hover ${HoverEffect} {
+      opacity: 1;
+    }
   `}
 `;
 
