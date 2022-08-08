@@ -1,7 +1,8 @@
-
+// Styles
+import { StyledHome } from "./style";
 const Home = () => {
   return (
-    <div>Home</div>
+    <StyledHome>Home</StyledHome>
   )
 }
 

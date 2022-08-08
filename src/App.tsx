@@ -5,7 +5,7 @@ import { ThemeProvider } from "styled-components";
 import Favorites from "./Pages/Favorites";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
-import Navigation from "./Layouts/Navigation";
+import Header from "./Pages/Header";
 //Styles
 import { darkMode, lightMode } from "./GlobalStyle/theme";
 import { AppWrapper } from "./style";
@@ -29,7 +29,7 @@ const App: React.FC = () => {
         <AppWrapper>
           <Routes>
             <Route path="login" element={<Login />} />
-            <Route path="/" element={<Navigation toggleTheme={toggleTheme} />}>
+            <Route path="/" element={<Header toggleTheme={toggleTheme} />}>
               <Route index element={<Home />} />
               <Route path="favorites" element={<Favorites />} />
             </Route>

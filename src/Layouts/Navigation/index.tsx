@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Button from "../../Components/Ui/Button";
 // Components
 import {
@@ -15,7 +15,6 @@ import ToggleSwitch from "../../Components/Ui/ToggleSwitch";
 import { NavigationProps } from "./types";
 // Styles
 import * as S from "./style";
-import WindowHover from "./Components/HoverWindow";
 
 const Navigation = ({ toggleTheme }: NavigationProps) => {
   // Get current path
@@ -86,8 +85,6 @@ const Navigation = ({ toggleTheme }: NavigationProps) => {
           </Button>
         </S.LogoutButtonWrapper>
       </S.NavigationWrapper>
-      {/* Outlet render */}
-      <Outlet />
     </>
   );
 };
