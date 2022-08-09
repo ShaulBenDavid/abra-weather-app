@@ -1,9 +1,10 @@
 // Styles
 import { StyledBurgerButton } from "./style";
+import { BurgerButtonProps } from "./types";
 
-const BurgerButton = () => {
+const BurgerButton = ({ onClick }: BurgerButtonProps) => {
   return (
-    <StyledBurgerButton>
+    <StyledBurgerButton onClick={onClick} >
       <span></span>
       <span></span>
       <span></span>

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
 
 import useMediaQuery from "../../Hooks/useMediaQuery";
@@ -11,19 +12,32 @@ import MobileMenu from "./Components/MobileMenu";
 import { HeaderProps } from "./types";
 
 const Header = ({ toggleTheme }: HeaderProps) => {
+  // Is menu open
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // Media query
   const matches = useMediaQuery("(min-width: 1100px)");
-  console.log(matches);
+  // Handle menu state
+  const handleMenu = () => setIsMenuOpen(!isMenuOpen);
+
   return (
     <>
       {matches ? (
+        // Desk nav
         <Navigation toggleTheme={toggleTheme} />
       ) : (
         <>
-          <BurgerButton />
+          {/* Mobile nav */}
+          <BurgerButton onClick={handleMenu} />
           <MobileNav />
         </>
       )}
-      <Drawer><MobileMenu /></Drawer>
+      {/* Drawer menu */}
+      {!matches && (
+        isMenuOpen &&
+        <Drawer onClick={handleMenu}>
+          <MobileMenu />
+        </Drawer>
+      )}
       <Outlet />
     </>
   );
