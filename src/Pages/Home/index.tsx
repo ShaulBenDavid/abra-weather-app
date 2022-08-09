@@ -1,9 +1,3 @@
-// Styles
-import { StyledHome } from "./style";
-const Home = () => {
-  return (
-    <StyledHome>Home</StyledHome>
-  )
-}
+import Home from "./Home";
 
 export default Home;
