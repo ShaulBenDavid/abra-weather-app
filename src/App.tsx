@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
+
+import { ThemeContext } from "./Context/ThemeContext/ThemeContext";
 // Components
 import Favorites from "./Pages/Favorites";
 import Home from "./Pages/Home";
@@ -17,19 +19,15 @@ const themes: any = {
 
 const App: React.FC = () => {
   // Theme mode
-  const [theme, setTheme] = useState("light");
+  const { theme } = useContext(ThemeContext)
 
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-  };
   return (
     <>
       <ThemeProvider theme={themes[theme]}>
         <AppWrapper>
           <Routes>
             <Route path="login" element={<Login />} />
-            <Route path="/" element={<Header toggleTheme={toggleTheme} />}>
+            <Route path="/" element={<Header />}>
               <Route index element={<Home />} />
               <Route path="favorites" element={<Favorites />} />
             </Route>

@@ -3,4 +3,5 @@ export interface ToggleSwitchProps {
   id: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   defaultChecked?: boolean;
+  checked?: boolean;
 }

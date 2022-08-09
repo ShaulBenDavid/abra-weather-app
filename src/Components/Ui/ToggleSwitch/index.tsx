@@ -13,6 +13,7 @@ const ToggleSwitch = ({
   id,
   onChange,
   defaultChecked,
+  checked
 }: ToggleSwitchProps) => {
   return (
     <S.ToggleSwitchWrapper>
@@ -21,6 +22,7 @@ const ToggleSwitch = ({
         id={id}
         onChange={onChange}
         defaultChecked={defaultChecked}
+        checked={checked}
       />
       <S.SwitchButton htmlFor={id} />
       {/* icons */}

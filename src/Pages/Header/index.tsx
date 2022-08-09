@@ -9,9 +9,8 @@ import BurgerButton from "./Components/BurgerButton";
 import Drawer from "../../Layouts/Drawer";
 import MobileMenu from "./Components/MobileMenu";
 // Types
-import { HeaderProps } from "./types";
 
-const Header = ({ toggleTheme }: HeaderProps) => {
+const Header = () => {
   // Is menu open
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   // Media query
@@ -23,7 +22,7 @@ const Header = ({ toggleTheme }: HeaderProps) => {
     <>
       {matches ? (
         // Desk nav
-        <Navigation toggleTheme={toggleTheme} />
+        <Navigation />
       ) : (
         <>
           {/* Mobile nav */}

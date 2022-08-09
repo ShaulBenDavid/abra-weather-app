@@ -8,6 +8,7 @@ import App from "./App";
 // Styles
 import GlobalStyles from "./GlobalStyle/GlobalStyles";
 import "./index.css";
+import { ThemeToggleProvider } from "./Context/ThemeContext/ThemeContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -15,10 +16,12 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <GlobalStyles />
-      <App />
-    </BrowserRouter>
+    <ThemeToggleProvider>
+      <BrowserRouter>
+        <GlobalStyles />
+        <App />
+      </BrowserRouter>
+    </ThemeToggleProvider>
   </React.StrictMode>
 );
 

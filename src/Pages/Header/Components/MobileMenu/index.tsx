@@ -1,3 +1,6 @@
+import { useContext } from "react";
+
+import { ThemeContext } from "../../../../Context/ThemeContext/ThemeContext";
 // Components
 import Button from "../../../../Components/Ui/Button";
 import { ReactComponent as IconLogoutDark } from "./Assets/log-out.svg";
@@ -8,6 +11,8 @@ import ToggleSwitch from "../../../../Components/Ui/ToggleSwitch";
 import * as S from "./style";
 
 const MobileMenu = () => {
+  // Theme context
+  const { toggleTheme, theme } = useContext(ThemeContext);
   return (
     <div>
       {/* Title */}
@@ -16,7 +21,12 @@ const MobileMenu = () => {
       <S.SwitchWrapper>
         <S.SwitchBoxContainer>
           <p>Change mode</p>
-          <ToggleSwitch switchType="mode" id="mode" defaultChecked={true} />
+          <ToggleSwitch
+            switchType="mode"
+            id="mode"
+            checked={theme === "light" && true}
+            onChange={() => toggleTheme()}
+          />
         </S.SwitchBoxContainer>
         <S.SwitchBoxContainer>
           <p>Change degrees</p>

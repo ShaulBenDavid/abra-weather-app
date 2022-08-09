@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { useLocation } from "react-router-dom";
-import Button from "../../Components/Ui/Button";
+
+import { ThemeContext } from "../../Context/ThemeContext/ThemeContext";
 // Components
+import Button from "../../Components/Ui/Button";
 import {
   IconFavFull,
   IconFavOutline,
@@ -11,12 +14,12 @@ import {
 } from "../../Components/Ui/IconsComponent";
 import SearchBox from "../../Components/Ui/SearchBox";
 import ToggleSwitch from "../../Components/Ui/ToggleSwitch";
-// Types
-import { NavigationProps } from "./types";
 // Styles
 import * as S from "./style";
 
-const Navigation = ({ toggleTheme }: NavigationProps) => {
+const Navigation = () => {
+  // Context Theme mode
+  const { toggleTheme, theme } = useContext(ThemeContext);
   // Get current path
   const location = useLocation();
   const { pathname } = location;
@@ -69,8 +72,8 @@ const Navigation = ({ toggleTheme }: NavigationProps) => {
           <ToggleSwitch
             switchType="mode"
             id="mode"
+            checked={theme === "light" && true}
             onChange={() => toggleTheme()}
-            defaultChecked={true}
           />
         </S.SwitchBoxWrapper>
         {/* Logout button */}
