@@ -12,7 +12,7 @@ export const MobileNavbar = styled.nav`
   align-items: center;
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: ${({ theme }) => theme.mobileNavBg};
   border-radius: 20px 20px 0 0;
 `;
 
@@ -29,7 +29,7 @@ export const MobileNavLink = styled(Link)`
     font-size: 0.875rem;
     line-height: 1.25;
     text-align: center;
-    color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.mobileNavP};
   }
 `;
 
@@ -37,5 +37,5 @@ export const MobileNavLink = styled(Link)`
 export const Divider = styled.div`
   width: 1px;
   height: 46px;
-  background-color: ${({ theme }) => theme.white};
+  background-color: ${({ theme }) => theme.mobileNavP};
 `

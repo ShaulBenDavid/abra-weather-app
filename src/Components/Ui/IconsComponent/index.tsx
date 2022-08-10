@@ -4,8 +4,10 @@ import { ReactComponent as IconArrow } from '../../../Assets/Icons/arrow1.svg';
 import { ReactComponent as IconCheckV } from '../../../Assets/Icons/check-v.svg';
 import { ReactComponent as IconFavFull } from '../../../Assets/Icons/fav-full.svg';
 import { ReactComponent as IconFavOutline } from '../../../Assets/Icons/fav-outline.svg';
+import { ReactComponent as IconFavDark } from '../../../Assets/Icons/fav-outline-dark.svg';
 import { ReactComponent as IconHomeFull } from '../../../Assets/Icons/home-full.svg';
 import { ReactComponent as IconHomeOutline } from '../../../Assets/Icons/home-outline.svg';
+import { ReactComponent as IconHomeDark } from '../../../Assets/Icons/home-outline-dark.svg';
 import { ReactComponent as IconInfoCircle } from '../../../Assets/Icons/info-circle.svg';
 import { ReactComponent as IconLayout } from '../../../Assets/Icons/layout.svg';
 import { ReactComponent as IconLogout } from '../../../Assets/Icons/log-out.svg';
@@ -29,8 +31,10 @@ export {
     IconCheckV,
     IconFavFull,
     IconFavOutline,
+    IconFavDark,
     IconHomeFull,
     IconHomeOutline,
+    IconHomeDark,
     IconInfoCircle,
     IconLayout,
     IconLogout,

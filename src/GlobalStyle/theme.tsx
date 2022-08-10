@@ -22,6 +22,9 @@ export const lightMode: Theme = {
   gradientColor1: "#47bfdf", 
   gradientColor2: "#4a91ff",
   gradientDeg: "241deg",
+  // Mobile nav
+  mobileNavBg: "#ffffff4d",
+  mobileNavP: "#FFFFFF",
 };
 
 
@@ -30,6 +33,8 @@ export const darkModeTheme: DarkModeTheme = {
   gradientColor1: "#191634", 
   gradientColor2: "#1e437c",
   gradientDeg: "226deg",
+  mobileNavBg: "#FFFFFF",
+  mobileNavP: "#444e72",
 };
 
 export const darkMode = { ...lightMode, ...darkModeTheme };

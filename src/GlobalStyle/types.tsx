@@ -16,6 +16,8 @@ export type Theme = {
   gradientColor1: string; 
   gradientColor2: string;
   gradientDeg: string;
+  mobileNavBg: string;
+  mobileNavP: string;
 };
 
 export type DarkModeTheme = {
@@ -23,4 +25,6 @@ export type DarkModeTheme = {
   gradientColor1: string;
   gradientColor2: string;
   gradientDeg: string;
+  mobileNavBg: string;
+  mobileNavP: string;
 };
