@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 // Nav bar
 export const MobileNavbar = styled.nav`
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   padding: 12px 0px;

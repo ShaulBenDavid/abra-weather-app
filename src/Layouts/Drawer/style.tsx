@@ -5,12 +5,17 @@ const linearUp = keyframes`
   0% { bottom: -60%; }
   100% { bottom: 0; }
 `
+const showIn = keyframes`
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+`
 // Drawer background
 export const StyledDrawerBackground = styled.div`
   position: absolute;
   top: 0;
   height: 100vh;
   width: 100%;
+  animation: ${showIn} 0.3s ease-in-out;
   cursor: pointer;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
