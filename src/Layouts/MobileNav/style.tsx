@@ -33,6 +33,24 @@ export const MobileNavLink = styled(Link)`
   }
 `;
 
+export const MobileNavLinkB = styled.button`
+  all: unset;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 4px;
+  margin: 0 auto;
+  cursor: pointer;
+
+  p {
+    font-size: 0.875rem;
+    line-height: 1.25;
+    text-align: center;
+    color: ${({ theme }) => theme.mobileNavP};
+  }
+`
+
 // divider
 export const Divider = styled.div`
   width: 1px;

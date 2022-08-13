@@ -1,6 +1,8 @@
 import { useContext } from "react";
 
 import { ThemeContext } from "../../Context/ThemeContext/ThemeContext";
+// Types
+import { MobileNavProps } from "./types";
 // Styles
 import {
   IconFavOutline,
@@ -12,7 +14,7 @@ import {
 } from "../../Components/Ui/IconsComponent";
 import * as S from "./style";
 
-const MobileNav = () => {
+const MobileNav: React.FC<MobileNavProps> = ({ onClick }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -23,10 +25,10 @@ const MobileNav = () => {
         <p>Favorites</p>
       </S.MobileNavLink>
       <S.Divider />
-      <S.MobileNavLink to="/">
+      <S.MobileNavLinkB onClick={onClick}>
         {theme === "light" ? <IconSearchWhite /> : <IconSearchDrak />}
         <p>Search</p>
-      </S.MobileNavLink>
+      </S.MobileNavLinkB>
       <S.Divider />
       <S.MobileNavLink to="/">
         {theme === "light" ? <IconHomeOutline /> : <IconHomeDark />}
