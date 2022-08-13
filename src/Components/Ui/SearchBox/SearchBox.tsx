@@ -7,10 +7,10 @@ import {
   StyledSearchIcon,
 } from "./style";
 
-const SearchBox = ({ placeholder }: SearchBoxProps) => {
+const SearchBox: React.FC<SearchBoxProps> = ({ ...otherprops }) => {
   return (
     <StyledSearchContainer>
-      <StyledInputSearch type="text" placeholder={placeholder} />
+      <StyledInputSearch type="text" {...otherprops} />
       <StyledSearchIcon />
     </StyledSearchContainer>
   );

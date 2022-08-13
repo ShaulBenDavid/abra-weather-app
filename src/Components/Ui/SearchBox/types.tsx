@@ -1,3 +1,2 @@
-export interface SearchBoxProps {
-    placeholder: string;
-}
+export type SearchBoxProps = {
+} & React.InputHTMLAttributes<HTMLInputElement>;

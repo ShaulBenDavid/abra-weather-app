@@ -8,7 +8,7 @@ import { ReactComponent as IconCheckV } from "./Icons/check-v.svg";
 import { AlertBoxProps } from "./types";
 
 
-const Alert = ({ severity, className, children }: AlertBoxProps) => {
+const Alert: React.FC<AlertBoxProps> = ({ severity, className, children }) => {
   return (
     <BaseAlert className={className} severity={severity} >
       {severity === "error" ? <IconInfoCircle /> : <IconCheckV />}

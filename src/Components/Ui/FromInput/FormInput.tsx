@@ -4,16 +4,15 @@ import { ErrorP, FormInputContainer, StyledInput } from "./style";
 // Types
 import { FormInputProps } from "./types";
 
-const FromInput = ({
+const FromInput: React.FC<FormInputProps> = ({
   label,
   type,
   onChange,
-  required,
   errMessage,
   pattern,
   value,
   ...otherprops
-}: FormInputProps) => {
+}) => {
   const [validError, setValidError] = useState(false);
   const [isBlur, setIsBlur] = useState(false);
   // Handle blur
@@ -24,19 +23,19 @@ const FromInput = ({
   const handleFocus = () => {
     setTimeout(() => {
       setIsBlur(true);
-    }, 3000)
+    }, 3000);
   };
 
   // Check valid
   useEffect(() => {
     let re = new RegExp(pattern);
     re.test(value) ? setValidError(false) : setValidError(true);
-  },[value, pattern])
+  }, [value, pattern]);
 
   return (
     <div>
       <FormInputContainer
-        validError={isBlur? validError : false}
+        validError={isBlur ? validError : false}
         className="FormInputContainer"
       >
         <label>{label}</label>

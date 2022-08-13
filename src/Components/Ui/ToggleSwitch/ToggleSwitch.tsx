@@ -8,13 +8,13 @@ import { ToggleSwitchProps } from "./types";
 const FARENHEIT: string = "F";
 const CELCIUES: string = "C";
 
-const ToggleSwitch = ({
+const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
   switchType,
   id,
   onChange,
   defaultChecked,
-  checked
-}: ToggleSwitchProps) => {
+  checked,
+}) => {
   return (
     <S.ToggleSwitchWrapper>
       {/* CheckBox */}

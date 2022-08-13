@@ -1,7 +1,3 @@
-export interface ToggleSwitchProps {
+export type ToggleSwitchProps = {
   switchType: "mode" | "temp";
-  id: string;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  defaultChecked?: boolean;
-  checked?: boolean;
-}
+} & React.InputHTMLAttributes<HTMLInputElement>;
