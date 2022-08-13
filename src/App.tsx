@@ -7,7 +7,7 @@ import { ThemeContext } from "./Context/ThemeContext/ThemeContext";
 import Favorites from "./Pages/Favorites";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
-import Header from "./Pages/Header";
+import PageLayout from "./Pages/PageLayout";
 //Styles
 import { darkMode, lightMode } from "./GlobalStyle/theme";
 import { AppWrapper } from "./style";
@@ -27,7 +27,7 @@ const App: React.FC = () => {
         <AppWrapper>
           <Routes>
             <Route path="login" element={<Login />} />
-            <Route path="/" element={<Header />}>
+            <Route path="/" element={<PageLayout />}>
               <Route index element={<Home />} />
               <Route path="favorites" element={<Favorites />} />
             </Route>

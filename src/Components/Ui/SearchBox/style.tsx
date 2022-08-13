@@ -9,6 +9,7 @@ export const StyledSearchContainer = styled.label`
   height: 54px;
   background-color: ${({ theme }) => theme.white};
   border-radius: 15px;
+  cursor: pointer;
 `;
 // Search Icon
 export const StyledSearchIcon = styled(IconSearchDrak)`

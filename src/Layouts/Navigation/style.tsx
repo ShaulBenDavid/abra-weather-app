@@ -9,7 +9,7 @@ import { StyleNavProps } from "./types";
 // Navigation wrapper
 export const NavigationWrapper = styled.header`
   width: 100%;
-  height: 94px;
+  min-height: 94px;
   padding: 0 70px;
   background-color: ${({ theme }) => theme.primary};
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
