@@ -5,6 +5,7 @@ import { DrawerProps } from './types';
 import { StyledDrawerWrapper, StyledDrawerBackground } from './style';
 
 const Drawer = ({ children, onClick }: DrawerProps) => {
+  // Cancel the Wrapper onclick
   const handleClick = (event: React.SyntheticEvent): void => {
     event.stopPropagation();
   }
