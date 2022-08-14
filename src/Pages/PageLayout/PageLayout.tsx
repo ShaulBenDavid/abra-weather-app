@@ -3,19 +3,19 @@ import { Outlet } from "react-router-dom";
 import useMediaQuery from "../../Hooks/useMediaQuery";
 // Components
 import MobileLayout from "../../Layouts/MobileLayout";
-import Navigation from "../../Layouts/Navigation";
+import Header from "../../Layouts/Header";
 // Types
 
 const PageLayout = () => {
   // Media query
-  const matches = useMediaQuery("(min-width: 1100px)");
+  const matches = useMediaQuery("(min-width: 1207px)");
 
   return (
     <>
       {matches ? (
         // Desk nav
         <>
-          <Navigation />
+          <Header />
         </>
       ) : (
         <>

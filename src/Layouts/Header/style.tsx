@@ -1,11 +1,42 @@
-import { Link } from "react-router-dom";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 // Components
 import { IconLogo } from "../../Components/Ui/IconsComponent";
+import SearchBox from "../../Components/Ui/SearchBox";
 import getMediaQuery from "../../Utils/GetMediaQuery";
 import WindowHover from "./Components/HoverWindow";
-// Types
-import { StyleNavProps } from "./types";
+
+// -------- Sections --------
+export const RightSection = styled.div`
+  width: 35%;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  /* 1280px Screen */
+  ${getMediaQuery.lessThan("tablet")`
+    width: 30%;
+  `}
+`;
+
+export const MiddleSection = styled.div`
+  width: 30%;
+  /* 1280px Screen */
+  ${getMediaQuery.lessThan("tablet")`
+    width: 40%;
+  `}
+`;
+
+export const LeftSection = styled.div`
+  width: 35%;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: flex-end;
+  /* 1280px Screen */
+  ${getMediaQuery.lessThan("tablet")`
+    width: 30%;
+  `}
+`;
+
 // Navigation wrapper
 export const NavigationWrapper = styled.header`
   width: 100%;
@@ -39,66 +70,16 @@ export const NavBarLogo = styled(IconLogo)`
   `}
 `;
 
-// Nav links
-export const LinksWrapper = styled.nav`
-  display: flex;
-  column-gap: 63px;
-  height: 100%;
-  margin-left: 176px;
-  /* 1280px Screen */
-  ${getMediaQuery.between("mobile", "desktop")`
-    column-gap: 8px;
-    margin-left: 16px;
-  `}
-`;
-export const NavLink = styled(Link)`
-  display: flex;
-  align-items: center;
-  position: relative;
-  padding: 0 15px;
-  column-gap: 8px;
-  height: 100%;
-  font-size: 1.125rem;
-  font-weight: bold;
-  color: ${({ theme }) => theme.white};
-  text-decoration: none;
-  p {
-    margin-top: 5px;
-  }
-
-  ${(props: StyleNavProps) => props.active === "true" && css`
-    &::before {
-      content: "";
-      width: 100%;
-      height: 5px;
-      background-color: ${({ theme }) => theme.white};
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-    } 
-  `}
-
-    /* 1280px Screen */
-  ${getMediaQuery.between("mobile", "desktop")`
-    padding: 0 12px;
-  `}
-`;
-
 // Search Wrapper
-export const SearchWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  margin-left: 124px;
-  /* 1280px Screen */
-  ${getMediaQuery.between("mobile", "desktop")`
-    margin: 0 auto;
-  `}
+export const HeaderSearch = styled(SearchBox)`
+  margin: 0 auto;
 `;
+
 // Button hover effect
 export const HoverEffect = styled(WindowHover)`
   opacity: 0;
-`
+`;
+
 // Switch button wrapper map
 export const SwitchButtonWrapper = styled.div`
   margin-left: 124px;
@@ -111,8 +92,12 @@ export const SwitchButtonWrapper = styled.div`
     }
   `}
   /* Between mobile and tablet */
-  ${getMediaQuery.between("mobile", "tablet")`
-      margin-left: 20px;
+  ${getMediaQuery.between("tablet", "desktop")`
+      margin-left: 96px;
+  `}
+  /* 1280px Screen */
+    ${getMediaQuery.lessThan("tablet")`
+    margin-left: 80px;
   `}
 `;
 

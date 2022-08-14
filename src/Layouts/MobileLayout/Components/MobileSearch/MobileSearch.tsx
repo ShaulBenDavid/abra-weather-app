@@ -15,7 +15,7 @@ const MobileSearch: React.FC<MobileSearchProps> = ({ onClick }) => {
         <IconArrow onClick={onClick}/>
         {/* Search box */}
         <S.SearchBoxWrapper>
-          <SearchBox placeholder="Try “Tel Aviv - Jaffa”..." />
+          <SearchBox />
         </S.SearchBoxWrapper>
         {/* Search result */}
         <S.SearchResults>
