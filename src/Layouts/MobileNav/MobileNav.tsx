@@ -1,9 +1,8 @@
-import { useContext } from "react";
+import { useAppSelector } from "../../Redux/hooks";
+import { selectTheme } from "../../Redux/ThemeMode/ThemeMode";
 
-import { ThemeContext } from "../../Context/ThemeContext/ThemeContext";
 // Types
 import { MobileNavProps } from "./types";
-// Styles
 import {
   IconFavOutline,
   IconHomeOutline,
@@ -12,10 +11,11 @@ import {
   IconFavDark,
   IconHomeDark,
 } from "../../Components/Ui/IconsComponent";
+// Styles
 import * as S from "./style";
 
 const MobileNav: React.FC<MobileNavProps> = ({ onClick }) => {
-  const { theme } = useContext(ThemeContext);
+  const theme = useAppSelector(selectTheme);
 
   return (
     <S.MobileNavbar>

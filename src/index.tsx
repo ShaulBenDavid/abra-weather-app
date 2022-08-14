@@ -3,12 +3,13 @@ import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "./Redux/store";
 // Components
 import App from "./App";
 // Styles
 import GlobalStyles from "./GlobalStyle/GlobalStyles";
 import "./index.css";
-import { ThemeToggleProvider } from "./Context/ThemeContext/ThemeContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -16,12 +17,12 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <ThemeToggleProvider>
+    <Provider store={store}>
       <BrowserRouter>
         <GlobalStyles />
         <App />
       </BrowserRouter>
-    </ThemeToggleProvider>
+    </Provider>
   </React.StrictMode>
 );
 

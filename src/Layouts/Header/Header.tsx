@@ -1,6 +1,6 @@
-import { useContext } from "react";
+import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
+import { selectTheme, toggleMode } from "../../Redux/ThemeMode/ThemeMode";
 
-import { ThemeContext } from "../../Context/ThemeContext/ThemeContext";
 // Components
 import Button from "../../Components/Ui/Button";
 import { IconLogout, IconMap } from "../../Components/Ui/IconsComponent";
@@ -10,8 +10,11 @@ import * as S from "./style";
 import NavBar from "./Components/NavBar";
 
 const Header = () => {
-  // Context Theme mode
-  const { toggleTheme, theme } = useContext(ThemeContext);
+  // Redux theme mode
+  const theme = useAppSelector(selectTheme);
+  const dispatch = useAppDispatch();
+  // Handle toggle
+  const handleToggle = () => dispatch(toggleMode());
 
   return (
     <>
@@ -47,7 +50,7 @@ const Header = () => {
               switchType="mode"
               id="mode"
               checked={theme === "light" && true}
-              onChange={() => toggleTheme()}
+              onChange={handleToggle}
             />
           </S.SwitchBoxWrapper>
           {/* Logout button */}

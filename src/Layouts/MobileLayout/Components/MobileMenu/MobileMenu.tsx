@@ -1,6 +1,6 @@
-import { useContext } from "react";
+import { useAppDispatch, useAppSelector } from "../../../../Redux/hooks";
+import { selectTheme, toggleMode } from "../../../../Redux/ThemeMode/ThemeMode";
 
-import { ThemeContext } from "../../../../Context/ThemeContext/ThemeContext";
 // Components
 import Button from "../../../../Components/Ui/Button";
 import { ReactComponent as IconLogoutDark } from "./Assets/log-out.svg";
@@ -11,8 +11,12 @@ import ToggleSwitch from "../../../../Components/Ui/ToggleSwitch";
 import * as S from "./style";
 
 const MobileMenu = () => {
-  // Theme context
-  const { toggleTheme, theme } = useContext(ThemeContext);
+  // Redux theme mode
+  const theme = useAppSelector(selectTheme);
+  const dispatch = useAppDispatch();
+  // Handle toggle
+  const handleToggle = () => dispatch(toggleMode());
+
   return (
     <div>
       {/* Title */}
@@ -25,7 +29,7 @@ const MobileMenu = () => {
             switchType="mode"
             id="mode"
             checked={theme === "light" && true}
-            onChange={() => toggleTheme()}
+            onChange={handleToggle}
           />
         </S.SwitchBoxContainer>
         <S.SwitchBoxContainer>

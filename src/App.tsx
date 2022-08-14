@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 
-import { ThemeContext } from "./Context/ThemeContext/ThemeContext";
+import { useAppSelector } from "./Redux/hooks";
+import { selectTheme } from "./Redux/ThemeMode/ThemeMode";
 // Components
 import Favorites from "./Pages/Favorites";
 import Home from "./Pages/Home";
@@ -19,7 +20,7 @@ const themes: any = {
 
 const App: React.FC = () => {
   // Theme mode
-  const { theme } = useContext(ThemeContext)
+  const theme = useAppSelector(selectTheme);
 
   return (
     <>
