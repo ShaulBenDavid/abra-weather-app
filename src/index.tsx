@@ -5,6 +5,8 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./Redux/store";
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
 // Components
 import App from "./App";
 // Styles
@@ -15,13 +17,17 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
+let persistor = persistStore(store);
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <GlobalStyles />
-        <App />
-      </BrowserRouter>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter>
+          <GlobalStyles />
+          <App />
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );

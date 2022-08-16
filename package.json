@@ -19,6 +19,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",
     "redux": "^4.2.0",
+    "redux-persist": "^6.0.0",
     "redux-typescript": "^1.2.1",
     "storybook-addon-styled-component-theme": "^2.0.0",
     "styled-components": "^5.3.5",
@@ -74,6 +75,7 @@
     "@storybook/preset-create-react-app": "^1.2.0",
     "@storybook/react": "^6.1.21",
     "@storybook/testing-library": "^0.0.13",
+    "@types/redux-persist": "^4.3.1",
     "babel-plugin-named-exports-order": "^0.0.2",
     "prop-types": "^15.8.1",
     "webpack": "^5.73.0"
