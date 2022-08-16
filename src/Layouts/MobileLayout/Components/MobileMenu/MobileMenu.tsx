@@ -1,5 +1,6 @@
 import { useAppDispatch, useAppSelector } from "../../../../Redux/hooks";
 import { selectTheme, toggleMode } from "../../../../Redux/ThemeMode/ThemeMode";
+import { logOut } from "../../../../Redux/User/User";
 
 // Components
 import Button from "../../../../Components/Ui/Button";
@@ -16,6 +17,8 @@ const MobileMenu = () => {
   const dispatch = useAppDispatch();
   // Handle toggle
   const handleToggle = () => dispatch(toggleMode());
+  // HandleLogout
+  const handleLogout = () => dispatch(logOut());
 
   return (
     <div>
@@ -38,7 +41,11 @@ const MobileMenu = () => {
         </S.SwitchBoxContainer>
       </S.SwitchWrapper>
       {/* Log out */}
-      <Button variant="link" style={{ color: "#444e72", margin: "0 auto" }}>
+      <Button
+        variant="link"
+        style={{ color: "#444e72", margin: "0 auto" }}
+        onClick={() => handleLogout()}
+      >
         <IconLogoutDark />
         Log out
       </Button>

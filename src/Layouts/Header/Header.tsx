@@ -1,5 +1,6 @@
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import { selectTheme, toggleMode } from "../../Redux/ThemeMode/ThemeMode";
+import { logOut } from "../../Redux/User/User";
 
 // Components
 import Button from "../../Components/Ui/Button";
@@ -15,6 +16,8 @@ const Header = () => {
   const dispatch = useAppDispatch();
   // Handle toggle
   const handleToggle = () => dispatch(toggleMode());
+  // HandleLogout
+  const handleLogout = () => dispatch(logOut());
 
   return (
     <>
@@ -58,6 +61,7 @@ const Header = () => {
             <Button
               variant="link"
               style={{ color: "#fff", position: "relative" }}
+              onClick={() => handleLogout()}
             >
               <IconLogout />
               <S.NavLinkButtonP>Log out</S.NavLinkButtonP>

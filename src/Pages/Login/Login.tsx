@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from "react";
+
+import { setUser } from "../../Redux/User/User";
+import { useAppDispatch } from "../../Redux/hooks";
+import { PostFetchApi } from "../../Services/FetchApi";
 // Components
 import Button from "../../Components/Ui/Button";
 import FromInput from "../../Components/Ui/FromInput";
@@ -17,15 +21,12 @@ const INPUT_DEFAULT = {
 };
 
 const Login = () => {
+  const dispatch = useAppDispatch();
   // State
   const [formField, setFormField] = useState<FormFieldProps>(INPUT_DEFAULT);
   const [formValid, setFormValid] = useState(true);
   const { username, password } = formField;
 
-  // Handle submit
-  const handleSubmit = (event: React.SyntheticEvent) => {
-    event.preventDefault();
-  };
   // Handle input value and check validation
   const handleChange = (event: LoginChangeEventProps) => {
     const { value, name } = event.target;
@@ -37,13 +38,28 @@ const Login = () => {
   useEffect(() => {
     if (
       /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(username) &&
-      /^[A-Za-z0-9]{6,16}/.test(password)
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})/.test(
+        password
+      )
     ) {
       setFormValid(false);
     } else {
       setFormValid(true);
     }
   }, [username, password]);
+
+  // Handle submit
+  const handleSubmit = async (event: React.SyntheticEvent) => {
+    event.preventDefault();
+
+    const payload = {
+      email: username,
+      password,
+    };
+    const user = await PostFetchApi("/auth/login/", payload);
+    dispatch(setUser(user));
+    console.log(user);
+  };
 
   return (
     <S.LoginWrapper>
@@ -76,7 +92,7 @@ const Login = () => {
             onChange={handleChange}
             value={password}
             name="password"
-            pattern="^[A-Za-z0-9]{6,16}"
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})"
             required
             errMessage="Invalid password. Please try again"
           />

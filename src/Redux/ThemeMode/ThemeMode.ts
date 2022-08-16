@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
 // Types
-interface ThemeModeProps {
-  theme: string;
+type ThemeModeProps = {
+  readonly theme: string;
 }
 // State
 const initialState: ThemeModeProps = {
