@@ -4,6 +4,7 @@ import { setUser, UserProps } from "../../Redux/User/User";
 import { useAppDispatch } from "../../Redux/hooks";
 import { PostFetchApi } from "../../Services/FetchApi";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 // Components
 import Button from "../../Components/Ui/Button";
 import FromInput from "../../Components/Ui/FromInput";
@@ -11,6 +12,7 @@ import {
   IconFacebookLogo,
   IconGoogleLogo,
 } from "../../Components/Ui/IconsComponent";
+import LoadingSpinner from "../../Components/Ui/LoadingSpinner";
 // Styles
 import * as S from "./style";
 // Types
@@ -26,24 +28,43 @@ const Login = () => {
   const dispatch = useAppDispatch();
   // State
   const [formField, setFormField] = useState<FormFieldProps>(INPUT_DEFAULT);
-  const [formValid, setFormValid] = useState(true);
+  const [formValid, setFormValid] = useState<boolean>(true);
+  const [loginFailed, setLoginFailed] = useState<boolean>(false);
   const { username, password } = formField;
 
+
+  // Navigate
+  const navigate = useNavigate();
+
+  // Handle login failed
+  const handleFailedLogin = () => {
+    setLoginFailed(true);
+    const timer = setTimeout(() => {
+      setLoginFailed(false);
+    }, 10 * 1000);
+    return () => clearTimeout(timer);
+  };
+
   // Mutation
-  const mutation: UseMutationResult<UserProps, Error, LoginProps> =
-    useMutation<UserProps, Error, LoginProps>({
-      mutationFn: (payload: LoginProps): Promise<UserProps> =>
-        PostFetchApi("/auth/login/", payload),
-      // On success
-      onSuccess: (data: UserProps) => {
-        console.log(data);
-        dispatch(setUser(data));
-      },
-      // On error
-      onError: (err: Error) => {
-        console.log(err);
-      },
-    });
+  const mutation: UseMutationResult<UserProps, Error, LoginProps> = useMutation<
+    UserProps,
+    Error,
+    LoginProps
+  >({
+    mutationFn: (payload: LoginProps): Promise<UserProps> =>
+      PostFetchApi("/auth/login/", payload),
+    // On success
+    onSuccess: (data: UserProps) => {
+      console.log(data);
+      dispatch(setUser(data));
+      navigate("/");
+    },
+    // On error
+    onError: (err: Error) => {
+      console.log(err);
+      handleFailedLogin();
+    },
+  });
 
   // Handle input value and check validation
   const handleChange = (event: LoginChangeEventProps) => {
@@ -87,9 +108,11 @@ const Login = () => {
       <S.LoginContainer>
         <S.LoginTitle>Log in</S.LoginTitle>
         {/* Error message */}
-        <S.StyledErrorBox severity="error">
-          Connection is lost. Please check your connection device and try again.
-        </S.StyledErrorBox>
+        {loginFailed && (
+          <S.StyledErrorBox severity="error">
+            Email or password are incorrect. Please chack and try again.
+          </S.StyledErrorBox>
+        )}
         {/* Form */}
         <S.StyledLoginForm onSubmit={handleSubmit}>
           <FromInput
@@ -116,12 +139,11 @@ const Login = () => {
           />
           {/* Submit */}
           <S.ButtonWrapper>
-            <Button variant="primary" type="submit" disabled={formValid}>
-              Log in
+            <Button variant="primary" type="submit" disabled={formValid || mutation.isLoading}>
+              {mutation.isLoading ? <LoadingSpinner /> : "Log in"}
             </Button>
           </S.ButtonWrapper>
         </S.StyledLoginForm>
-
         {/* Break line */}
         <S.BreakLineWrapper>
           <S.StyledHr></S.StyledHr>

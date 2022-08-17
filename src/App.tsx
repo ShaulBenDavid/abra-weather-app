@@ -4,6 +4,10 @@ import { ThemeProvider } from "styled-components";
 
 import { useAppDispatch, useAppSelector } from "./Redux/hooks";
 import { selectTheme } from "./Redux/ThemeMode/ThemeMode";
+import { logOut, selectUser } from "./Redux/User/User";
+import { PostFetchApi } from "./Services/FetchApi";
+import ProtectedRoutes from "./Utils/ProtectedRoutes";
+import { useMutation, UseMutationResult } from "@tanstack/react-query";
 // Components
 import Favorites from "./Pages/Favorites";
 import Home from "./Pages/Home";
@@ -11,10 +15,6 @@ import Login from "./Pages/Login";
 //Styles
 import { darkMode, lightMode } from "./GlobalStyle/theme";
 import { AppWrapper } from "./style";
-import { selectUser } from "./Redux/User/User";
-import { PostFetchApi } from "./Services/FetchApi";
-import ProtectedRoutes from "./Utils/ProtectedRoutes";
-import { useMutation, UseMutationResult } from "@tanstack/react-query";
 
 const themes: any = {
   light: lightMode,
@@ -29,25 +29,29 @@ const App: React.FC = () => {
   const dispatch = useAppDispatch();
   // Types
   type PayloadProps = {
-    refresh: string | undefined;
+    token: string | undefined;
   };
   // Mutation
   const mutation: UseMutationResult<string, Error, PayloadProps> = useMutation<
     string,
     Error,
     PayloadProps
-    >({
+  >({
     mutationFn: (payload: PayloadProps): Promise<any> =>
-      PostFetchApi("/auth/refresh-token/", payload),
+      PostFetchApi("/auth/verify-token/", payload),
     onSuccess: (data: any) => {
-      console.log(data);
-      },
+      // console.log(data);
+    },
+    onError: (err: Error) => {
+      console.log(err);
+      dispatch(logOut());
+    },
   });
   // User on refresh
   useEffect(() => {
     const userRefresh = () => {
       const payload = {
-        refresh: currentUser?.refresh_token,
+        token: currentUser?.token,
       };
       mutation.mutate(payload);
     };

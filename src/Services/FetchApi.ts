@@ -18,6 +18,8 @@ export function PostFetchApi<T extends string, P>(url: T, payload: P): Promise<a
 
 export async function PostFetchApi<T extends string, P>(url: T, payload: P) {
   console.log(payload)
+  // const response = await api.post(url, payload);
+  // return response;
   return await api.post(url, payload).then(({ data }) => data).catch(function (error) {
     throw new Error(error);
   });
