@@ -14,7 +14,7 @@ import {
 // Styles
 import * as S from "./style";
 // Types
-import { LoginChangeEventProps, FormFieldProps, PayloadProps } from "./types";
+import { LoginChangeEventProps, FormFieldProps, LoginProps } from "./types";
 
 // DEFAULT VALUES
 const INPUT_DEFAULT = {
@@ -30,9 +30,9 @@ const Login = () => {
   const { username, password } = formField;
 
   // Mutation
-  const mutation: UseMutationResult<UserProps, Error, PayloadProps> =
-    useMutation<UserProps, Error, PayloadProps>({
-      mutationFn: (payload: PayloadProps): Promise<UserProps> =>
+  const mutation: UseMutationResult<UserProps, Error, LoginProps> =
+    useMutation<UserProps, Error, LoginProps>({
+      mutationFn: (payload: LoginProps): Promise<UserProps> =>
         PostFetchApi("/auth/login/", payload),
       // On success
       onSuccess: (data: UserProps) => {

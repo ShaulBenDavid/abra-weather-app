@@ -7,7 +7,7 @@ export type FormFieldProps = {
   password: string;
 }
 
-export type PayloadProps = {
+export type LoginProps = {
   email: string;
   password: string;
 };

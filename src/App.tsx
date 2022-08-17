@@ -15,7 +15,6 @@ import { selectUser } from "./Redux/User/User";
 import { PostFetchApi } from "./Services/FetchApi";
 import ProtectedRoutes from "./Utils/ProtectedRoutes";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
-import { string } from "prop-types";
 
 const themes: any = {
   light: lightMode,
