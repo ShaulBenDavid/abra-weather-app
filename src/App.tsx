@@ -14,6 +14,8 @@ import { AppWrapper } from "./style";
 import { selectUser } from "./Redux/User/User";
 import { PostFetchApi } from "./Services/FetchApi";
 import ProtectedRoutes from "./Utils/ProtectedRoutes";
+import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import { string } from "prop-types";
 
 const themes: any = {
   light: lightMode,
@@ -26,14 +28,29 @@ const App: React.FC = () => {
   // User
   const currentUser = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
+  // Types
+  type PayloadProps = {
+    refresh: string | undefined;
+  };
+  // Mutation
+  const mutation: UseMutationResult<string, Error, PayloadProps> = useMutation<
+    string,
+    Error,
+    PayloadProps
+    >({
+    mutationFn: (payload: PayloadProps): Promise<any> =>
+      PostFetchApi("/auth/refresh-token/", payload),
+    onSuccess: (data: any) => {
+      console.log(data);
+      },
+  });
   // User on refresh
   useEffect(() => {
-    const userRefresh = async () => {
+    const userRefresh = () => {
       const payload = {
         refresh: currentUser?.refresh_token,
       };
-      const newUser = await PostFetchApi("/auth/refresh-token/", payload);
-      console.log(newUser);
+      mutation.mutate(payload);
     };
 
     if (currentUser) {

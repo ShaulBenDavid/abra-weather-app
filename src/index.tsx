@@ -7,6 +7,8 @@ import { Provider } from "react-redux";
 import { store } from "./Redux/store";
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 // Components
 import App from "./App";
 // Styles
@@ -16,19 +18,22 @@ import "./index.css";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
-
+const client = new QueryClient();
 let persistor = persistStore(store);
 
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter>
-          <GlobalStyles />
-          <App />
-        </BrowserRouter>
-      </PersistGate>
-    </Provider>
+    <QueryClientProvider client={client}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <BrowserRouter>
+            <GlobalStyles />
+            <App />
+          </BrowserRouter>
+        </PersistGate>
+      </Provider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
 

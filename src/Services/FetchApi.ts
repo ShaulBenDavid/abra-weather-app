@@ -10,12 +10,13 @@ export type UrlWithPayload<T, P> = {
   payload: P;
 }
 
-export function PostFetchApi<T extends string, P>(url: T, payload: P): {};
+export function PostFetchApi<T extends string, P>(url: T, payload: P): Promise<any>;
 
 
 export async function PostFetchApi<T extends string, P>(url: T, payload: P) {
   console.log(payload)
   return await api.post(url, payload).then(({ data }) => data).catch(function (error) {
     console.log(error);
+    return error;
   });
 }

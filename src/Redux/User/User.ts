@@ -13,7 +13,7 @@ export type UserProps = {
   access_token: string;
   refresh_token: string;
   token: string;
-  // user: UserParams;
+  user: UserParams;
 };
 export type UserStateProps = {
   readonly user: UserProps | null;

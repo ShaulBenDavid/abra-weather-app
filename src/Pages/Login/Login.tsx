@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { FormEventHandler, useEffect, useState } from "react";
 
-import { setUser } from "../../Redux/User/User";
+import { setUser, UserProps } from "../../Redux/User/User";
 import { useAppDispatch } from "../../Redux/hooks";
 import { PostFetchApi } from "../../Services/FetchApi";
+import { useMutation, UseMutationResult } from "@tanstack/react-query";
 // Components
 import Button from "../../Components/Ui/Button";
 import FromInput from "../../Components/Ui/FromInput";
@@ -13,7 +14,8 @@ import {
 // Styles
 import * as S from "./style";
 // Types
-import { LoginChangeEventProps, FormFieldProps } from "./types";
+import { LoginChangeEventProps, FormFieldProps, PayloadProps } from "./types";
+
 // DEFAULT VALUES
 const INPUT_DEFAULT = {
   username: "",
@@ -26,6 +28,22 @@ const Login = () => {
   const [formField, setFormField] = useState<FormFieldProps>(INPUT_DEFAULT);
   const [formValid, setFormValid] = useState(true);
   const { username, password } = formField;
+
+  // Mutation
+  const mutation: UseMutationResult<UserProps, Error, PayloadProps> =
+    useMutation<UserProps, Error, PayloadProps>({
+      mutationFn: (payload: PayloadProps): Promise<UserProps> =>
+        PostFetchApi("/auth/login/", payload),
+      // On success
+      onSuccess: (data: UserProps) => {
+        console.log(data);
+        dispatch(setUser(data));
+      },
+      // On error
+      onError: (err: Error) => {
+        console.log(err);
+      },
+    });
 
   // Handle input value and check validation
   const handleChange = (event: LoginChangeEventProps) => {
@@ -49,16 +67,16 @@ const Login = () => {
   }, [username, password]);
 
   // Handle submit
-  const handleSubmit = async (event: React.SyntheticEvent) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (
+    event: React.SyntheticEvent
+  ) => {
     event.preventDefault();
 
     const payload = {
       email: username,
       password,
     };
-    const user = await PostFetchApi("/auth/login/", payload);
-    dispatch(setUser(user));
-    console.log(user);
+    mutation.mutate(payload);
   };
 
   return (
