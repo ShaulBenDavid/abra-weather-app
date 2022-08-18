@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { PostFetchApi } from "./FetchApi";
+import { Navigate } from "react-router-dom";
 // Types
 import { LoginProps } from "../Pages/Login/types";
 import { useAppDispatch } from "../Redux/hooks";
@@ -7,21 +8,23 @@ import { setUser } from "../Redux/User/User";
 
 // Login hook
 export const useAuthentication = () => {
-    const dispatch = useAppDispatch()
-    const [authError, setAuthError] = useState<string | undefined>(undefined);
+  const dispatch = useAppDispatch();
+  const [authError, setAuthError] = useState<string | undefined>(undefined);
 
-    const fetchLogin: any =  async (payload: LoginProps): Promise<any> => {
-        try {
-            setAuthError(undefined);
-            const response = await PostFetchApi("/auth/login/", payload);
-            dispatch(setUser(response));
-        } catch (err: any) {
-            console.log(err);
-            let newErr = err.response.data.non_field_errors[0];
-            console.log(newErr);
-            setAuthError(newErr);
-        }
+  const fetchLogin = async (payload: LoginProps): Promise<any> => {
+    try {
+      setAuthError(undefined);
+      const { data } = await PostFetchApi("/auth/login/", payload);
+      dispatch(setUser(data));
+    } catch (err: any) {
+      let newErr: string = "";
+      let resError = err.response.data;
+      for (let idx in resError) {
+        newErr += resError[idx] + " ";
+      }
+      setAuthError(newErr);
     }
+  };
 
-    return [fetchLogin, authError];
-}
+  return [fetchLogin, authError] as const;
+};

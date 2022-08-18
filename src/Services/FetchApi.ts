@@ -3,9 +3,9 @@ import { BASE_URL } from "../Utils/Constants";
 
 const api = axios.create({
   baseURL: BASE_URL,
-  validateStatus: function (status) {
-    return status === 200;
-}
+//   validateStatus: function (status) {
+//     return status === 200;
+// }
 });
 
 export type UrlWithPayload<T, P> = {
@@ -18,9 +18,9 @@ export function PostFetchApi<T extends string, P>(url: T, payload: P): Promise<a
 
 export async function PostFetchApi<T extends string, P>(url: T, payload: P) {
   console.log(payload)
-  // const response = await api.post(url, payload);
-  // return response;
-  return await api.post(url, payload).then(({ data }) => data).catch(function (error) {
-    throw new Error(error);
-  });
+  const response = await api.post(url, payload);
+  return response;
+  // return await api.post(url, payload).then(({ data }) => data).catch(function (error) {
+  //   throw new Error(error);
+  // });
 }

@@ -47,6 +47,7 @@ const App: React.FC = () => {
       dispatch(logOut());
     },
   });
+
   // User on refresh
   useEffect(() => {
     const userRefresh = () => {
@@ -55,6 +56,7 @@ const App: React.FC = () => {
       };
       mutation.mutate(payload);
     };
+
 
     if (currentUser) {
       userRefresh();

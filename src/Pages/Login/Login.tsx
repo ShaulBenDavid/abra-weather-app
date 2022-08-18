@@ -1,10 +1,10 @@
 import React, { FormEventHandler, useEffect, useState } from "react";
 
-import { setUser, UserProps } from "../../Redux/User/User";
-import { useAppDispatch } from "../../Redux/hooks";
-import { PostFetchApi } from "../../Services/FetchApi";
+import { selectUser, UserProps } from "../../Redux/User/User";
+import { useAppSelector } from "../../Redux/hooks";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+import { useAuthentication } from "../../Services/Authentication";
 // Components
 import Button from "../../Components/Ui/Button";
 import FromInput from "../../Components/Ui/FromInput";
@@ -25,25 +25,15 @@ const INPUT_DEFAULT = {
 };
 
 const Login = () => {
-  const dispatch = useAppDispatch();
+  // User
+  const currentUser = useAppSelector(selectUser);
   // State
   const [formField, setFormField] = useState<FormFieldProps>(INPUT_DEFAULT);
   const [formValid, setFormValid] = useState<boolean>(true);
-  const [loginFailed, setLoginFailed] = useState<boolean>(false);
   const { username, password } = formField;
-
-
+  const [fetchLogin, authError] = useAuthentication();
   // Navigate
   const navigate = useNavigate();
-
-  // Handle login failed
-  const handleFailedLogin = () => {
-    setLoginFailed(true);
-    const timer = setTimeout(() => {
-      setLoginFailed(false);
-    }, 10 * 1000);
-    return () => clearTimeout(timer);
-  };
 
   // Mutation
   const mutation: UseMutationResult<UserProps, Error, LoginProps> = useMutation<
@@ -52,19 +42,14 @@ const Login = () => {
     LoginProps
   >({
     mutationFn: (payload: LoginProps): Promise<UserProps> =>
-      PostFetchApi("/auth/login/", payload),
-    // On success
-    onSuccess: (data: UserProps) => {
-      console.log(data);
-      dispatch(setUser(data));
-      navigate("/");
-    },
-    // On error
-    onError: (err: Error) => {
-      console.log(err);
-      handleFailedLogin();
-    },
+      fetchLogin(payload),
   });
+  // navigate on success
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/");
+    }
+  }, [currentUser, navigate]);
 
   // Handle input value and check validation
   const handleChange = (event: LoginChangeEventProps) => {
@@ -108,10 +93,8 @@ const Login = () => {
       <S.LoginContainer>
         <S.LoginTitle>Log in</S.LoginTitle>
         {/* Error message */}
-        {loginFailed && (
-          <S.StyledErrorBox severity="error">
-            Email or password are incorrect. Please chack and try again.
-          </S.StyledErrorBox>
+        {authError && (
+          <S.StyledErrorBox severity="error">{authError}</S.StyledErrorBox>
         )}
         {/* Form */}
         <S.StyledLoginForm onSubmit={handleSubmit}>
@@ -139,7 +122,11 @@ const Login = () => {
           />
           {/* Submit */}
           <S.ButtonWrapper>
-            <Button variant="primary" type="submit" disabled={formValid || mutation.isLoading}>
+            <Button
+              variant="primary"
+              type="submit"
+              disabled={formValid || mutation.isLoading}
+            >
               {mutation.isLoading ? <LoadingSpinner /> : "Log in"}
             </Button>
           </S.ButtonWrapper>
