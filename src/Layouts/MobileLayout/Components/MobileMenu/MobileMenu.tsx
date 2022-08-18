@@ -1,24 +1,24 @@
 import { useAppDispatch, useAppSelector } from "../../../../Redux/hooks";
 import { selectTheme, toggleMode } from "../../../../Redux/ThemeMode/ThemeMode";
-import { logOut } from "../../../../Redux/User/User";
 
 // Components
 import Button from "../../../../Components/Ui/Button";
 import { ReactComponent as IconLogoutDark } from "./Assets/log-out.svg";
 import ToggleSwitch from "../../../../Components/Ui/ToggleSwitch";
-// Types
-
+import { useLogoutHandler } from "../../../../Services/LogoutHandler";
 // Styles
 import * as S from "./style";
 
 const MobileMenu = () => {
+  const [handleUserLogout] = useLogoutHandler()
+
   // Redux theme mode
   const theme = useAppSelector(selectTheme);
   const dispatch = useAppDispatch();
   // Handle toggle
   const handleToggle = () => dispatch(toggleMode());
   // HandleLogout
-  const handleLogout = () => dispatch(logOut());
+  const handleLogout = () => handleUserLogout();
 
   return (
     <div>

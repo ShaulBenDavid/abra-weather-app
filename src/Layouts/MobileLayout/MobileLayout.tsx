@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import { useAppSelector } from "../../Redux/hooks";
+import { selectLogoutProccess } from "../../Redux/User/User";
 // Components
 import MobileNav from "../../Layouts/MobileNav";
 import Drawer from "../Drawer";
@@ -8,6 +11,7 @@ import MobileSearch from "./Components/MobileSearch";
 // Styles
 
 const MobileLayOut = () => {
+  const isLogoutOpen = useAppSelector(selectLogoutProccess)
   // Is menu open
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -15,6 +19,13 @@ const MobileLayOut = () => {
   const handleMenu = () => setIsMenuOpen(!isMenuOpen);
   // Handle search state
   const handleSearch = () => setIsSearchOpen(!isSearchOpen);
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      if (isLogoutOpen) handleMenu();
+    }
+  }, [isLogoutOpen, isMenuOpen])
+  
   return (
     <>
       {/* Mobile nav */}

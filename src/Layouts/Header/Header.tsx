@@ -1,23 +1,27 @@
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import { selectTheme, toggleMode } from "../../Redux/ThemeMode/ThemeMode";
-import { logOut } from "../../Redux/User/User";
+import {useLogoutHandler} from "../../Services/LogoutHandler";
 
 // Components
 import Button from "../../Components/Ui/Button";
 import { IconLogout, IconMap } from "../../Components/Ui/IconsComponent";
 import ToggleSwitch from "../../Components/Ui/ToggleSwitch";
+import NavBar from "./Components/NavBar";
 // Styles
 import * as S from "./style";
-import NavBar from "./Components/NavBar";
 
 const Header = () => {
+  // Log out type handler
+  const [handleUserLogout] = useLogoutHandler();
   // Redux theme mode
   const theme = useAppSelector(selectTheme);
   const dispatch = useAppDispatch();
   // Handle toggle
   const handleToggle = () => dispatch(toggleMode());
   // HandleLogout
-  const handleLogout = () => dispatch(logOut());
+  const handleLogout = () => handleUserLogout();
+
+  // console.log(handleUserLogout)
 
   return (
     <>

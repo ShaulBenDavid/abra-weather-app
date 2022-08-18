@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { PostFetchApi } from "./FetchApi";
-import { Navigate } from "react-router-dom";
 // Types
 import { LoginProps } from "../Pages/Login/types";
 import { useAppDispatch } from "../Redux/hooks";
