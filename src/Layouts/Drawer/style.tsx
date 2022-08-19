@@ -1,14 +1,17 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes, css } from "styled-components";
+
+// Types
+import { DrawerStyledProps } from "./types";
 
 // Animation
 const linearUp = keyframes`
   0% { bottom: -60%; }
   100% { bottom: 0; }
-`
+`;
 const showIn = keyframes`
   0% { opacity: 0; }
   100% { opacity: 1; }
-`
+`;
 // Drawer background
 export const StyledDrawerBackground = styled.div`
   position: absolute;
@@ -21,9 +24,18 @@ export const StyledDrawerBackground = styled.div`
   backdrop-filter: blur(10px);
   background-color: rgba(140, 140, 140, 0.2);
   overflow: hidden;
-  
+  /* Search Drawer */
+  ${(props: DrawerStyledProps) =>
+    props.useCase === "search" &&
+    css`
+      top: auto;
+      bottom: 0;
+      height: calc(100vh - 94px);
+      overflow: visible;
+      z-index: 10;
+    `}
 `;
-// Drawer wrapper
+/* // Drawer wrapper */
 export const StyledDrawerWrapper = styled.div`
   position: fixed;
   width: 100%;
@@ -46,9 +58,19 @@ export const StyledDrawerWrapper = styled.div`
     border-radius: 30px;
     box-shadow: 0 4px 80px 0 rgba(0, 0, 0, 0.16);
 
+    /* Search Drawer */
+    ${(props: DrawerStyledProps) =>
+      props.useCase === "search" &&
+      css`
+        top: 86px;
+        margin-top: 86px;
+        padding: 0;
+        width: 476px;
+        height: 372px;
+      `}
   }
 `;
-// x button only for desktop
+/* // x button only for desktop */
 export const StyledXButton = styled.button`
   all: unset;
   position: absolute;
@@ -58,5 +80,11 @@ export const StyledXButton = styled.button`
   display: none;
   @media (min-width: 1207px) {
     display: block;
+    /* Search Drawer */
+    ${(props: DrawerStyledProps) =>
+      props.useCase === "search" &&
+      css`
+        display: none;
+      `}
   }
-`
+`;
