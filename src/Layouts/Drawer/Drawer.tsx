@@ -16,7 +16,7 @@ const Drawer = ({ children, onClick, useCase }: DrawerProps) => {
     event.stopPropagation();
   };
   return ReactDOM.createPortal(
-    <StyledDrawerBackground onClick={onClick} useCase={useCase}>
+    <StyledDrawerBackground onClick={onClick} useCase={useCase} >
       <StyledDrawerWrapper onClick={handleClick} useCase={useCase}>
         {children}
         <StyledXButton useCase={useCase} onClick={onClick}>

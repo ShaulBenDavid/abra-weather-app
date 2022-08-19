@@ -24,6 +24,10 @@ export const StyledSearchContainer = styled.label`
     box-shadow: inset -6px 4px 4px 0 rgba(255, 255, 255, 0.1), inset 2px -3px 6px 0 rgba(0, 0, 0, 0.1);
 
   }
+
+  @media (max-width: 1207px) {
+    width: 354px;
+  }
 `;
 // Search Icon
 export const StyledSearchIcon = styled(IconSearchDrak)`

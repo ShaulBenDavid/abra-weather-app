@@ -5,9 +5,11 @@ import {
   StyledSearchCountryName,
 } from "./style";
 
+const ss = () => console.log(1)
+
 const SearchResultItem = () => {
   return (
-    <StyledSearchItemWrapper href="#">
+    <StyledSearchItemWrapper href="#asdfaf" onMouseDown={ss}>
       <StyledSearchCityName>new york,</StyledSearchCityName>
       <StyledSearchCountryName>united state</StyledSearchCountryName>
     </StyledSearchItemWrapper>

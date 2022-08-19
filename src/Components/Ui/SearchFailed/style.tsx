@@ -18,4 +18,8 @@ export const StyledP = styled.p`
   line-height: 1.5;
   text-align: center;
   color: ${({ theme }) => theme.secondary};
+
+  span {
+    text-transform: capitalize;
+  }
 `;

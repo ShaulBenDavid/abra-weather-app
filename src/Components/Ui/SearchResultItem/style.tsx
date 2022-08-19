@@ -6,9 +6,13 @@ export const StyledSearchItemWrapper = styled.a`
   padding: 12px 36px;
   column-gap: 2px;
   text-transform: capitalize;
-
+  cursor: pointer;
   &:hover {
     background-color: rgba(242, 242, 242, 0.8);
+  }
+
+  @media (max-width: 1207px) {
+    padding: 12px 0;
   }
 `;
 
