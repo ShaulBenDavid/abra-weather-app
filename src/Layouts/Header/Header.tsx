@@ -1,16 +1,15 @@
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import { selectTheme, toggleMode } from "../../Redux/ThemeMode/ThemeMode";
-import {useLogoutHandler} from "../../Services/LogoutHandler";
+import { useLogoutHandler } from "../../Services/LogoutHandler";
 
 // Components
 import Button from "../../Components/Ui/Button";
 import { IconLogout, IconMap } from "../../Components/Ui/IconsComponent";
 import ToggleSwitch from "../../Components/Ui/ToggleSwitch";
 import NavBar from "./Components/NavBar";
-import SearchResults from "../../Components/Ui/SearchResults";
+import Search from "../../Features/Search";
 // Styles
 import * as S from "./style";
-import Drawer from "../Drawer";
 
 const Header = () => {
   // Log out type handler
@@ -37,7 +36,7 @@ const Header = () => {
         </S.RightSection>
         {/* Search / Middle section */}
         <S.MiddleSection>
-          <S.HeaderSearch />
+          <Search />
         </S.MiddleSection>
         {/* Right section */}
         <S.LeftSection>
@@ -76,10 +75,6 @@ const Header = () => {
           </S.LogoutButtonWrapper>
         </S.LeftSection>
       </S.NavigationWrapper>
-      {/* Search results */}
-      <Drawer useCase="search">
-        <SearchResults />
-      </Drawer>
     </>
   );
 };

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 // Components
 import { IconLogo } from "../../Components/Ui/IconsComponent";
-import SearchBox from "../../Components/Ui/SearchBox";
 import getMediaQuery from "../../Utils/GetMediaQuery";
 import WindowHover from "./Components/HoverWindow";
 
@@ -68,11 +67,6 @@ export const NavBarLogo = styled(IconLogo)`
     min-height: 56px;
     max-height: 56px;
   `}
-`;
-
-// Search Wrapper
-export const HeaderSearch = styled(SearchBox)`
-  margin: 0 auto;
 `;
 
 // Button hover effect
