@@ -7,7 +7,7 @@ addDecorator(withThemesProvider(themes), ThemeProvider);
 import GlobalStyles from '../src/GlobalStyle/GlobalStyles'
 import '../src/index.css';
 
-addDecorator((Story) => <div><GlobalStyles /><Story /></div>);
+addDecorator((Story) => <><GlobalStyles /><Story /></>);
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

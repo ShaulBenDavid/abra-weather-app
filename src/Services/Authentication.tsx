@@ -2,12 +2,14 @@ import { useState } from "react";
 import { PostFetchApi } from "./FetchApi";
 // Types
 import { LoginProps } from "../Pages/Login/types";
-import { useAppDispatch } from "../Redux/hooks";
-import { setUser } from "../Redux/User/User";
+import { useAppDispatch, useAppSelector } from "../Redux/hooks";
+import { selectUser, setUser } from "../Redux/User/User";
+import { PayloadAuthCheckProps } from '../App';
 
 // Login hook
 export const useAuthentication = () => {
   const dispatch = useAppDispatch();
+  const currentUser = useAppSelector(selectUser)
   const [authError, setAuthError] = useState<string | undefined>(undefined);
 
   const fetchLogin = async (payload: LoginProps): Promise<any> => {
@@ -25,5 +27,20 @@ export const useAuthentication = () => {
     }
   };
 
-  return [fetchLogin, authError] as const;
+  // Check if user auth
+  const checkUserAuth = async (payload: PayloadAuthCheckProps): Promise<any> => {
+    if (currentUser) {
+
+      try {
+        const d = await PostFetchApi("/auth/verify-token/", payload);
+        console.log(d)
+      } catch (err: any) {
+        dispatch(setUser(null));
+        console.log(err)
+      }
+    }
+    return;
+  };
+
+  return [fetchLogin, authError, checkUserAuth] as const;
 };
