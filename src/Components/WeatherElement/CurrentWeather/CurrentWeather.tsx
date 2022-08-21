@@ -1,5 +1,5 @@
 // import SunCloud from '../../../Assets/WeatherIcons/sun-cloud.svg';
-import { ReactComponent as SunCloud } from "../../../Assets/WeatherIcons/sun-cloud.svg";
+import SunCloud from "../../../Assets/WeatherIcons/sun-cloud.svg";
 // Styles
 import * as S from "./style";
 
@@ -8,9 +8,7 @@ const CurrentWeather = () => {
     <S.CurrentWeatherContainer>
       <S.PlaceTitle>tel aviv - jaffa</S.PlaceTitle>
       <S.CurrentTempContainer>
-        <S.TempIcon>
-          <SunCloud style={{ width: "180px", height: "180px"}}/>
-        </S.TempIcon>
+        <S.TempIcon src={SunCloud} alt={SunCloud} />
         <S.TempNumber>
             <span>29</span>
             <span>- 50</span>
