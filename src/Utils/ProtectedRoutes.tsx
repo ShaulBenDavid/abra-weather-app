@@ -8,7 +8,7 @@ const ProtectedRoutes = () => {
   
   return (
       <>
-     { currentUser ? <PageLayout /> : <Navigate to="/login" />};
+     { currentUser ? <PageLayout /> : <Navigate to="/login" />}
     </>
   );
 };

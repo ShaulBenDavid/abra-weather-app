@@ -5,6 +5,7 @@ import EmptyHome from "./Components/EmptyHome";
 import SearchFailed from "../../Components/Ui/SearchFailed";
 // Styles
 import * as S from "./style";
+import CurrentWeather from "../../Components/WeatherElement/CurrentWeather";
 
 const Home = () => {
   const searchValue = useAppSelector(selectSearchValue)
@@ -12,6 +13,7 @@ const Home = () => {
     <S.HomeWrapper>
       {/* If home page empty */}
       {searchValue ? <S.HomeFailedSearch searchValue={searchValue} useCase="home" /> : <EmptyHome />}
+      {/* <CurrentWeather /> */}
     </S.HomeWrapper>
   );
 };
