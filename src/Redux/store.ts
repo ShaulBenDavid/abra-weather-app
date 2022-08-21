@@ -7,6 +7,7 @@ import { persistReducer } from 'redux-persist'
 import storage from "redux-persist/lib/storage";
 import { getDefaultMiddleware } from '@reduxjs/toolkit';
 
+
 const customizedMiddleware = getDefaultMiddleware({
     serializableCheck: false
 })

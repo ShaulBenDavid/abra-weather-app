@@ -12,3 +12,7 @@ export const StyledSearch = styled(SearchBox)`
 export const StyledSearchResults = styled(SearchResults)`
   
 `
+
+export const StyledNoResultContainer = styled.div`
+  padding: 64px 30px;
+`;

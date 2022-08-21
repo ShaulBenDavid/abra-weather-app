@@ -6,14 +6,18 @@ import { setSearchValue } from "../../Redux/Search/Search";
 // Components
 import SearchResults from "../../Components/Ui/SearchResults";
 import Drawer from "../../Layouts/Drawer";
+import SearchFailed from "../../Components/Ui/SearchFailed";
 // Styles
-import { StyledSearch } from "./style";
+import { StyledSearch, StyledNoResultContainer } from "./style";
 import useMediaQuery from "../../Hooks/useMediaQuery";
 
 const Search = () => {
+  // States
   const [isFocus, setIsFocus] = useState<boolean>(true);
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [isSearchExist, setIsSearchExist] = useState<boolean>(false);
   const dispatch = useAppDispatch();
+
   // Media query
   const matches = useMediaQuery("(min-width: 1207px)");
 
@@ -34,7 +38,7 @@ const Search = () => {
 
   return (
     <>
-      {/* Search input */}
+      {/* ----Search input---- */}
       <div>
         <StyledSearch
           onChange={handleSearchChange}
@@ -45,16 +49,28 @@ const Search = () => {
       {/* Search results */}
 
       {/* using the same search for desk and mobile */}
-      {matches
-        ? isFocus &&
-          // Desk
-          searchTerm && (
-            <Drawer useCase="search" onClick={handleSearchFocus}>
+      {matches ? (
+        isFocus &&
+        // Desk
+        searchTerm && (
+          <Drawer useCase="search" onClick={handleSearchFocus}>
+            {isSearchExist ? (
               <SearchResults />
-            </Drawer>
-          )
-        : // Mobile
-          isFocus && searchTerm && <SearchResults />}
+            ) : (
+              <StyledNoResultContainer>
+                <SearchFailed searchValue={searchTerm} />
+              </StyledNoResultContainer>
+            )}
+          </Drawer>
+        )
+      ) : // Mobile
+      isFocus && searchTerm && isSearchExist ? (
+        <SearchResults />
+      ) : (
+        <StyledNoResultContainer>
+          <SearchFailed searchValue={searchTerm} />
+        </StyledNoResultContainer>
+      )}
     </>
   );
 };

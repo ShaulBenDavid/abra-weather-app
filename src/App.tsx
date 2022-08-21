@@ -27,20 +27,17 @@ const themes: any = {
 
 const App: React.FC = () => {
   // Auth fun
-  const [fetchLogin, authError, checkUserAuth] = useAuthentication();
+  const { checkUserAuth } = useAuthentication();
   // Theme mode
   const theme = useAppSelector(selectTheme);
   // User
   const currentUser = useAppSelector(selectUser);
   // Mutation
-  const mutation: UseMutationResult<string, Error, PayloadAuthCheckProps> = useMutation<
-    string,
-    Error,
-    PayloadAuthCheckProps
-  >({
-    mutationFn: (payload: PayloadAuthCheckProps): Promise<any> =>
-    checkUserAuth(payload),
-  });
+  const mutation: UseMutationResult<string, Error, PayloadAuthCheckProps> =
+    useMutation<string, Error, PayloadAuthCheckProps>({
+      mutationFn: (payload: PayloadAuthCheckProps): Promise<any> =>
+        checkUserAuth(payload),
+    });
 
   // User on refresh
   useEffect(() => {

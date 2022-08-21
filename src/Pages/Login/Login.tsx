@@ -31,11 +31,11 @@ const Login = () => {
   const [formField, setFormField] = useState<FormFieldProps>(INPUT_DEFAULT);
   const [formValid, setFormValid] = useState<boolean>(true);
   const { username, password } = formField;
-  const [fetchLogin, authError] = useAuthentication();
+  const { fetchLogin, authError } = useAuthentication();
   // Navigate
   const navigate = useNavigate();
 
-  // Mutation
+  // -----Mutation-----
   const mutation: UseMutationResult<UserProps, Error, LoginProps> = useMutation<
     UserProps,
     Error,
