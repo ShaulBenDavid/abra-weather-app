@@ -59,3 +59,8 @@ export const FavLightIconButton = styled.button`
   order: -1;
   cursor: pointer;
 `
+
+// ------ Temp bar section -------
+export const DailyTempsBarSection = styled.section`
+  margin-top: 88px;
+`
