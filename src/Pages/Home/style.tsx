@@ -64,3 +64,9 @@ export const FavLightIconButton = styled.button`
 export const DailyTempsBarSection = styled.section`
   margin-top: 88px;
 `
+
+// ------ Hourly Weather section ------
+export const HourlyWeatherSection = styled.section`
+  margin-top: 140px;
+  margin-bottom: 80px;
+`

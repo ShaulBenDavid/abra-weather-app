@@ -8,7 +8,7 @@ const Favorites = () => {
 
   useEffect(() => {
     const getFav = async () => {
-      const res = await GetFetchApi('/favorites/', currentUser?.token);
+      const res = await GetFetchApi('/favorites/', currentUser?.refresh_token);
       console.log(res)
     }
 

@@ -6,11 +6,12 @@ import EmptyHome from "./Components/EmptyHome";
 import SearchFailed from "../../Components/Ui/SearchFailed";
 import CurrentWeather from "../../Components/WeatherElement/CurrentWeather";
 import Button from "../../Components/Ui/Button";
+import DailyTempsBar from "../../Components/WeatherElement/DailyTempsBar";
+import HourlyWeather from "../../Components/WeatherElement/HourlyWeather";
+import { IconFavOutline } from "../../Components/Ui/IconsComponent";
 
 // Styles
 import * as S from "./style";
-import { IconFavOutline } from "../../Components/Ui/IconsComponent";
-import DailyTempsBar from "../../Components/WeatherElement/DailyTempsBar";
 
 const Home = () => {
   // Media query
@@ -41,6 +42,10 @@ const Home = () => {
       <S.DailyTempsBarSection>
         <DailyTempsBar />
       </S.DailyTempsBarSection>
+      {/* ------ Hourly weather ------ */}
+      <S.HourlyWeatherSection>
+        <HourlyWeather />
+      </S.HourlyWeatherSection>
     </S.HomeWrapper>
   );
 };

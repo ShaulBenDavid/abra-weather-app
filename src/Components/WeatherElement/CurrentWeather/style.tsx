@@ -44,6 +44,8 @@ export const CurrentTempContainer = styled.div`
 `;
 // Temp number
 export const TempNumber = styled.p`
+  text-shadow: -2px 3px 1px rgba(0, 0, 0, 0.1),
+    -1px 1px 2px rgba(255, 255, 255, 0.25);
   span {
     position: relative;
     line-height: 1em;
@@ -102,6 +104,8 @@ export const TempNumber = styled.p`
 export const TempIcon = styled.img`
   width: 180px;
   height: 180px;
+  text-shadow: -2px 3px 1px rgba(0, 0, 0, 0.1),
+    -1px 1px 2px rgba(255, 255, 255, 0.25);
   /* Mobile */
   ${getMediaQuery.lessThan("changePoint")`
   width: 80px;

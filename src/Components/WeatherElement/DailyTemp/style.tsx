@@ -90,10 +90,11 @@ export const StyledNightTemp = styled.span`
   font-weight: 500;
   line-height: 1.25;
   text-align: center;
+  margin-left: 4px;
   /* Mobile */
   ${getMediaQuery.lessThan("changePoint")`
-  font-size: 1rem;
-  font-weight: normal;
-  line-height: normal;
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: normal;
     `}
 `;
