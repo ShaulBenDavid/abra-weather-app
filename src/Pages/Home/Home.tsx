@@ -5,31 +5,30 @@ import { weatherFetchApi } from "../../Services/WeatherApi";
 import { useQuery } from "@tanstack/react-query";
 
 import { HOME_EMPTY_DETAILS } from "../../Utils/Constants";
+import CityImg from "../../Assets/city.svg";
 // Conponents
 import EmptyPage from "../../Components/Ui/EmptyPage";
-import SearchFailed from "../../Components/Ui/SearchFailed";
 import CurrentWeather from "../../Components/WeatherElement/CurrentWeather";
 import Button from "../../Components/Ui/Button";
 import DailyTempsBar from "../../Components/WeatherElement/DailyTempsBar";
 import HourlyWeather from "../../Components/WeatherElement/HourlyWeather";
 import { IconFavOutline } from "../../Components/Ui/IconsComponent";
 
-
 // Styles
 import * as S from "./style";
 
 const Home = () => {
-    //   // Query
-    //   const { status, error, data } = useQuery(['new york2'], async () => {
-    //     const res = await weatherFetchApi(`/forecasts/v1/daily/5day/${349727}`);
-    //     return res;
-    //   },
-    //     {
-    //     cacheTime: Infinity,
-    //   })
-    //   console.log(data)
-    //   // console.log(data.Temperature.Maximum.Value)
-    // console.log(status)
+  //   // Query
+  //   const { status, error, data } = useQuery(['new york2'], async () => {
+  //     const res = await weatherFetchApi(`/forecasts/v1/daily/5day/${349727}`);
+  //     return res;
+  //   },
+  //     {
+  //     cacheTime: Infinity,
+  //   })
+  //   console.log(data)
+  //   // console.log(data.Temperature.Maximum.Value)
+  // console.log(status)
   // Media query
   const matches = useMediaQuery("(min-width: 1207px)");
 
@@ -37,13 +36,20 @@ const Home = () => {
   return (
     <S.HomeWrapper>
       {/* If home page empty */}
-      {searchValue ? <S.HomeFailedSearch searchValue={searchValue} useCase="home" /> : <EmptyPage {...HOME_EMPTY_DETAILS}/>}
+      {!searchValue ? (
+        <S.HomeFailedSearch src={CityImg}>
+          {" "}
+          {`We couldn’t find any city named "${searchValue}", please try again.`}
+        </S.HomeFailedSearch>
+      ) : (
+        <EmptyPage {...HOME_EMPTY_DETAILS} />
+      )}
 
       {/* ----- Current weather section --------*/}
       {/* <S.CurrentWeatherSection>
         <CurrentWeather /> */}
-        {/* LayOut for desk or mobile */}
-        {/* {!matches ? (
+      {/* LayOut for desk or mobile */}
+      {/* {!matches ? (
           <S.FavLightIconButton>
             <IconFavOutline style={{ width: "30px", height: "30px" }} />
           </S.FavLightIconButton>

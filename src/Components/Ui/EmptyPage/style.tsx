@@ -6,15 +6,11 @@ export const EmptyPageContainer = styled.section`
   width: 296px;
   height: 266px;
   margin: 0 auto;
-  margin-top: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
-  ${getMediaQuery.between("tablet", "desktop")`
-    margin-top: 52px;
-  `}
+
 `;
 
 export const WeatherMapImg = styled.img`
@@ -38,4 +34,8 @@ export const EmptyPageP = styled.p`
   text-align: center;
   color: ${({ theme }) => theme.white};
   margin-top: 16px;
+  
+  span {
+    text-transform: capitalize;
+  }
 `

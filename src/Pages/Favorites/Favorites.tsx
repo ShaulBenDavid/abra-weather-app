@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 
 import { FAVORITES_EMPTY_DETAILS } from "../../Utils/Constants";
+import FavStarsImg from "../../Assets/stars.svg";
 
 import { useAppSelector } from "../../Redux/hooks";
 import { selectUser } from "../../Redux/User/User";
@@ -30,6 +31,7 @@ const Favorites = () => {
     return data.filter((item) => item.city !== "");
   };
 
+  // Query getting data
   const { isLoading, data }: UseQueryResult<FavoritesProps[], Error> = useQuery<
     FavoritesProps[],
     Error
@@ -80,7 +82,10 @@ const Favorites = () => {
           {filteredFav?.length ? (
             <FavoritesList favorites={filteredFav} />
           ) : (
-            <EmptyPage {...FAVORITES_EMPTY_DETAILS} />
+            <EmptyPage src={FavStarsImg}>
+              We couldn’t find any city named "<span>{searchValue}</span>" in
+              the Favorites list, please try again.
+            </EmptyPage>
           )}
         </>
       ) : (

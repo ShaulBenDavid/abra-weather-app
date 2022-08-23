@@ -5,10 +5,11 @@ import useDebounce from "../../Hooks/useDebounde";
 
 import { useQueryClient, useQuery } from "@tanstack/react-query";
 import { weatherFetchApi } from "../../Services/WeatherApi";
+
+import CityImg from "../../Assets/city.svg";
 // Components
 import SearchResults from "../../Components/Ui/SearchResults";
 import Drawer from "../../Layouts/Drawer";
-import SearchFailed from "../../Components/Ui/SearchFailed";
 // Types
 import { SearchOptionsProps } from "./types";
 import { UseQueryResult } from "@tanstack/react-query";
@@ -18,6 +19,7 @@ import {
   StyledNoResultContainer,
   StyledLoader,
   StyledLoaderContainer,
+  StyledEmptySearch,
 } from "./style";
 
 const Search = () => {
@@ -112,7 +114,10 @@ const Search = () => {
               </StyledLoaderContainer>
             ) : (
               <StyledNoResultContainer>
-                <SearchFailed searchValue={searchTerm} />
+                <StyledEmptySearch src={CityImg}>
+                  We couldn’t find any city named "<span>{searchTerm}</span>",
+                  please try again.
+                </StyledEmptySearch>
               </StyledNoResultContainer>
             )}
           </Drawer>
@@ -127,7 +132,11 @@ const Search = () => {
         </StyledLoaderContainer>
       ) : (
         <StyledNoResultContainer>
-          <SearchFailed searchValue={searchTerm} />
+          <StyledEmptySearch src={CityImg}>
+            {searchTerm === ""
+              ? "Please search any city in the search button."
+              : `We couldn’t find any city named "${searchTerm}", please try again.`}
+          </StyledEmptySearch>
         </StyledNoResultContainer>
       )}
     </>

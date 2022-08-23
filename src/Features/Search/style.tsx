@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import EmptyPage from "../../Components/Ui/EmptyPage";
 import LoadingSpinner from "../../Components/Ui/LoadingSpinner";
 // Component
 import SearchBox from "../../Components/Ui/SearchBox";
@@ -36,5 +37,18 @@ export const StyledLoader = styled(LoadingSpinner)`
   height: 40px;
   border: 6px solid ${({ theme }) => theme.primary};
   border-color: ${({ theme }) => theme.primary} transparent ${({ theme }) => theme.primary} transparent;
+  }
+`
+
+// Styled empty search
+export const StyledEmptySearch = styled(EmptyPage)`
+  width: 100%;
+  height: 100%;
+  img {
+    opacity: 0.4;
+  }
+  p {
+    color: ${({ theme }) => theme.secondary};
+    line-height: 1.5;
   }
 `

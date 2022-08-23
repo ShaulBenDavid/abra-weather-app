@@ -48,3 +48,4 @@ export const StyledFavLoader = styled(LoadingSpinner)`
   height: 80px;
   }
 `;
+

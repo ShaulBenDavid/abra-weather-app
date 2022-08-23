@@ -3,13 +3,14 @@ import { EmptyPageProps } from "./types";
 // Styles
 import * as S from "./style";
 
-const EmptyPage: React.FC<EmptyPageProps> = ({ src, title, p }) => {
+const EmptyPage: React.FC<EmptyPageProps> = ({ src, title, p, children, className }) => {
   return (
-    <S.EmptyPageContainer>
+    <S.EmptyPageContainer className={className}>
       <S.WeatherMapImg src={src} alt="Weather map" />
       <S.EmptyPageTitle>{title}</S.EmptyPageTitle>
       <S.EmptyPageP>
-        {p}
+        {/* For error set children */}
+        {p}{children}
       </S.EmptyPageP>
     </S.EmptyPageContainer>
   );

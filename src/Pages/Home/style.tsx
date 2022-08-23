@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import getMediaQuery from "../../Utils/GetMediaQuery";
 // components
-import SearchFailed from "../../Components/Ui/SearchFailed";
 import { IconFavDark } from "../../Components/Ui/IconsComponent";
 import Button from "../../Components/Ui/Button";
+import EmptyPage from "../../Components/Ui/EmptyPage";
 // Wrapper
 export const HomeWrapper = styled.div`
   overflow-y: auto;
@@ -20,9 +20,8 @@ export const HomeWrapper = styled.div`
 `;
 
 // custom faild search
-export const HomeFailedSearch = styled(SearchFailed)`
+export const HomeFailedSearch = styled(EmptyPage)`
   width: 416px;
-  margin: 0 auto;
   margin-top: 196px;
   /* Less than 1920px */
   ${getMediaQuery.lessThan("changePoint")`
