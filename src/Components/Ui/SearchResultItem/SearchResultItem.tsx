@@ -1,3 +1,5 @@
+//Types
+import { SearchItemProps } from "./types";
 // Styles
 import {
   StyledSearchItemWrapper,
@@ -7,11 +9,11 @@ import {
 
 const ss = () => console.log(1)
 
-const SearchResultItem = () => {
+const SearchResultItem: React.FC<SearchItemProps> = ({ value, city, country }) => {
   return (
-    <StyledSearchItemWrapper href="#asdfaf" onMouseDown={ss}>
-      <StyledSearchCityName>new york,</StyledSearchCityName>
-      <StyledSearchCountryName>united state</StyledSearchCountryName>
+    <StyledSearchItemWrapper href={`#${value}`} onMouseDown={ss}>
+      <StyledSearchCityName>{city},</StyledSearchCityName>
+      <StyledSearchCountryName>{country}</StyledSearchCountryName>
     </StyledSearchItemWrapper>
   );
 };

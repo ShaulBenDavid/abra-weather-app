@@ -1,6 +1,8 @@
 import { useAppSelector } from "../../Redux/hooks";
 import { selectSearchValue } from "../../Redux/Search/Search";
 import useMediaQuery from "../../Hooks/useMediaQuery";
+import { weatherFetchApi } from "../../Services/WeatherApi";
+import { useQuery } from "@tanstack/react-query";
 // Conponents
 import EmptyHome from "./Components/EmptyHome";
 import SearchFailed from "../../Components/Ui/SearchFailed";
@@ -10,10 +12,22 @@ import DailyTempsBar from "../../Components/WeatherElement/DailyTempsBar";
 import HourlyWeather from "../../Components/WeatherElement/HourlyWeather";
 import { IconFavOutline } from "../../Components/Ui/IconsComponent";
 
+
 // Styles
 import * as S from "./style";
 
 const Home = () => {
+    //   // Query
+    //   const { status, error, data } = useQuery(['new york2'], async () => {
+    //     const res = await weatherFetchApi(`/forecasts/v1/daily/5day/${349727}`);
+    //     return res;
+    //   },
+    //     {
+    //     cacheTime: Infinity,
+    //   })
+    //   console.log(data)
+    //   // console.log(data.Temperature.Maximum.Value)
+    // console.log(status)
   // Media query
   const matches = useMediaQuery("(min-width: 1207px)");
 

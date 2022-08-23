@@ -1,8 +1,11 @@
+// Types
+import { LoadingSpinnerProps } from './types';
+// Styles
 import { StyledSpinner } from './style';
 
-const LoadingSpinner = () => {
+const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ className }) => {
   return (
-    <StyledSpinner></StyledSpinner>
+    <StyledSpinner className={className}></StyledSpinner>
   )
 }
 
