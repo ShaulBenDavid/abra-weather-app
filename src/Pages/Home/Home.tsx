@@ -7,7 +7,6 @@ import { useQuery } from "@tanstack/react-query";
 import { HOME_EMPTY_DETAILS } from "../../Utils/Constants";
 import CityImg from "../../Assets/city.svg";
 // Conponents
-import EmptyPage from "../../Components/Ui/EmptyPage";
 import CurrentWeather from "../../Components/WeatherElement/CurrentWeather";
 import Button from "../../Components/Ui/Button";
 import DailyTempsBar from "../../Components/WeatherElement/DailyTempsBar";
@@ -36,13 +35,13 @@ const Home = () => {
   return (
     <S.HomeWrapper>
       {/* If home page empty */}
-      {!searchValue ? (
+      {searchValue ? (
         <S.HomeFailedSearch src={CityImg}>
           {" "}
           {`We couldn’t find any city named "${searchValue}", please try again.`}
         </S.HomeFailedSearch>
       ) : (
-        <EmptyPage {...HOME_EMPTY_DETAILS} />
+        <S.EmptyHomePage {...HOME_EMPTY_DETAILS} />
       )}
 
       {/* ----- Current weather section --------*/}

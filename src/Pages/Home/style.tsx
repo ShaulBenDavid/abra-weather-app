@@ -24,8 +24,17 @@ export const HomeFailedSearch = styled(EmptyPage)`
   width: 416px;
   margin-top: 196px;
   /* Less than 1920px */
-  ${getMediaQuery.lessThan("changePoint")`
+  ${getMediaQuery.between("changePoint", "desktop")`
     margin-top: 80px;
+  `}
+`;
+
+// Empty home page
+export const EmptyHomePage = styled(EmptyPage)`
+  margin-top: 200px;
+  /* Less than 1920px */
+  ${getMediaQuery.between("changePoint", "desktop")`
+    margin-top: 52px;
   `}
 `;
 
@@ -35,7 +44,7 @@ export const CurrentWeatherSection = styled.section`
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  
+
   /* Mobile */
   ${getMediaQuery.lessThan("changePoint")`
   flex-direction: column;
@@ -43,29 +52,29 @@ export const CurrentWeatherSection = styled.section`
   align-items: flex-start;
   row-gap: 24px;
   `}
-`
+`;
 // Fav icon
 export const FavIconButton = styled(IconFavDark)`
   width: 22px;
   height: 22px;
-`
+`;
 // Adding to fav button
 export const FavAddingButton = styled(Button)`
   width: 213px;
-`
+`;
 export const FavLightIconButton = styled.button`
   all: unset;
   order: -1;
   cursor: pointer;
-`
+`;
 
 // ------ Temp bar section -------
 export const DailyTempsBarSection = styled.section`
   margin-top: 88px;
-`
+`;
 
 // ------ Hourly Weather section ------
 export const HourlyWeatherSection = styled.section`
   margin-top: 140px;
   margin-bottom: 80px;
-`
+`;

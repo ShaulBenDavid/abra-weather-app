@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import EmptyPage from "../../Components/Ui/EmptyPage";
 import LoadingSpinner from "../../Components/Ui/LoadingSpinner";
 import getMediaQuery from "../../Utils/GetMediaQuery";
 
@@ -48,4 +49,14 @@ export const StyledFavLoader = styled(LoadingSpinner)`
   height: 80px;
   }
 `;
+
+// Empty Fav pag
+export const StyledEmptyFavPage = styled(EmptyPage)`
+  margin-top: 110px;
+  width: 364px;
+  /* Tablet */
+  ${getMediaQuery.between("changePoint", "desktop")`
+    margin-top: 66px;
+  `}
+`
 

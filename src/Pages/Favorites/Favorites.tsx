@@ -19,6 +19,7 @@ import {
   SearchAndTitleContainer,
   StyledFavLoader,
   StyledFavLoaderContainer,
+  StyledEmptyFavPage
 } from "./style";
 
 const Favorites = () => {
@@ -82,15 +83,15 @@ const Favorites = () => {
           {filteredFav?.length ? (
             <FavoritesList favorites={filteredFav} />
           ) : (
-            <EmptyPage src={FavStarsImg}>
+            <StyledEmptyFavPage src={FavStarsImg}>
               We couldn’t find any city named "<span>{searchValue}</span>" in
               the Favorites list, please try again.
-            </EmptyPage>
+            </StyledEmptyFavPage>
           )}
         </>
       ) : (
         // Empty page
-        <EmptyPage {...FAVORITES_EMPTY_DETAILS} />
+        <StyledEmptyFavPage {...FAVORITES_EMPTY_DETAILS} />
       )}
     </StyledFavoritesWrapper>
   );
