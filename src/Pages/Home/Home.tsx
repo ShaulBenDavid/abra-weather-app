@@ -3,8 +3,10 @@ import { selectSearchValue } from "../../Redux/Search/Search";
 import useMediaQuery from "../../Hooks/useMediaQuery";
 import { weatherFetchApi } from "../../Services/WeatherApi";
 import { useQuery } from "@tanstack/react-query";
+
+import { HOME_EMPTY_DETAILS } from "../../Utils/Constants";
 // Conponents
-import EmptyHome from "./Components/EmptyHome";
+import EmptyPage from "../../Components/Ui/EmptyPage";
 import SearchFailed from "../../Components/Ui/SearchFailed";
 import CurrentWeather from "../../Components/WeatherElement/CurrentWeather";
 import Button from "../../Components/Ui/Button";
@@ -35,13 +37,13 @@ const Home = () => {
   return (
     <S.HomeWrapper>
       {/* If home page empty */}
-      {/* {searchValue ? <S.HomeFailedSearch searchValue={searchValue} useCase="home" /> : <EmptyHome />} */}
+      {searchValue ? <S.HomeFailedSearch searchValue={searchValue} useCase="home" /> : <EmptyPage {...HOME_EMPTY_DETAILS}/>}
 
       {/* ----- Current weather section --------*/}
-      <S.CurrentWeatherSection>
-        <CurrentWeather />
+      {/* <S.CurrentWeatherSection>
+        <CurrentWeather /> */}
         {/* LayOut for desk or mobile */}
-        {!matches ? (
+        {/* {!matches ? (
           <S.FavLightIconButton>
             <IconFavOutline style={{ width: "30px", height: "30px" }} />
           </S.FavLightIconButton>
@@ -51,15 +53,15 @@ const Home = () => {
             Add to favorites
           </S.FavAddingButton>
         )}
-      </S.CurrentWeatherSection>
+      </S.CurrentWeatherSection> */}
       {/* ----- 4 days weather bar section ------ */}
-      <S.DailyTempsBarSection>
+      {/* <S.DailyTempsBarSection>
         <DailyTempsBar />
-      </S.DailyTempsBarSection>
+      </S.DailyTempsBarSection> */}
       {/* ------ Hourly weather ------ */}
-      <S.HourlyWeatherSection>
+      {/* <S.HourlyWeatherSection>
         <HourlyWeather />
-      </S.HourlyWeatherSection>
+      </S.HourlyWeatherSection> */}
     </S.HomeWrapper>
   );
 };

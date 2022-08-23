@@ -1,22 +1,94 @@
-import { useEffect } from "react"
-import { useAppSelector } from "../../Redux/hooks"
-import { selectUser } from "../../Redux/User/User"
-import { GetFetchApi } from "../../Services/FetchApi"
+import { useEffect, useMemo, useState } from "react";
+
+import { FAVORITES_EMPTY_DETAILS } from "../../Utils/Constants";
+
+import { useAppSelector } from "../../Redux/hooks";
+import { selectUser } from "../../Redux/User/User";
+import { GetFetchApi } from "../../Services/FetchApi";
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
+// Components
+import EmptyPage from "../../Components/Ui/EmptyPage";
+import SearchBox from "../../Components/Ui/SearchBox";
+import FavoritesList from "./Components/FavoritesList";
+// Types
+import { FavoritesProps } from "./types";
+// Styles
+import {
+  StyledFavoritesWrapper,
+  SearchAndTitleContainer,
+  StyledFavLoader,
+  StyledFavLoaderContainer,
+} from "./style";
 
 const Favorites = () => {
+  // States
+  const [searchValue, setSearchValue] = useState<string>("");
   const currentUser = useAppSelector(selectUser);
 
-  useEffect(() => {
-    const getFav = async () => {
-      const res = await GetFetchApi('/favorites/', currentUser?.refresh_token);
-      console.log(res)
-    }
+  // Parse data
+  const parseData = (data: FavoritesProps[]) => {
+    return data.filter((item) => item.city !== "");
+  };
 
-    getFav();
-  },[])
+  const { isLoading, data }: UseQueryResult<FavoritesProps[], Error> = useQuery<
+    FavoritesProps[],
+    Error
+  >(
+    ["Favorites"],
+    async () => {
+      const res = await GetFetchApi("/favorites/", currentUser?.access_token);
+      return parseData(res?.data?.results);
+    },
+    {
+      cacheTime: 20 * (60 * 1000),
+      staleTime: 20 * (60 * 1000),
+    }
+  );
+
+  // ------ Filtered fav lise by search ------
+  const filteredFav = useMemo(() => {
+    return data?.filter((fav) => {
+      return fav.city.toLowerCase().includes(searchValue.toLowerCase());
+    });
+  }, [data, searchValue]);
+  // handle search change
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    setSearchValue(newValue);
+  };
+
+  console.log(filteredFav);
+  // When loading data
+  if (isLoading)
     return (
-      <div>Favorites</div>
-    )
-  }
-  
-  export default Favorites
+      <StyledFavLoaderContainer>
+        <StyledFavLoader />
+      </StyledFavLoaderContainer>
+    );
+  // ----- Favorites ----
+  return (
+    <StyledFavoritesWrapper>
+      {/* Show fav if you hav */}
+      {data ? (
+        <>
+          {/* Search */}
+          <SearchAndTitleContainer>
+            <h1>Favorites</h1>
+            <SearchBox variant="favSearch" onChange={handleChange} />
+          </SearchAndTitleContainer>
+          {/* Fav list */}
+          {filteredFav?.length ? (
+            <FavoritesList favorites={filteredFav} />
+          ) : (
+            <EmptyPage {...FAVORITES_EMPTY_DETAILS} />
+          )}
+        </>
+      ) : (
+        // Empty page
+        <EmptyPage {...FAVORITES_EMPTY_DETAILS} />
+      )}
+    </StyledFavoritesWrapper>
+  );
+};
+
+export default Favorites;

@@ -5,13 +5,27 @@ import {
   StyledInputSearch,
   StyledSearchContainer,
   StyledSearchIcon,
+  StyledFavSearchIcon,
 } from "./style";
 
-const SearchBox: React.FC<SearchBoxProps> = ({ className, ...otherprops }) => {
+enum SEARCH_TYPE {
+  favSearch = "Search from favorite...",
+  mainSearch = "Try “Tel Aviv - Jaffa”...",
+}
+
+const SearchBox: React.FC<SearchBoxProps> = ({
+  className,
+  variant,
+  ...otherprops
+}) => {
   return (
-    <StyledSearchContainer className={className}>
-      <StyledInputSearch type="text" {...otherprops} placeholder="Try “Tel Aviv - Jaffa”..." />
-      <StyledSearchIcon />
+    <StyledSearchContainer className={className} variant={variant}>
+      <StyledInputSearch
+        type="text"
+        {...otherprops}
+        placeholder={`${SEARCH_TYPE[variant]}`}
+      />
+      {variant === "favSearch" ? <StyledFavSearchIcon /> : <StyledSearchIcon />}
     </StyledSearchContainer>
   );
 };

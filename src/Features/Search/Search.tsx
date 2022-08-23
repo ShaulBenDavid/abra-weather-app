@@ -89,6 +89,7 @@ const Search = () => {
       {/* ----Search input---- */}
       <div>
         <StyledSearch
+          variant="mainSearch"
           onChange={handleSearchChange}
           onFocus={handleSearchFocus}
           onBlur={handleSearchBlur}

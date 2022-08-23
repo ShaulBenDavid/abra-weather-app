@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-import getMediaQuery from "../../../../Utils/GetMediaQuery";
+import getMediaQuery from "../../../Utils/GetMediaQuery";
 
-export const EmptyHomeContainer = styled.section`
+export const EmptyPageContainer = styled.section`
   width: 296px;
   height: 266px;
   margin: 0 auto;
@@ -22,7 +22,7 @@ export const WeatherMapImg = styled.img`
   height: 120px;
 `;
 
-export const EmptyHomeTitle = styled.h3`
+export const EmptyPageTitle = styled.h3`
   text-shadow: -2px 3px 1px rgba(0, 0, 0, 0.1), -1px 1px 2px rgba(255, 255, 255, 0.25);
   font-size: 2rem;
   font-weight: bold;
@@ -32,7 +32,7 @@ export const EmptyHomeTitle = styled.h3`
   margin-top: 36px;
   `
 
-export const EmptyHomeP = styled.p`
+export const EmptyPageP = styled.p`
   font-size: 1.125rem;
   line-height: 1.5;
   text-align: center;
