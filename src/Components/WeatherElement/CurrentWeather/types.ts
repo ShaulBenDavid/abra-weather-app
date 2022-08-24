@@ -1,3 +1,6 @@
+import { FetchingWeatherProps } from "../../../Pages/Home/types";
+
 export interface CurrentWeatherProps {
-    data?: any;
+    data: FetchingWeatherProps;
+    city: string;
 }

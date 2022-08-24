@@ -12,6 +12,9 @@ export function weatherFetchApi<T extends string>(url: T, token: void): Promise<
 
 
 export async function weatherFetchApi<T extends string, P>(url: T, params: P) {
-  const response = await api.get(`${url}?apikey=LjMJaCzdKF0kAvFrg27eUzGDx7PGv3P1`, { params });
+  const response = await api.get(`${url}?apikey=KKv26VA4AOQ3mn6FW1hpdRztJPAjfZ7o`, { params });
   return response;
 }
+
+// KKv26VA4AOQ3mn6FW1hpdRztJPAjfZ7o 
+// city: 'México City', country: 'Mexico', value: '242560'

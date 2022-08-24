@@ -107,12 +107,13 @@ const Search = () => {
           <Drawer useCase="search" onClick={handleSearchFocus}>
             {data?.length ? (
               <SearchResults searchOptions={data} />
-            ) : isTyping ? (
+            ) : isTyping || isLoading ? (
               // Loading when typing
               <StyledLoaderContainer>
                 <StyledLoader />
               </StyledLoaderContainer>
             ) : (
+              // no results
               <StyledNoResultContainer>
                 <StyledEmptySearch src={CityImg}>
                   We couldn’t find any city named "<span>{searchTerm}</span>",
@@ -124,13 +125,15 @@ const Search = () => {
         )
       ) : // Mobile
       isFocus && searchTerm && data?.length ? (
+        // Search options
         <SearchResults searchOptions={data} />
-      ) : isTyping ? (
-        // Loading when typing
+      ) : // Loading when typing
+      isTyping || isLoading ? (
         <StyledLoaderContainer>
           <StyledLoader />
         </StyledLoaderContainer>
       ) : (
+        // Search failed or empty
         <StyledNoResultContainer>
           <StyledEmptySearch src={CityImg}>
             {searchTerm === ""
