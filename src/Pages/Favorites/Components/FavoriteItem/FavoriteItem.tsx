@@ -11,6 +11,16 @@ import {
   StyleFavCountry,
 } from "./style";
 
+// Handle click
+const handleClick = ({ city, country, value }: FavoriteItemProps) => {
+  const newWeatherPlace = {
+    city,
+    country,
+    value
+  }
+  console.log(newWeatherPlace)
+}
+
 const FavoriteItem: React.FC<FavoriteItemProps> = ({
   value,
   city,
@@ -19,7 +29,7 @@ const FavoriteItem: React.FC<FavoriteItemProps> = ({
 }) => {
   return (
     <StyledFavContainer value={value} hr={hr}>
-      <StyledFavPlace href="#/">
+      <StyledFavPlace href="#/" onClick={() => handleClick({city, country, value})} >
         <StyleFavCity>{city}</StyleFavCity>
         <StyleFavCountry>{country}</StyleFavCountry>
       </StyledFavPlace>

@@ -1,13 +1,15 @@
 import styled from "styled-components";
 import EmptyPage from "../../Components/Ui/EmptyPage";
 import LoadingSpinner from "../../Components/Ui/LoadingSpinner";
+import SearchBox from "../../Components/Ui/SearchBox";
 import getMediaQuery from "../../Utils/GetMediaQuery";
 
 // Page wrapper
 export const StyledFavoritesWrapper = styled.div`
-overflow-y: auto;
+  overflow-y: auto;
   height: 100vh;
   padding: 0 370px;
+  overflow-x: hidden;
   /* Tablet */
   ${getMediaQuery.between("changePoint", "desktop")`
     padding: 0 50px;
@@ -17,19 +19,36 @@ overflow-y: auto;
     padding: 0 30px;
   `}
 `;
-
+// Search container
 export const SearchAndTitleContainer = styled.div`
-    margin-top: 80px;
-    margin-bottom: 65px;
-    display: flex;
-    flex-direction: column;
-    row-gap: 24px;
-
-    ${getMediaQuery.between("changePoint", "desktop")`
+  margin-top: 80px;
+  margin-bottom: 65px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  /* Tablet */
+  ${getMediaQuery.between("changePoint", "desktop")`
       margin-top: 64px;
       margin-bottom: 61px;
     `}
-`
+  /* Mobile */
+  ${getMediaQuery.lessThan("changePoint")`
+      margin-top: 30px;
+      margin-bottom: 40px;
+  `}
+`;
+// Fav search
+export const StyledFavSearch = styled(SearchBox)`
+  /* Mobile */
+  ${getMediaQuery.lessThan("changePoint")`
+      width: 354px;
+      margin: 0 auto;
+  `}
+  ${getMediaQuery.lessThan("mobile")`
+      width: 100%;
+  `}
+
+`;
 
 // Loader
 export const StyledFavLoaderContainer = styled.div`
@@ -38,15 +57,19 @@ export const StyledFavLoaderContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+  /* Mobile */
+  ${getMediaQuery.lessThan("changePoint")`
+      height: 100vh;
+  `}
+`;
 export const StyledFavLoader = styled(LoadingSpinner)`
-      display: inline-block;
+  display: inline-block;
   width: 100px;
   height: 100px;
 
   &::after {
-  width: 80px;
-  height: 80px;
+    width: 80px;
+    height: 80px;
   }
 `;
 
@@ -58,5 +81,13 @@ export const StyledEmptyFavPage = styled(EmptyPage)`
   ${getMediaQuery.between("changePoint", "desktop")`
     margin-top: 66px;
   `}
-`
-
+  /* mobile */
+  ${getMediaQuery.lessThan("changePoint")`
+    margin-top: 145px;
+    p {
+      font-size: 0.875rem;
+  font-weight: normal;
+  line-height: 1.25;
+    }
+  `}
+`;

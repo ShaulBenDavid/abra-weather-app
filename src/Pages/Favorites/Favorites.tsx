@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 import { FAVORITES_EMPTY_DETAILS } from "../../Utils/Constants";
 import FavStarsImg from "../../Assets/stars.svg";
@@ -8,7 +8,6 @@ import { selectUser } from "../../Redux/User/User";
 import { GetFetchApi } from "../../Services/FetchApi";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 // Components
-import EmptyPage from "../../Components/Ui/EmptyPage";
 import SearchBox from "../../Components/Ui/SearchBox";
 import FavoritesList from "./Components/FavoritesList";
 // Types
@@ -19,7 +18,8 @@ import {
   SearchAndTitleContainer,
   StyledFavLoader,
   StyledFavLoaderContainer,
-  StyledEmptyFavPage
+  StyledEmptyFavPage,
+  StyledFavSearch
 } from "./style";
 
 const Favorites = () => {
@@ -32,7 +32,7 @@ const Favorites = () => {
     return data.filter((item) => item.city !== "");
   };
 
-  // Query getting data
+  // ---- Query getting data ----
   const { isLoading, data }: UseQueryResult<FavoritesProps[], Error> = useQuery<
     FavoritesProps[],
     Error
@@ -77,7 +77,7 @@ const Favorites = () => {
           {/* Search */}
           <SearchAndTitleContainer>
             <h1>Favorites</h1>
-            <SearchBox variant="favSearch" onChange={handleChange} />
+            <StyledFavSearch variant="favSearch" onChange={handleChange} />
           </SearchAndTitleContainer>
           {/* Fav list */}
           {filteredFav?.length ? (
