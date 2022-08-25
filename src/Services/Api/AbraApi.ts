@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { BASE_URL } from "../Utils/Constants";
+import { BASE_URL } from "../../Utils/Constants";
 
 const api = axios.create({
   baseURL: BASE_URL,

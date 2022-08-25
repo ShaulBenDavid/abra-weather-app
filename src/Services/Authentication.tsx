@@ -1,16 +1,17 @@
 import { useState } from "react";
-import { AbraPostApi } from "./AbraApi";
-import { useAppDispatch } from "../Redux/hooks";
+import { AbraPostApi } from "./Api/AbraApi";
+import { useAppDispatch, useAppSelector } from "../Redux/hooks";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import { logOut, selectUser, setUser, UserProps } from "../Redux/User/User";
 // Types
 import { LoginProps } from "../Pages/Login/types";
-import { logOut, setUser, UserProps } from "../Redux/User/User";
 import { PayloadAuthCheckProps } from "../App";
 
 // Login hook
 export const useAuthentication = () => {
   const dispatch = useAppDispatch();
   const [authError, setAuthError] = useState<string | undefined>(undefined);
+  const currentUser = useAppSelector(selectUser);
 
 
   // -----Login Mutation-----
@@ -59,9 +60,10 @@ export const useAuthentication = () => {
    );
 
   // ----- Check if user auth -----
-  const checkUserAuth = async (
-    payload: PayloadAuthCheckProps
-  ) => {
+  const checkUserAuth = async () => {
+    const payload = {
+      token: currentUser?.access_token,
+    };
     checkAuthMutation.mutate(payload)
   };
 

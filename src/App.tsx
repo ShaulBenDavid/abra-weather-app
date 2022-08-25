@@ -25,19 +25,14 @@ const themes: any = {
 };
 
 const App: React.FC = () => {
-  // Auth fun
+  // Auth function
   const { checkUserAuth } = useAuthentication();
   // Theme mode
   const theme = useAppSelector(selectTheme);
-  // User
-  const currentUser = useAppSelector(selectUser);
 
   // User on refresh
   useEffect(() => {
-    const payload = {
-      token: currentUser?.access_token,
-    };
-    checkUserAuth(payload);
+    checkUserAuth();
   }, []);
 
   return (

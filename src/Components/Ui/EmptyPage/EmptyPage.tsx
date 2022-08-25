@@ -7,7 +7,7 @@ const EmptyPage: React.FC<EmptyPageProps> = ({ src, title, p, children, classNam
   return (
     <S.EmptyPageContainer className={className}>
       <S.WeatherMapImg src={src} alt="Weather map" />
-      <S.EmptyPageTitle>{title}</S.EmptyPageTitle>
+      {title && <S.EmptyPageTitle>{title}</S.EmptyPageTitle>}
       <S.EmptyPageP>
         {/* For error set children */}
         {p}{children}

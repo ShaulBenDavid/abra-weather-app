@@ -5,7 +5,7 @@ import {
 } from "@tanstack/react-query";
 import { SearchOptionsProps } from "../Features/Search/types";
 import useDebounce from "../Hooks/useDebounde";
-import { weatherFetchApi } from "./WeatherApi";
+import { weatherFetchApi } from "./Api/WeatherApi";
 
 
 // -------- UseAutocomplete ----------
