@@ -1,8 +1,7 @@
 import React, { FormEventHandler, useEffect, useState } from "react";
 
-import { selectUser, UserProps } from "../../Redux/User/User";
+import { selectUser } from "../../Redux/User/User";
 import { useAppSelector } from "../../Redux/hooks";
-import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { useAuthentication } from "../../Services/Authentication";
 // Components
@@ -16,7 +15,7 @@ import LoadingSpinner from "../../Components/Ui/LoadingSpinner";
 // Styles
 import * as S from "./style";
 // Types
-import { LoginChangeEventProps, FormFieldProps, LoginProps } from "./types";
+import { LoginChangeEventProps, FormFieldProps } from "./types";
 
 // DEFAULT VALUES
 const INPUT_DEFAULT = {
@@ -31,27 +30,16 @@ const Login = () => {
   const [formField, setFormField] = useState<FormFieldProps>(INPUT_DEFAULT);
   const [formValid, setFormValid] = useState<boolean>(true);
   const { username, password } = formField;
-  const { fetchLogin, authError } = useAuthentication();
-  // Navigate
+  const { fetchLogin, authError, loginMutation } = useAuthentication();
+  // Block contected user to get in to login page
   const navigate = useNavigate();
-
-  // -----Mutation-----
-  const mutation: UseMutationResult<UserProps, Error, LoginProps> = useMutation<
-    UserProps,
-    Error,
-    LoginProps
-  >({
-    mutationFn: (payload: LoginProps): Promise<UserProps> =>
-      fetchLogin(payload),
-  });
-  // navigate on success
   useEffect(() => {
     if (currentUser) {
       navigate("/");
     }
   }, [currentUser, navigate]);
 
-  // Handle input value and check validation
+  // Handle input value
   const handleChange = (event: LoginChangeEventProps) => {
     const { value, name } = event.target;
     const newObj = { ...formField, [name]: value };
@@ -82,7 +70,7 @@ const Login = () => {
       email: username,
       password,
     };
-    mutation.mutate(payload);
+    fetchLogin(payload);
   };
 
   return (
@@ -125,9 +113,9 @@ const Login = () => {
             <Button
               variant="primary"
               type="submit"
-              disabled={formValid || mutation.isLoading}
+              disabled={formValid || loginMutation.isLoading}
             >
-              {mutation.isLoading ? <LoadingSpinner /> : "Log in"}
+              {loginMutation.isLoading ? <LoadingSpinner /> : "Log in"}
             </Button>
           </S.ButtonWrapper>
         </S.StyledLoginForm>

@@ -34,7 +34,7 @@ export const UseAutocomplete = (searchTerm: string) => {
   const debouncedSearchTerm = useDebounce(searchTerm, 1500);
 
   // Autocomplate query
-  const { data, isLoading, isFetching }: UseQueryResult<SearchOptionsProps[], Error> =
+  const { data, isLoading }: UseQueryResult<SearchOptionsProps[], Error> =
     useQuery<SearchOptionsProps[], Error>(
       ["City search", searchResults ? searchTerm : debouncedSearchTerm],
       async () => {

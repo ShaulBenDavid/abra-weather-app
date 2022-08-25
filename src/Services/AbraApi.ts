@@ -21,20 +21,20 @@ export const abraEjectInterceptor = (interceptorId: number) => {
   return api.interceptors.response.eject(interceptorId);
 }
 
-// post
-export function PostFetchApi<T extends string, P>(url: T, payload: P): Promise<any>;
+// ----- Post ------
+export function AbraPostApi<T extends string, P>(url: T, payload: P): Promise<any>;
 
 
-export async function PostFetchApi<T extends string, P>(url: T, payload: P) {
+export async function AbraPostApi<T extends string, P>(url: T, payload: P) {
   console.log(payload)
   const response = await api.post(url, payload);
   return response;
 }
-// Get
-export function GetFetchApi<T extends string, P>(url: T, token: P): Promise<any>;
+// -------- Get -------
+export function AbraGetApi<T extends string, P>(url: T, token: P): Promise<any>;
 
 
-export async function GetFetchApi<T extends string, P>(url: T, token: P) {
+export async function AbraGetApi<T extends string, P>(url: T, token: P) {
   console.log(token)
   const bearerToken = `Bearer ${token}`;
   const response = await api.get(url, { 'headers': { 'Authorization': bearerToken } });

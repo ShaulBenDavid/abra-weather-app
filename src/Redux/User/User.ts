@@ -32,7 +32,7 @@ export const userSlice = createSlice({
   reducers: {
     // New user
     setUser: (state, action) => {
-      state.user = action.payload;
+      state.user = action.payload.data;
     },
     // Logout
     logOut: (state) => {

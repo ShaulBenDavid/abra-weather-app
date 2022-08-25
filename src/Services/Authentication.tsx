@@ -1,24 +1,35 @@
-import { useEffect, useState } from "react";
-import { PostFetchApi } from "./FetchApi";
+import { useState } from "react";
+import { AbraPostApi } from "./AbraApi";
+import { useAppDispatch } from "../Redux/hooks";
+import { useMutation, UseMutationResult } from "@tanstack/react-query";
 // Types
 import { LoginProps } from "../Pages/Login/types";
-import { useAppDispatch, useAppSelector } from "../Redux/hooks";
-import { selectUser, setUser } from "../Redux/User/User";
+import { logOut, setUser, UserProps } from "../Redux/User/User";
 import { PayloadAuthCheckProps } from "../App";
 
 // Login hook
 export const useAuthentication = () => {
   const dispatch = useAppDispatch();
-  const currentUser = useAppSelector(selectUser);
   const [authError, setAuthError] = useState<string | undefined>(undefined);
 
-  // ---- Login -----
-  const fetchLogin = async (payload: LoginProps): Promise<any> => {
-    try {
+
+  // -----Login Mutation-----
+  const loginMutation: UseMutationResult<UserProps, Error, LoginProps> = useMutation<
+    UserProps,
+    Error,
+    LoginProps
+  >({
+    mutationFn: (payload: LoginProps): Promise<UserProps> => {
       setAuthError(undefined);
-      const { data } = await PostFetchApi("/auth/login/", payload);
-      dispatch(setUser(data));
-    } catch (err: any) {
+      return AbraPostApi("/auth/login/" ,payload);
+    },
+    // Success
+    onSuccess: (response) => {
+      console.log(response)
+      dispatch(setUser(response));
+    },
+    // Failed
+    onError: (err: any) => {
       let newErr: string = "";
       let resError = err.response.data;
       for (let idx in resError) {
@@ -26,23 +37,33 @@ export const useAuthentication = () => {
       }
       setAuthError(newErr);
     }
+  });
+
+  // ---------- New Login --------------
+  const fetchLogin = async (payload: LoginProps) => {
+    loginMutation.mutate(payload);
   };
+
+  // ======================================================
+
+   // --------- Check Auth Mutation ---------
+   const checkAuthMutation: UseMutationResult<string, Error, PayloadAuthCheckProps> =
+   useMutation<string, Error, PayloadAuthCheckProps>({
+     mutationFn: (payload: PayloadAuthCheckProps) =>{
+       return AbraPostApi("/auth/verify-token/", payload)
+     },
+     onError: (err) => {
+      dispatch(logOut());
+     }
+   },
+   );
 
   // ----- Check if user auth -----
   const checkUserAuth = async (
     payload: PayloadAuthCheckProps
-  ): Promise<any> => {
-    if (currentUser) {
-      try {
-        const d = await PostFetchApi("/auth/verify-token/", payload);
-        console.log(d);
-      } catch (err: any) {
-        dispatch(setUser(null));
-        console.log(err);
-      }
-    }
-    return;
+  ) => {
+    checkAuthMutation.mutate(payload)
   };
 
-  return { fetchLogin, authError, checkUserAuth } as const;
+  return { fetchLogin, authError, checkUserAuth, loginMutation } as const;
 };

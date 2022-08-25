@@ -5,7 +5,7 @@ import FavStarsImg from "../../Assets/stars.svg";
 
 import { useAppSelector } from "../../Redux/hooks";
 import { selectUser } from "../../Redux/User/User";
-import { GetFetchApi } from "../../Services/FetchApi";
+import { AbraGetApi } from "../../Services/AbraApi";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 // Components
 import SearchBox from "../../Components/Ui/SearchBox";
@@ -39,7 +39,7 @@ const Favorites = () => {
   >(
     ["Favorites"],
     async () => {
-      const res = await GetFetchApi("/favorites/", currentUser?.access_token);
+      const res = await AbraGetApi("/favorites/", currentUser?.access_token);
       return parseData(res?.data?.results);
     },
     {

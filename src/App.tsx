@@ -6,7 +6,6 @@ import { useAppSelector } from "./Redux/hooks";
 import { selectTheme } from "./Redux/ThemeMode/ThemeMode";
 import { selectUser } from "./Redux/User/User";
 import ProtectedRoutes from "./Utils/ProtectedRoutes";
-import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import { useAuthentication } from "./Services/Authentication";
 // Components
 import Favorites from "./Pages/Favorites";
@@ -32,25 +31,13 @@ const App: React.FC = () => {
   const theme = useAppSelector(selectTheme);
   // User
   const currentUser = useAppSelector(selectUser);
-  // Mutation
-  const mutation: UseMutationResult<string, Error, PayloadAuthCheckProps> =
-    useMutation<string, Error, PayloadAuthCheckProps>({
-      mutationFn: (payload: PayloadAuthCheckProps): Promise<any> =>
-        checkUserAuth(payload),
-    });
 
   // User on refresh
   useEffect(() => {
-    const userRefresh = () => {
-      const payload = {
-        token: currentUser?.token,
-      };
-      mutation.mutate(payload);
+    const payload = {
+      token: currentUser?.access_token,
     };
-
-    if (currentUser) {
-      userRefresh();
-    }
+    checkUserAuth(payload);
   }, []);
 
   return (
