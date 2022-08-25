@@ -15,6 +15,8 @@ const SearchResultItem: React.FC<SearchItemProps> = ({
   placeKey,
   city,
   country,
+  clearSearchBox,
+  closeMobileSearch
 }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate()
@@ -22,6 +24,9 @@ const SearchResultItem: React.FC<SearchItemProps> = ({
   // Handle click
 const handleClick = ({ city, country, placeKey }: SearchItemActionProps) => {
   dispatch(setSearchChoice({ city, country, placeKey }));
+  clearSearchBox()
+  // Only toggle on mobile
+  closeMobileSearch && closeMobileSearch()
   navigate('/');
 };
   

@@ -1,8 +1,10 @@
-import { useAppSelector } from "../../Redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import { selectTheme } from "../../Redux/ThemeMode/ThemeMode";
 
+import { setIsMobileSearchOpen } from "../../Redux/Search/Search";
 // Types
 import { MobileNavProps } from "./types";
+// Components
 import {
   IconFavOutline,
   IconHomeOutline,
@@ -14,8 +16,15 @@ import {
 // Styles
 import * as S from "./style";
 
-const MobileNav: React.FC<MobileNavProps> = ({ onClick }) => {
+const MobileNav: React.FC<MobileNavProps> = () => {
+  // Selectors
   const theme = useAppSelector(selectTheme);
+
+  const dispatch = useAppDispatch();
+
+  // handle mobile search
+  const handleMobileSearch = () => dispatch(setIsMobileSearchOpen());
+  
 
   return (
     <S.MobileNavbar>
@@ -25,7 +34,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ onClick }) => {
         <p>Favorites</p>
       </S.MobileNavLink>
       <S.Divider />
-      <S.MobileNavLinkB onClick={onClick}>
+      <S.MobileNavLinkB onClick={handleMobileSearch}>
         {theme === "light" ? <IconSearchWhite /> : <IconSearchDrak />}
         <p>Search</p>
       </S.MobileNavLinkB>

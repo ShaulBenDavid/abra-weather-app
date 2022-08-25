@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 import useMediaQuery from "../../Hooks/useMediaQuery";
-import useDebounce from "../../Hooks/useDebounde";
 
-import { useQueryClient, useQuery } from "@tanstack/react-query";
-import { weatherFetchApi } from "../../Services/WeatherApi";
+import { useAppDispatch } from "../../Redux/hooks";
 
 import CityImg from "../../Assets/city.svg";
 // Components
@@ -21,60 +19,28 @@ import {
   StyledLoaderContainer,
   StyledEmptySearch,
 } from "./style";
+import { setIsMobileSearchOpen } from "../../Redux/Search/Search";
+import { UseAutocomplete } from "../../Services/UseSearch";
 
 const Search = () => {
+  // Dispatch
+  const dispatch = useAppDispatch();
   // States
   const [isFocus, setIsFocus] = useState<boolean>(true);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [isTyping, setIsTyping] = useState<boolean>(false);
-  const client = useQueryClient();
 
   // Media query
   const matches = useMediaQuery("(min-width: 1207px)");
 
-  const searchResults = client.getQueryData(["City search", searchTerm], {
-    exact: true,
-  });
-
-  // debounce
-  const debouncedSearchTerm = useDebounce(searchTerm, 1500);
-
-  // Parse data
-  const parseData = (res: any) => {
-    const optionArray = res?.data;
-    return optionArray?.map((option: any) => {
-      const newOption = {
-        country: option?.Country.LocalizedName,
-        city: option?.AdministrativeArea.LocalizedName,
-        key:  option?.Key,
-      };
-      return newOption;
-    });
-  };
-
-  // Autocomplate query
-  const { data, isLoading }: UseQueryResult<SearchOptionsProps[], Error> =
-    useQuery<SearchOptionsProps[], Error>(
-      ["City search", searchResults ? searchTerm : debouncedSearchTerm],
-      async () => {
-        const res = await weatherFetchApi(
-          "locations/v1/cities/autocomplete",
-          searchResults ? { q: searchTerm } : { q: debouncedSearchTerm }
-        );
-        return parseData(res);
-      },
-      {
-        enabled: !!searchTerm,
-        cacheTime: 15 * (60 * 1000),
-        staleTime: Infinity,
-      }
-    );
-  console.log(data)
+  // ------ AutoComplete search -------
+  const { data, debouncedSearchTerm, isLoading } = UseAutocomplete(searchTerm);
 
   // Control when to show error
   useEffect(() => {
     setIsTyping(false);
-  }, [data, debouncedSearchTerm]);
+  }, [debouncedSearchTerm, isLoading]);
+  
 
   // Handle search value
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -82,6 +48,12 @@ const Search = () => {
     setSearchTerm(e.target.value);
   };
 
+  // Clean search box
+  const clearSearchBox = () => {
+    setSearchTerm("");
+  };
+  // Close mobile search when choosing
+  const handleMobileSearch = () => dispatch(setIsMobileSearchOpen());
   // Handle search foccus and blur
   // control the search drawer to open only when focusing and the search have value
   const handleSearchFocus = (): void => setIsFocus(true);
@@ -96,23 +68,29 @@ const Search = () => {
           onChange={handleSearchChange}
           onFocus={handleSearchFocus}
           onBlur={handleSearchBlur}
+          value={searchTerm}
         />
       </div>
       {/* Search results */}
 
-      {/* using the same search for desk and mobile */}
+      {/* -------- Render mobile or desk search --------- */}
       {matches ? (
+        // ------ Desktop ----------
+        // Show only on when focusing and search hold value
         isFocus &&
-        // Desk
         searchTerm && (
           <Drawer useCase="search" onClick={handleSearchFocus}>
-            {data?.length ? (
-              <SearchResults searchOptions={data} />
-            ) : isTyping || isLoading ? (
-              // Loading when typing
+            {/* Loading when typing or fetching */}
+            {isTyping || isLoading ? (
               <StyledLoaderContainer>
                 <StyledLoader />
               </StyledLoaderContainer>
+            ) : data?.length ? (
+              // If you there is data show it
+              <SearchResults
+                searchOptions={data}
+                clearSearchBox={clearSearchBox}
+              />
             ) : (
               // no results
               <StyledNoResultContainer>
@@ -124,16 +102,20 @@ const Search = () => {
             )}
           </Drawer>
         )
-      ) : // Mobile
-      isFocus && searchTerm && data?.length ? (
-        // Search options
-        <SearchResults searchOptions={data} />
-      ) : // Loading when typing
-      isTyping || isLoading ? (
+      ) : // ---------- Mobile ----------
+      (isTyping || isLoading) && searchTerm ? (
         <StyledLoaderContainer>
           <StyledLoader />
         </StyledLoaderContainer>
-      ) : (
+      )  : searchTerm && data?.length ? (
+        // Search options
+        <SearchResults
+          searchOptions={data}
+          clearSearchBox={clearSearchBox}
+          closeMobileSearch={handleMobileSearch}
+        />
+      ): // Loading when typing
+      (
         // Search failed or empty
         <StyledNoResultContainer>
           <StyledEmptySearch src={CityImg}>

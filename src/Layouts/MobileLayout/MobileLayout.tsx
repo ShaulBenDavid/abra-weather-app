@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { useAppSelector } from "../../Redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import { selectLogoutProccess } from "../../Redux/User/User";
 // Components
 import MobileNav from "../../Layouts/MobileNav";
@@ -8,17 +8,22 @@ import Drawer from "../Drawer";
 import MobileMenu from "./Components/MobileMenu";
 import BurgerButton from "./Components/BurgerButton";
 import MobileSearch from "./Components/MobileSearch";
+import { selectIsMobileSearchOpen, setIsMobileSearchOpen } from "../../Redux/Search/Search";
 // Styles
 
 const MobileLayOut = () => {
-  const isLogoutOpen = useAppSelector(selectLogoutProccess)
-  // Is menu open
+  // Selectors
+  const isLogoutOpen = useAppSelector(selectLogoutProccess);
+  const isMobileSearchOpen = useAppSelector(selectIsMobileSearchOpen);
+  const dispatch = useAppDispatch();
+  // States
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
   // Handle menu state
   const handleMenu = () => setIsMenuOpen(!isMenuOpen);
   // Handle search state
-  const handleSearch = () => setIsSearchOpen(!isSearchOpen);
+  const handleSearch = () => dispatch(setIsMobileSearchOpen());
+
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -30,7 +35,7 @@ const MobileLayOut = () => {
     <>
       {/* Mobile nav */}
       <BurgerButton onClick={handleMenu} />
-      <MobileNav onClick={handleSearch} />
+      <MobileNav />
       {/* Menu drawer */}
       {isMenuOpen && (
         <Drawer onClick={handleMenu}>
@@ -38,7 +43,7 @@ const MobileLayOut = () => {
         </Drawer>
       )}
       {/* Mobile Search */}
-      {isSearchOpen && (
+      {isMobileSearchOpen && (
         <Drawer onClick={handleSearch} >
           <MobileSearch onClick={handleSearch} />
         </Drawer>

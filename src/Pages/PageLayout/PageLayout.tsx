@@ -7,7 +7,7 @@ import { selectLogoutProccess } from "../../Redux/User/User";
 import MobileLayout from "../../Layouts/MobileLayout";
 import Header from "../../Layouts/Header";
 import LogoutWindow from "../../Components/Ui/LogutWindow";
-// Types
+
 
 const PageLayout = () => {
   // Media query

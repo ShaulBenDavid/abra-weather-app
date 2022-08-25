@@ -12,7 +12,7 @@ export const useAuthentication = () => {
   const currentUser = useAppSelector(selectUser);
   const [authError, setAuthError] = useState<string | undefined>(undefined);
 
-  // Login
+  // ---- Login -----
   const fetchLogin = async (payload: LoginProps): Promise<any> => {
     try {
       setAuthError(undefined);
@@ -28,7 +28,7 @@ export const useAuthentication = () => {
     }
   };
 
-  // Check if user auth
+  // ----- Check if user auth -----
   const checkUserAuth = async (
     payload: PayloadAuthCheckProps
   ): Promise<any> => {

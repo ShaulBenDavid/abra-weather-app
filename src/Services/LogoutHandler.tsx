@@ -11,7 +11,7 @@ export const useLogoutHandler = () => {
   const makeLogout = () => dispatch(logOut());
 
   // Check function - this function check if the user make logout that is not on desktop design
-  // if he is not so the user get a window to do logout
+  // so the user get a window to do logout
   const handleUserLogout = (): void => {
     // logout if user on desktop
     if (matches) {

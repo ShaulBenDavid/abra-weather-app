@@ -60,11 +60,12 @@ export const TempNumber = styled.p`
       right: -30px;
     }
   }
-
+/* High temp */
   span:first-of-type {
     font-size: 8.125rem;
     margin-left: 32px;
   }
+  /* Low temp */
   span:last-child {
     font-size: 3.125rem;
     &::after {
@@ -85,7 +86,7 @@ export const TempNumber = styled.p`
       height: 10px;
       border: solid 4px ${({ theme }) => theme.white};
       top: 14px;
-      right: -14px;
+      right: -17px;
     }
   }
   span:last-child {

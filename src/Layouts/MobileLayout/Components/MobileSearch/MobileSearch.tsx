@@ -14,6 +14,7 @@ const MobileSearch: React.FC<MobileSearchProps> = ({ onClick }) => {
         <S.ArrowButton onClick={onClick}>
           <IconArrow />
         </S.ArrowButton>
+        {/* Search feature */}
         <Search />
       </S.MobileSearchContainer>
     </S.MobileSearchWrapper>

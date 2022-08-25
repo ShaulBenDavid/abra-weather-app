@@ -14,7 +14,7 @@ export const MobileNavbar = styled.nav`
   backdrop-filter: blur(20px);
   background-color: ${({ theme }) => theme.mobileNavBg};
   border-radius: 20px 20px 0 0;
-  z-index: 10;
+  z-index: 3;
 `;
 
 // Link
