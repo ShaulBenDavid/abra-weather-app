@@ -23,7 +23,7 @@ const reducers = combineReducers({
 export const config = {
     key: 'root',
     storage: storage,
-    whitelist: ['theme', 'user'],
+    whitelist: ['theme', 'user', 'search'],
 }
 
 const persistedReducer = persistReducer(config, reducers);

@@ -27,8 +27,8 @@ const Home = () => {
   const currentChoice = useAppSelector(selectSearchChoice);
 
     // Parse data
-  const parseData = (res: any) => {
-      const optionArray = res?.data.DailyForecasts;
+  const parseData = (res: FetchingWeatherProps[]) => {
+      const optionArray = res;
       return optionArray?.map((option: any) => {
         const newOption = {
           date: option?.EpochDate,
@@ -47,9 +47,9 @@ const Home = () => {
     [currentChoice?.city],
     async () => {
       const res = await weatherFetchApi(
-        `/forecasts/v1/daily/5day/${currentChoice?.value}`
+        `/forecasts/v1/daily/5day/${currentChoice?.placeKey}`
       );
-      return parseData(res);
+      return parseData(res?.data.DailyForecasts);
     },
     {
       enabled: !!currentChoice,
@@ -57,12 +57,10 @@ const Home = () => {
       staleTime: Infinity,
     }
   );
-  console.log(data);
 
   // Media query
   const matches = useMediaQuery("(min-width: 1207px)");
 
-  console.log(currentChoice);
 
   return (
     <S.HomeWrapper>

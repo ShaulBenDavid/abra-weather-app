@@ -1,11 +1,11 @@
 import { SearchOptionsProps } from "../../../Features/Search/types";
 
 export interface SearchItemProps extends SearchOptionsProps {
-    value: any;
+    placeKey: number;
 };
 
 export type SearchItemActionProps = {
-    value?: string;
+    placeKey: number;
     city: string;
     country: string;
 }

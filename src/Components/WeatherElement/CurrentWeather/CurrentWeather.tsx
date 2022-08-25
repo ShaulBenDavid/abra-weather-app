@@ -3,6 +3,7 @@ import SunCloud from "../../../Assets/WeatherIcons/sun-cloud.svg";
 import { CurrentWeatherProps } from "./types";
 // Styles
 import * as S from "./style";
+import useWeatherIcon from "../../../Utils/useWeatherIcon";
 
 const CurrentWeather: React.FC<CurrentWeatherProps> = ({ city, data }) => {
   // Current date
@@ -41,11 +42,14 @@ const CurrentWeather: React.FC<CurrentWeatherProps> = ({ city, data }) => {
     return strTime;
   }
 
+  // Weather icon
+  const weatherIcon: string = useWeatherIcon(data.weatherDayIcon);
+
   return (
     <S.CurrentWeatherContainer>
       <S.PlaceTitle>{city}</S.PlaceTitle>
       <S.CurrentTempContainer>
-        <S.TempIcon src={SunCloud} alt={SunCloud} />
+        <S.TempIcon src={weatherIcon} alt={SunCloud} />
         <S.TempNumber>
           <span>{data.maxWeather}</span>
           <span>- {data.minWeather}</span>

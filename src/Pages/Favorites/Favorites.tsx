@@ -54,6 +54,7 @@ const Favorites = () => {
       return fav.city.toLowerCase().includes(searchValue.toLowerCase());
     });
   }, [data, searchValue]);
+  
   // handle search change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;

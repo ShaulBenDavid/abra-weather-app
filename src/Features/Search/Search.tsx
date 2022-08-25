@@ -46,7 +46,7 @@ const Search = () => {
       const newOption = {
         country: option?.Country.LocalizedName,
         city: option?.AdministrativeArea.LocalizedName,
-        key: option?.Key,
+        key:  option?.Key,
       };
       return newOption;
     });
@@ -69,6 +69,7 @@ const Search = () => {
         staleTime: Infinity,
       }
     );
+  console.log(data)
 
   // Control when to show error
   useEffect(() => {

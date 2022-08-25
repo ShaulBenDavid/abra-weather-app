@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const SearchResultItem: React.FC<SearchItemProps> = ({
-  value,
+  placeKey,
   city,
   country,
 }) => {
@@ -20,15 +20,15 @@ const SearchResultItem: React.FC<SearchItemProps> = ({
   const navigate = useNavigate()
 
   // Handle click
-const handleClick = ({ city, country, value }: SearchItemActionProps) => {
-  dispatch(setSearchChoice({ city, country, value }));
+const handleClick = ({ city, country, placeKey }: SearchItemActionProps) => {
+  dispatch(setSearchChoice({ city, country, placeKey }));
   navigate('/');
 };
   
   return (
     <StyledSearchItemWrapper
-      href={`#${value}`}
-      onMouseDown={() => handleClick({ city, country, value })}
+      href={`#${placeKey}`}
+      onMouseDown={() => handleClick({ city, country, placeKey })}
     >
       <StyledSearchCityName>{city},</StyledSearchCityName>
       <StyledSearchCountryName>{country}</StyledSearchCountryName>
