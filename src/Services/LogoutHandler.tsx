@@ -1,12 +1,13 @@
 import { useAppDispatch } from "../Redux/hooks";
 import { logOut, manegeLogout } from "../Redux/User/User";
 import useMediaQuery from "../Hooks/useMediaQuery";
+import { DESKTOP_SIZE } from "../Utils/Constants";
 
 export const useLogoutHandler = () => {
   // State
   const dispatch = useAppDispatch();
   // Media query
-  const matches = useMediaQuery("(min-width: 1920px)");
+  const matches = useMediaQuery(`(min-width: ${DESKTOP_SIZE})`);
   // call the state to logout
   const makeLogout = () => dispatch(logOut());
 

@@ -4,6 +4,9 @@ import useMediaQuery from "../../Hooks/useMediaQuery";
 
 import { useAppDispatch } from "../../Redux/hooks";
 
+import { setIsMobileSearchOpen } from "../../Redux/Search/Search";
+import { UseAutocomplete } from "../../Services/UseSearch";
+import { USE_MEDIA_QUERY } from "../../Utils/Constants";
 import CityImg from "../../Assets/city.svg";
 // Components
 import SearchResults from "../../Components/Ui/SearchResults";
@@ -19,8 +22,6 @@ import {
   StyledLoaderContainer,
   StyledEmptySearch,
 } from "./style";
-import { setIsMobileSearchOpen } from "../../Redux/Search/Search";
-import { UseAutocomplete } from "../../Services/UseSearch";
 
 const Search = () => {
   // Dispatch
@@ -31,7 +32,7 @@ const Search = () => {
   const [isTyping, setIsTyping] = useState<boolean>(false);
 
   // Media query
-  const matches = useMediaQuery("(min-width: 1207px)");
+  const matches = useMediaQuery(USE_MEDIA_QUERY);
 
   // ------ AutoComplete search -------
   const { data, debouncedSearchTerm, isLoading } = UseAutocomplete(searchTerm);

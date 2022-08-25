@@ -7,7 +7,7 @@ import useMediaQuery from "../../Hooks/useMediaQuery";
 import { weatherFetchApi } from "../../Services/WeatherApi";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 
-import { HOME_EMPTY_DETAILS } from "../../Utils/Constants";
+import { HOME_EMPTY_DETAILS, USE_MEDIA_QUERY } from "../../Utils/Constants";
 import CityImg from "../../Assets/city.svg";
 // Conponents
 import CurrentWeather from "../../Components/WeatherElement/CurrentWeather";
@@ -59,7 +59,7 @@ const Home = () => {
   );
 
   // Media query
-  const matches = useMediaQuery("(min-width: 1207px)");
+  const matches = useMediaQuery(USE_MEDIA_QUERY);
 
 
   return (

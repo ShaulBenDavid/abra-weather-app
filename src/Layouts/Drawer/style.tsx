@@ -1,4 +1,5 @@
 import styled, { keyframes, css } from "styled-components";
+import getMediaQuery from "../../Utils/GetMediaQuery";
 
 // Types
 import { DrawerStyledProps } from "./types";
@@ -48,6 +49,7 @@ export const StyledDrawerWrapper = styled.div`
   border-radius: 30px 30px 0 0;
   cursor: default;
 
+  /* Mobile */
   @media (min-width: 1207px) {
     width: auto;
     height: fit-content;

@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import getMediaQuery from "../../../Utils/GetMediaQuery";
 // components
 import { IconSearchDrak, IconSearchWhite } from "../IconsComponent";
 import { SearchBoxStyleProps } from "./types";
@@ -72,9 +73,10 @@ export const StyledSearchContainer = styled.label`
       }
     `}
 
-  @media (max-width: 1207px) {
+  /* Mobile */
+  ${getMediaQuery.lessThan('changePoint')`
     width: 354px;
-  }
+  `}
 
   /* Input */
   ${StyledInputSearch} {

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import getMediaQuery from "../../../Utils/GetMediaQuery";
 
 export const StyledSearchItemWrapper = styled.a`
   all: unset;
@@ -11,9 +12,10 @@ export const StyledSearchItemWrapper = styled.a`
     background-color: rgba(242, 242, 242, 0.8);
   }
 
-  @media (max-width: 1207px) {
+  /* Mobile */
+  ${getMediaQuery.lessThan('changePoint')`
     padding: 12px 0;
-  }
+  `}
 `;
 
 export const StyledSearchCityName = styled.h4`

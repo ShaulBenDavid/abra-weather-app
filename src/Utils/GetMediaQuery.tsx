@@ -1,10 +1,13 @@
 import { generateMedia } from "styled-media-query";
 
+import { DESKTOP_SIZE, TABLET_SIZE, CHANGE_POINT_SIZE, MOBILE_SIZE } from "./Constants";
+
+// Media query for styled component
 const getMediaQuery = generateMedia({
-    desktop: "1920px",
-    tablet: "1280px",
-    changePoint: "1207px",
-    mobile: "760px"
+    desktop: DESKTOP_SIZE,
+    tablet: TABLET_SIZE,
+    changePoint: CHANGE_POINT_SIZE,
+    mobile: MOBILE_SIZE
 })
 
 export default getMediaQuery;

@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 
 import useMediaQuery from "../../Hooks/useMediaQuery";
+import { USE_MEDIA_QUERY } from "../../Utils/Constants";
 import { useAppSelector } from "../../Redux/hooks";
 import { selectLogoutProccess } from "../../Redux/User/User";
 // Components
@@ -11,7 +12,7 @@ import LogoutWindow from "../../Components/Ui/LogutWindow";
 
 const PageLayout = () => {
   // Media query
-  const matches = useMediaQuery("(min-width: 1207px)");
+  const matches = useMediaQuery(USE_MEDIA_QUERY);
   // Logout controller
   const toLogout = useAppSelector(selectLogoutProccess);
 
