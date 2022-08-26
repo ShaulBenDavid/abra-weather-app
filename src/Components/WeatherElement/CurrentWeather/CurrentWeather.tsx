@@ -14,11 +14,11 @@ const CurrentWeather: React.FC<CurrentWeatherProps> = ({ city, data }) => {
   const currentDate = new Date();
 
   // Current hour
-  function formatAMPM(date: any) {
+  function formatAMPM(date: Date) {
     let hours = date.getHours();
     let ampm = hours >= 12 ? "pm" : "am";
     hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
+    hours = hours ? hours : 12;
     var strTime = hours + ":00" + ampm;
     return strTime;
   }

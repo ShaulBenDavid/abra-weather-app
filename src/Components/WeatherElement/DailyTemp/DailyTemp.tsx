@@ -23,11 +23,13 @@ const DailyTemp: React.FC<DailtyTempProps> = ({ dayData }) => {
   const { getDay } = getDates();
 
     // Weather icon
-    const weatherIcon: string = useWeatherIcon(weatherDayIcon);
+  const weatherIcon: string = useWeatherIcon(weatherDayIcon);
+  // Take only the first word
+  const shortTcondition = weatherCondition.split(" ").slice(0, 1);
 
   return (
     <StyledDailyTempWrapper>
-      <StyledDayAndCondition>{getDay(newDate.getDay())} - {weatherCondition}</StyledDayAndCondition>
+      <StyledDayAndCondition>{getDay(newDate.getDay())} - {shortTcondition}</StyledDayAndCondition>
       <StyledIconCondition src={weatherIcon} alt={weatherIcon} />
       <StyledTemp>
         <StyledDayTemp>{maxWeather}{TEMP_SYMBOL}</StyledDayTemp>

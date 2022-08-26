@@ -1,6 +1,6 @@
 // Components
 import { IconFavFull } from "../../../../Components/Ui/IconsComponent";
-import SetNewPlace from "../../../../Utils/SetNewPlace";
+import SetNewPlace from "../../../../Services/SetNewPlace";
 // Types
 import { FavoriteItemProps } from "./types";
 // Styles

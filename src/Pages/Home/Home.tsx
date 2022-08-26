@@ -20,7 +20,7 @@ const Home = () => {
   // Place of weather
   const searchValue = useAppSelector(selectSearchValue);
   // Weather data
-  const { data, currentChoice } = GetWeather();
+  const { data, currentChoice, dataByHour } = GetWeather();
   // Fav
   const {handleFav} = UseFavorites()
 
@@ -64,9 +64,9 @@ const Home = () => {
         <DailyTempsBar data={data} />
       </S.DailyTempsBarSection>}
       {/* ------ Hourly weather ------ */}
-      <S.HourlyWeatherSection>
-        <HourlyWeather />
-      </S.HourlyWeatherSection>
+      {dataByHour && <S.HourlyWeatherSection>
+        <HourlyWeather dataByHour={dataByHour} />
+      </S.HourlyWeatherSection>}
     </S.HomeWrapper>
   );
 };

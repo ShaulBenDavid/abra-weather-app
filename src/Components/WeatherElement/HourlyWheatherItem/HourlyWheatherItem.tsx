@@ -1,5 +1,8 @@
 import SunCloudIcon from "../../../Assets/WeatherIcons/sun-cloud.svg";
 import { TEMP_SYMBOL } from "../../../Utils/Constants";
+import useWeatherIcon from "../../../Utils/useWeatherIcon";
+// Types
+import { HourlyWeatherItemProps } from "./types";
 // Styles
 import {
   StyledHourlyItemWrapper,
@@ -11,15 +14,34 @@ import {
   StyledSpeedContainer,
 } from "./style";
 
-const HourlyWheatherItem = () => {
+const HourlyWheatherItem: React.FC<HourlyWeatherItemProps> = ({ data }) => {
+  const { weatherDayIcon, windSpeed, date, tempByHour } = data;
+  // Weather icon
+  const weatherIcon: string = useWeatherIcon(weatherDayIcon);
+
+  // Hour
+  const newDate: Date = new Date(0);
+  newDate.setUTCSeconds(date);
+  // Current hour
+  function formatAMPM(num: number) {
+    let hours = num;
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    var strTime = hours + ":00";
+    return strTime;
+  }
+
   return (
     <StyledHourlyItemWrapper>
-      <StyledWeatherTime>10:00</StyledWeatherTime>
-      <StyledTemp>16{TEMP_SYMBOL}</StyledTemp>
-      <StyledICondition src={SunCloudIcon} alt={SunCloudIcon} />
+      <StyledWeatherTime>{formatAMPM(newDate.getHours())}</StyledWeatherTime>
+      <StyledTemp>
+        {tempByHour}
+        {TEMP_SYMBOL}
+      </StyledTemp>
+      <StyledICondition src={weatherIcon} alt={SunCloudIcon} />
       <StyledSpeedContainer>
         <StyledSpeedIcon />
-        <StyledSpeedP>21.4 km/h</StyledSpeedP>
+        <StyledSpeedP>{windSpeed} km/h</StyledSpeedP>
       </StyledSpeedContainer>
     </StyledHourlyItemWrapper>
   );
