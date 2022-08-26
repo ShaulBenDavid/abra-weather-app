@@ -6,8 +6,9 @@ export interface SearchItemProps extends SearchOptionsProps {
     closeMobileSearch?: () => void;
 };
 
-export type SearchItemActionProps = {
-    placeKey: number;
+export type CurrentPlaceProps = {
+    placeKey?: number;
     city: string;
     country: string;
+    key?: number;
 }

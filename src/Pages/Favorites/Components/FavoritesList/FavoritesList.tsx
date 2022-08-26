@@ -20,7 +20,7 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ favorites }) => {
             key={key}
             country={country}
             city={city}
-            value={key}
+            placeKey={key}
             hr={addingBottomLine}
           />
         );

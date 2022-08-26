@@ -1,5 +1,9 @@
 import SunIcon from "../../../Assets/WeatherIcons/sun.svg";
 import { TEMP_SYMBOL } from "../../../Utils/Constants";
+import getDates from "../../../Utils/getDates";
+import useWeatherIcon from "../../../Utils/useWeatherIcon";
+// Types
+import { DailtyTempProps } from "./types";
 // Styles
 import {
   StyledDailyTempWrapper,
@@ -10,14 +14,24 @@ import {
   StyledDayTemp,
 } from "./style";
 
-const DailyTemp = () => {
+const DailyTemp: React.FC<DailtyTempProps> = ({ dayData }) => {
+  const { maxWeather, minWeather, weatherCondition, weatherDayIcon, date } = dayData;
+
+  // Date
+  const newDate = new Date(0);
+  newDate.setUTCSeconds(date)
+  const { getDay } = getDates();
+
+    // Weather icon
+    const weatherIcon: string = useWeatherIcon(weatherDayIcon);
+
   return (
     <StyledDailyTempWrapper>
-      <StyledDayAndCondition>Tue - Clear</StyledDayAndCondition>
-      <StyledIconCondition src={SunIcon} alt={SunIcon} />
+      <StyledDayAndCondition>{getDay(newDate.getDay())} - {weatherCondition}</StyledDayAndCondition>
+      <StyledIconCondition src={weatherIcon} alt={weatherIcon} />
       <StyledTemp>
-        <StyledDayTemp>5{TEMP_SYMBOL}</StyledDayTemp>
-        <StyledNightTemp>- 0</StyledNightTemp>
+        <StyledDayTemp>{maxWeather}{TEMP_SYMBOL}</StyledDayTemp>
+        <StyledNightTemp>- {minWeather}</StyledNightTemp>
       </StyledTemp>
     </StyledDailyTempWrapper>
   );

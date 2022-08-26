@@ -2,6 +2,7 @@ import { useAppSelector } from "../../Redux/hooks";
 import { selectSearchValue } from "../../Redux/Search/Search";
 import useMediaQuery from "../../Hooks/useMediaQuery";
 
+import UseFavorites from "../../Services/UseFavorites";
 import { HOME_EMPTY_DETAILS, USE_MEDIA_QUERY } from "../../Utils/Constants";
 import CityImg from "../../Assets/city.svg";
 // Conponents
@@ -20,10 +21,15 @@ const Home = () => {
   const searchValue = useAppSelector(selectSearchValue);
   // Weather data
   const { data, currentChoice } = GetWeather();
+  // Fav
+  const {handleFav} = UseFavorites()
 
   // Media query
   const matches = useMediaQuery(USE_MEDIA_QUERY);
 
+  // Add to fav or remove from fav
+  const handleAddClick = () => currentChoice && handleFav(currentChoice);
+ 
   return (
     <S.HomeWrapper>
       {/* If home page empty */}
@@ -43,7 +49,7 @@ const Home = () => {
         )}
         {/* LayOut for desk or mobile */}
         {!matches ? (
-          <S.FavLightIconButton>
+          <S.FavLightIconButton onClick={handleAddClick} >
             <IconFavOutline style={{ width: "30px", height: "30px" }} />
           </S.FavLightIconButton>
         ) : (
@@ -54,9 +60,9 @@ const Home = () => {
         )}
       </S.CurrentWeatherSection>
       {/* ----- 4 days weather bar section ------ */}
-      <S.DailyTempsBarSection>
-        <DailyTempsBar />
-      </S.DailyTempsBarSection>
+      {data && <S.DailyTempsBarSection>
+        <DailyTempsBar data={data} />
+      </S.DailyTempsBarSection>}
       {/* ------ Hourly weather ------ */}
       <S.HourlyWeatherSection>
         <HourlyWeather />

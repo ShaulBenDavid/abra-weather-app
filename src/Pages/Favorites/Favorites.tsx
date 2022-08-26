@@ -45,7 +45,7 @@ const Favorites = () => {
   return (
     <StyledFavoritesWrapper>
       {/* ----- Show fav if you have ----  */}
-      {data ? (
+      {data?.length ? (
         <>
           {/* Search */}
           <SearchAndTitleContainer>

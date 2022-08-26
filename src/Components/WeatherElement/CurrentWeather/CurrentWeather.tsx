@@ -1,37 +1,17 @@
 import SunCloud from "../../../Assets/WeatherIcons/sun-cloud.svg";
 import useWeatherIcon from "../../../Utils/useWeatherIcon";
 import { TEMP_SYMBOL } from "../../../Utils/Constants";
+import getDates from "../../../Utils/getDates";
 // Types
 import { CurrentWeatherProps } from "./types";
 // Styles
 import * as S from "./style";
 
 const CurrentWeather: React.FC<CurrentWeatherProps> = ({ city, data }) => {
+  const { minWeather, maxWeather, weatherCondition } = data;
   // Current date
+  const { getMonthShort, getDay } = getDates();
   const currentDate = new Date();
-  const days: string[] = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Satuerday",
-  ];
-  const month: string[] = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
 
   // Current hour
   function formatAMPM(date: any) {
@@ -52,14 +32,20 @@ const CurrentWeather: React.FC<CurrentWeatherProps> = ({ city, data }) => {
       <S.CurrentTempContainer>
         <S.TempIcon src={weatherIcon} alt={SunCloud} />
         <S.TempNumber>
-          <span>{data.maxWeather}{TEMP_SYMBOL}</span>
-          <span>- {data.minWeather}{TEMP_SYMBOL}</span>
+          <span>
+            {maxWeather}
+            {TEMP_SYMBOL}
+          </span>
+          <span>
+            - {minWeather}
+            {TEMP_SYMBOL}
+          </span>
         </S.TempNumber>
       </S.CurrentTempContainer>
-      <S.WeatherCondition>{data.weatherCondition}</S.WeatherCondition>
+      <S.WeatherCondition>{weatherCondition}</S.WeatherCondition>
       <S.TimeZone>
-        {days[currentDate.getDay()]}, {currentDate.getDate()}-
-        {month[currentDate.getMonth()]}-{currentDate.getFullYear()},{" "}
+        {getDay(currentDate.getDay())}, {currentDate.getDate()}-
+        {getMonthShort(currentDate.getMonth())}-{currentDate.getFullYear()},{" "}
         {formatAMPM(currentDate)}
       </S.TimeZone>
     </S.CurrentWeatherContainer>

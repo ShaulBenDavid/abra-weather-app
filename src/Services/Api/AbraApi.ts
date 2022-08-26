@@ -22,14 +22,20 @@ export const abraEjectInterceptor = (interceptorId: number) => {
 }
 
 // ----- Post ------
-export function AbraPostApi<T extends string, P>(url: T, payload: P): Promise<any>;
+// Can get 2 or 3 parameters
 
+export function AbraPostApi<T extends string, P, C>(url: T, payload: P, token: C): Promise<any>;
 
-export async function AbraPostApi<T extends string, P>(url: T, payload: P) {
-  console.log(payload)
-  const response = await api.post(url, payload);
+export function AbraPostApi<T extends string, P>(url: T, payload: P, token: void): Promise<any>;
+
+export async function AbraPostApi<T extends string, P, C>(url: T, payload: P, token: C) {
+  console.log(url, payload, token)
+  // If you need token
+  const authToken = token && { "headers": { 'Authorization': `Bearer ${token}` } };
+  const response = await api.post(url, payload, authToken);
   return response;
 }
+
 // -------- Get -------
 export function AbraGetApi<T extends string, P>(url: T, token: P): Promise<any>;
 

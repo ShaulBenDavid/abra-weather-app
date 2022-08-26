@@ -11,10 +11,10 @@ import WindyIcon from '../Assets/WeatherIcons/wind.svg'
 const useWeatherIcon = (num: number) => {
 
     // Sun
-    if ((1 <= num && num <= 5) || num === 30) {
+    if ((1 <= num && num <= 3) || num === 5 || num === 30) {
         return SunIcon;
         // Sun and cloud
-    } else if (6 === num || num === 20 || num === 21) {
+    } else if (6 === num || num === 20 || num === 21 || num === 4) {
         return SunCloudIcon;
         // Cloudy
     } else if ((6 <= num && num >= 11) || num === 19 || num === 31) {

@@ -1,5 +1,6 @@
 // Components
 import { IconFavFull } from "../../../../Components/Ui/IconsComponent";
+import SetNewPlace from "../../../../Utils/SetNewPlace";
 // Types
 import { FavoriteItemProps } from "./types";
 // Styles
@@ -10,30 +11,42 @@ import {
   StyleFavCity,
   StyleFavCountry,
 } from "./style";
-
-// Handle click
-const handleClick = ({ city, country, value }: FavoriteItemProps) => {
-  const newWeatherPlace = {
-    city,
-    country,
-    value
-  }
-  console.log(newWeatherPlace)
-}
+import UseFavorites from "../../../../Services/UseFavorites";
 
 const FavoriteItem: React.FC<FavoriteItemProps> = ({
-  value,
+  placeKey,
   city,
   country,
-  hr
+  hr,
 }) => {
+  // Set new weather place
+  const { setCurrentPlace } = SetNewPlace();
+
+  const { handleFav } = UseFavorites();
+
+  // Payload
+  const payload = {
+    city,
+    country,
+    placeKey,
+  };
+
+  // Handle get weather
+  const handleGetWeather = () => {
+    setCurrentPlace(payload);
+  };
+
+  // Remove from fav
+  const handleRemoveFav = () => handleFav(payload);
+
+
   return (
-    <StyledFavContainer value={value} hr={hr}>
-      <StyledFavPlace href="#/" onClick={() => handleClick({city, country, value})} >
+    <StyledFavContainer hr={hr}>
+      <StyledFavPlace href="#/" onClick={handleGetWeather}>
         <StyleFavCity>{city}</StyleFavCity>
         <StyleFavCountry>{country}</StyleFavCountry>
       </StyledFavPlace>
-      <StyledAddFavButton>
+      <StyledAddFavButton onClick={handleRemoveFav}>
         <IconFavFull />
       </StyledAddFavButton>
     </StyledFavContainer>

@@ -16,7 +16,7 @@ type ParseFiveDayWeatherProps = {
         }
     };
     Day: {
-        PrecipitationType: string;
+      IconPhrase: string;
         Icon: number;
     }
 
@@ -29,12 +29,12 @@ const GetWeather = () => {
     // Parse data
   const parseData = (res: ParseFiveDayWeatherProps[]) => {
       const optionArray = res;
-      return optionArray?.map((option: ParseFiveDayWeatherProps) => {
+    return optionArray?.map((option: ParseFiveDayWeatherProps) => {
         const newOption: FetchingWeatherProps = {
           date: option?.EpochDate,
           minWeather: option?.Temperature.Minimum.Value,
           maxWeather: option?.Temperature.Maximum.Value,
-          weatherCondition: option?.Day.PrecipitationType,
+          weatherCondition: option?.Day.IconPhrase,
           weatherDayIcon: option?.Day.Icon,
           weatherUnit: option?.Temperature.Maximum.Unit,
         };

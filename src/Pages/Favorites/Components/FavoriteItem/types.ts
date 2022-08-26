@@ -1,7 +1,6 @@
-export interface FavoriteItemProps {
-    value: number;
-    city: string;
-    country: string;
+import { CurrentPlaceProps } from "../../../../Components/Ui/SearchResultItem/types";
+
+export interface FavoriteItemProps extends CurrentPlaceProps {
     hr?: boolean;
 }
 

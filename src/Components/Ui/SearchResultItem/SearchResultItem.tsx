@@ -1,14 +1,12 @@
 //Types
-import { SearchItemProps, SearchItemActionProps } from "./types";
+import { SearchItemProps, CurrentPlaceProps } from "./types";
 // Styles
 import {
   StyledSearchItemWrapper,
   StyledSearchCityName,
   StyledSearchCountryName,
 } from "./style";
-import { useAppDispatch } from "../../../Redux/hooks";
-import { setSearchChoice } from "../../../Redux/Search/Search";
-import { useNavigate } from "react-router-dom";
+import SetNewPlace from "../../../Utils/SetNewPlace";
 
 
 const SearchResultItem: React.FC<SearchItemProps> = ({
@@ -18,16 +16,15 @@ const SearchResultItem: React.FC<SearchItemProps> = ({
   clearSearchBox,
   closeMobileSearch
 }) => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate()
+
+  const { setCurrentPlace } = SetNewPlace()
 
   // Handle click
-const handleClick = ({ city, country, placeKey }: SearchItemActionProps) => {
-  dispatch(setSearchChoice({ city, country, placeKey }));
+  const handleClick = ({ city, country, placeKey }: CurrentPlaceProps) => {
+    setCurrentPlace({ city, country, placeKey });
   clearSearchBox()
   // Only toggle on mobile
   closeMobileSearch && closeMobileSearch()
-  navigate('/');
 };
   
   return (

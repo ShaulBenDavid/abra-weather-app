@@ -2,11 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 // Types
 import { RootState } from "../store";
-import { SearchItemActionProps } from '../../Components/Ui/SearchResultItem/types';
+import { CurrentPlaceProps } from '../../Components/Ui/SearchResultItem/types';
 
 type SearchProps = {
     readonly searchValue: string;
-    readonly searchChoice: SearchItemActionProps | null;
+    readonly searchChoice: CurrentPlaceProps | null;
     readonly isMobileSearchOpen: boolean;
 }
 

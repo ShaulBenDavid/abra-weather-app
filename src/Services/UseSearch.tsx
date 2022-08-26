@@ -3,22 +3,29 @@ import {
   useQueryClient,
   UseQueryResult,
 } from "@tanstack/react-query";
-import { SearchOptionsProps } from "../Features/Search/types";
 import useDebounce from "../Hooks/useDebounde";
 import { weatherFetchApi } from "./Api/WeatherApi";
+// Types
+import { SearchOptionsProps } from "../Features/Search/types";
 
-
+type ParseSearchDateProps = {
+  Country: {
+    LocalizedName: string;
+  };
+  LocalizedName: string;
+  Key: number;
+}
 // -------- UseAutocomplete ----------
 
 export const UseAutocomplete = (searchTerm: string) => {
 
     // Parse data
-    const parseData = (res: any) => {
-      const optionArray = res?.data;
-      return optionArray?.map((option: any) => {
+    const parseData = (data: ParseSearchDateProps[]) => {
+      const optionArray = data;
+      return optionArray?.map((option: ParseSearchDateProps) => {
         const newOption = {
           country: option?.Country.LocalizedName,
-          city: option?.AdministrativeArea.LocalizedName,
+          city: option?.LocalizedName,
           key: option?.Key,
         };
         return newOption;
@@ -42,7 +49,7 @@ export const UseAutocomplete = (searchTerm: string) => {
           "locations/v1/cities/autocomplete",
           searchResults ? { q: searchTerm } : { q: debouncedSearchTerm }
         );
-        return parseData(res);
+        return parseData(res?.data);
       },
       {
         enabled: !!searchTerm,
