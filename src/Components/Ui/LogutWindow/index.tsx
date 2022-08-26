@@ -1,3 +1,3 @@
-import LogoutWindow from "./LogoutWindow";
+import ValidationWindow from "./ValidationWindow";
 
-export default LogoutWindow;
+export default ValidationWindow;

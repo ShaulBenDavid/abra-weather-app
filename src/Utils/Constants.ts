@@ -25,6 +25,13 @@ export const FAVORITES_EMPTY_DETAILS = {
     title: "My favorites",
     p: "Favorites list is empty."
 }
+
+export const LOGOUT_VALIDATION = {
+    title: "Log out",
+    p: "You about to log out from WeatherApp. Are you sure you want to logout?",
+    primaryButton: "Yes, log out",
+    secondaryButton: "I want to stay",
+}
 // Temp symbol
 export const TEMP_SYMBOL = "\u{00B0}";
 

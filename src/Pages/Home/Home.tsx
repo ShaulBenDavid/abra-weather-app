@@ -22,51 +22,55 @@ const Home = () => {
   // Weather data
   const { data, currentChoice, dataByHour } = GetWeather();
   // Fav
-  const {handleFav} = UseFavorites()
+  const { handleFav } = UseFavorites();
 
   // Media query
   const matches = useMediaQuery(USE_MEDIA_QUERY);
 
   // Add to fav or remove from fav
   const handleAddClick = () => currentChoice && handleFav(currentChoice);
- 
+
   return (
     <S.HomeWrapper>
-      {/* If home page empty */}
-      {/* {searchValue ? (
-        <S.HomeFailedSearch src={CityImg}>
-          {" "}
-          {`We couldn’t find any city named "${searchValue}", please try again.`}
-        </S.HomeFailedSearch>
-      ) : (
-        <S.EmptyHomePage {...HOME_EMPTY_DETAILS} />
-      )} */}
-
       {/* ----- Current weather section --------*/}
-      <S.CurrentWeatherSection>
-        {data && currentChoice && (
-          <CurrentWeather city={currentChoice.city} data={data[0]} />
-        )}
-        {/* LayOut for desk or mobile */}
-        {!matches ? (
-          <S.FavLightIconButton onClick={handleAddClick} >
-            <IconFavOutline style={{ width: "30px", height: "30px" }} />
-          </S.FavLightIconButton>
-        ) : (
-          <S.FavAddingButton variant="white" onClick={handleAddClick}>
-            <S.FavIconButton />
-            Add to favorites
-          </S.FavAddingButton>
-        )}
-      </S.CurrentWeatherSection>
-      {/* ----- 4 days weather bar section ------ */}
-      {data && <S.DailyTempsBarSection>
-        <DailyTempsBar data={data} />
-      </S.DailyTempsBarSection>}
-      {/* ------ Hourly weather ------ */}
-      {dataByHour && <S.HourlyWeatherSection>
-        <HourlyWeather dataByHour={dataByHour} />
-      </S.HourlyWeatherSection>}
+      {data && currentChoice && dataByHour ? (
+        <>
+          <S.CurrentWeatherSection>
+            <CurrentWeather city={currentChoice.city} data={data[0]} />
+            {/* /* LayOut for desk or mobile */}
+            {!matches ? (
+              <S.FavLightIconButton onClick={handleAddClick}>
+                <IconFavOutline style={{ width: "30px", height: "30px" }} />
+              </S.FavLightIconButton>
+            ) : (
+              <S.FavAddingButton variant="white" onClick={handleAddClick}>
+                <S.FavIconButton />
+                Add to favorites
+              </S.FavAddingButton>
+            )}
+          </S.CurrentWeatherSection>
+          {/* 4 day temp */}
+          <S.DailyTempsBarSection>
+            <DailyTempsBar data={data} />
+          </S.DailyTempsBarSection>
+          {/* ------ Hourly weather ------ */}
+          <S.HourlyWeatherSection>
+            <HourlyWeather dataByHour={dataByHour} />
+          </S.HourlyWeatherSection>
+        </>
+      ) : (
+        // {/* If home page empty */ }
+        <>
+          {searchValue ? (
+            <S.HomeFailedSearch src={CityImg}>
+              {" "}
+              {`We couldn’t find any city named "${searchValue}", please try again.`}
+            </S.HomeFailedSearch>
+          ) : (
+            <S.EmptyHomePage {...HOME_EMPTY_DETAILS} />
+          )}
+        </>
+      )}
     </S.HomeWrapper>
   );
 };

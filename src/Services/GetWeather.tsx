@@ -59,7 +59,7 @@ const GetWeather = () => {
   
   // ----- Query fetching 5 days weather -----
   const fiveDayWeatherMutation: UseQueryResult<FetchingWeatherProps[], Error> = useQuery<FetchingWeatherProps[], Error>(
-    [currentChoice?.city],
+    ["5DayWeather",currentChoice?.city],
     async () => {
       const res = await weatherFetchApi(
         `/forecasts/v1/daily/5day/${currentChoice?.placeKey}`
@@ -90,7 +90,7 @@ const GetWeather = () => {
 
 
   // ----- Query fetching 12 hours weather ----------
-  const weatherByHoursMutation: UseQueryResult<HourlyDataProps[], Error> = useQuery<HourlyDataProps[], Error>(["12Hours",currentChoice?.city],
+  const weatherByHoursMutation: UseQueryResult<HourlyDataProps[], Error> = useQuery<HourlyDataProps[], Error>(["12HoursWeather",currentChoice?.city],
     async () => {
       const res = await weatherFetchApi(
         `/forecasts/v1/hourly/12hour/${currentChoice?.placeKey}`
