@@ -62,26 +62,11 @@ export const StyledDayTemp = styled.span`
   font-weight: bold;
   line-height: 1.25;
   text-align: center;
-  position: relative;
-  ::after {
-    content: "";
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    border: solid 2px ${({ theme }) => theme.white};
-    top: 0px;
-    right: -10px;
-  }
+
   /* Mobile */
   ${getMediaQuery.lessThan("changePoint")`
         font-size: 1.125rem;
         line-height: 1.2;
-        :: after {
-         width: 3px;
-         height: 3px;
-         right: -8px;
-        }
     `}
 `;
 

@@ -45,27 +45,10 @@ export const StyledTemp = styled.p`
   font-size: 2rem;
   font-weight: bold;
   line-height: 1.25;
-  position: relative;
-  ::after {
-    content: "";
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    border: solid 2px ${({ theme }) => theme.white};
-    top: 2px;
-    right: -10px;
-  }
   /* Mobile */
   ${getMediaQuery.lessThan("changePoint")`
       font-size: 1.125rem;
       line-height: 1.2;
-        ::after {
-          width: 2px;
-          height: 2px;
-          top: 0;
-          right: -7px;
-        }
   `}
 `;
 

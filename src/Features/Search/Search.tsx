@@ -10,10 +10,8 @@ import { USE_MEDIA_QUERY } from "../../Utils/Constants";
 import CityImg from "../../Assets/city.svg";
 // Components
 import SearchResults from "../../Components/Ui/SearchResults";
-import Drawer from "../../Layouts/Drawer";
-// Types
-import { SearchOptionsProps } from "./types";
-import { UseQueryResult } from "@tanstack/react-query";
+import Drawer from "../../Components/Ui/Drawer";
+
 // Styles
 import {
   StyledSearch,
@@ -42,7 +40,6 @@ const Search = () => {
     setIsTyping(false);
   }, [debouncedSearchTerm, isLoading]);
   
-
   // Handle search value
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     !isTyping && setIsTyping(true);
@@ -53,8 +50,10 @@ const Search = () => {
   const clearSearchBox = () => {
     setSearchTerm("");
   };
+
   // Close mobile search when choosing
   const handleMobileSearch = () => dispatch(setIsMobileSearchOpen());
+  
   // Handle search foccus and blur
   // control the search drawer to open only when focusing and the search have value
   const handleSearchFocus = (): void => setIsFocus(true);

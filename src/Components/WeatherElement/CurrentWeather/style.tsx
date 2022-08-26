@@ -47,18 +47,7 @@ export const TempNumber = styled.p`
   text-shadow: -2px 3px 1px rgba(0, 0, 0, 0.1),
     -1px 1px 2px rgba(255, 255, 255, 0.25);
   span {
-    position: relative;
     line-height: 1em;
-    &::after {
-      content: "";
-      position: absolute;
-      width: 15px;
-      height: 15px;
-      border-radius: 50%;
-      border: solid 8px ${({ theme }) => theme.white};
-      top: 21px;
-      right: -30px;
-    }
   }
 /* High temp */
   span:first-of-type {
@@ -68,36 +57,15 @@ export const TempNumber = styled.p`
   /* Low temp */
   span:last-child {
     font-size: 3.125rem;
-    &::after {
-      width: 10px;
-      height: 10px;
-      border: solid 4px ${({ theme }) => theme.white};
-      top: 8px;
-      right: -18px;
-    }
   }
   /* Mobile */
   ${getMediaQuery.lessThan("changePoint")`
   span:first-of-type {
     font-size: 5rem;
     margin-left: 32px;
-    &::after {
-      width: 10px;
-      height: 10px;
-      border: solid 4px ${({ theme }) => theme.white};
-      top: 14px;
-      right: -17px;
-    }
   }
   span:last-child {
     font-size: 2.25rem;
-    &::after {
-      width: 5px;
-      height: 5px;
-      border: solid 2px ${({ theme }) => theme.white};
-      top: 5px;
-      right: -10px;
-    }
   }
 `}
 `;

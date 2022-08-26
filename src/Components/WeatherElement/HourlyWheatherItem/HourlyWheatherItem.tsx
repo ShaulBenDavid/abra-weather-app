@@ -1,4 +1,5 @@
 import SunCloudIcon from "../../../Assets/WeatherIcons/sun-cloud.svg";
+import { TEMP_SYMBOL } from "../../../Utils/Constants";
 // Styles
 import {
   StyledHourlyItemWrapper,
@@ -14,7 +15,7 @@ const HourlyWheatherItem = () => {
   return (
     <StyledHourlyItemWrapper>
       <StyledWeatherTime>10:00</StyledWeatherTime>
-      <StyledTemp>16</StyledTemp>
+      <StyledTemp>16{TEMP_SYMBOL}</StyledTemp>
       <StyledICondition src={SunCloudIcon} alt={SunCloudIcon} />
       <StyledSpeedContainer>
         <StyledSpeedIcon />

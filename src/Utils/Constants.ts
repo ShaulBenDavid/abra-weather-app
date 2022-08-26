@@ -25,4 +25,6 @@ export const FAVORITES_EMPTY_DETAILS = {
     title: "My favorites",
     p: "Favorites list is empty."
 }
+// Temp symbol
+export const TEMP_SYMBOL = "\u{00B0}";
 
