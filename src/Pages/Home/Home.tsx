@@ -53,7 +53,7 @@ const Home = () => {
             <IconFavOutline style={{ width: "30px", height: "30px" }} />
           </S.FavLightIconButton>
         ) : (
-          <S.FavAddingButton variant="white">
+          <S.FavAddingButton variant="white" onClick={handleAddClick}>
             <S.FavIconButton />
             Add to favorites
           </S.FavAddingButton>
