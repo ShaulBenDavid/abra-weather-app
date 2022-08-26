@@ -1,6 +1,7 @@
 import themeReducer from "./ThemeMode/ThemeMode";
 import userReducer from "./User/User";
 import searchReducer from "./Search/Search";
+import favoritesReducer from "./Favorites/Favorites.redux";
 
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer } from 'redux-persist'
@@ -16,7 +17,8 @@ const customizedMiddleware = getDefaultMiddleware({
 const reducers = combineReducers({
     theme: themeReducer,
     user: userReducer,
-    search: searchReducer
+    search: searchReducer,
+    favorites: favoritesReducer,
 })
 
 // Persist config

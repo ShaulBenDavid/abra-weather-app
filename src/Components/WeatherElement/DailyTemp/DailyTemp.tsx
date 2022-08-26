@@ -1,4 +1,3 @@
-import SunIcon from "../../../Assets/WeatherIcons/sun.svg";
 import { TEMP_SYMBOL } from "../../../Utils/Constants";
 import getDates from "../../../Utils/getDates";
 import useWeatherIcon from "../../../Utils/useWeatherIcon";
