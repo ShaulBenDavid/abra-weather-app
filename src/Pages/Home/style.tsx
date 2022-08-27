@@ -4,6 +4,7 @@ import getMediaQuery from "../../Utils/GetMediaQuery";
 import { IconFavDark } from "../../Components/Ui/IconsComponent";
 import Button from "../../Components/Ui/Button";
 import EmptyPage from "../../Components/Ui/EmptyPage";
+import LoadingSpinner from "../../Components/Ui/LoadingSpinner";
 // Wrapper
 export const HomeWrapper = styled.div`
   overflow-y: auto;
@@ -37,6 +38,24 @@ export const EmptyHomePage = styled(EmptyPage)`
     margin-top: 52px;
   `}
 `;
+
+// Home loading spinner
+export const HomeLoadingWrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+export const HomeLoadingSpinner = styled(LoadingSpinner)`
+  width: 80px;
+  height: 80px;
+
+  &::after {
+  width: 70px;
+  height: 70px;
+  }
+`
 
 // ----- Current weather section -----
 export const CurrentWeatherSection = styled.section`

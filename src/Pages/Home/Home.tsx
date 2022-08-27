@@ -1,5 +1,5 @@
-import { useAppSelector } from "../../Redux/hooks";
-import { selectSearchValue } from "../../Redux/Search/Search";
+import {  useAppSelector } from "../../Redux/hooks";
+import { selectLoadingWeather, selectSearchValue } from "../../Redux/Search/Search";
 import useMediaQuery from "../../Hooks/useMediaQuery";
 
 import { HOME_EMPTY_DETAILS, USE_MEDIA_QUERY } from "../../Utils/Constants";
@@ -18,6 +18,7 @@ import * as S from "./style";
 const Home = () => {
   // Selector
   const searchValue = useAppSelector(selectSearchValue);
+  const isWeatherDataLoading = useAppSelector(selectLoadingWeather);
   // Weather data
   const { data, currentChoice, dataByHour } = GetWeather();
   // Favorites handler
@@ -32,6 +33,8 @@ const Home = () => {
     currentChoice && UseChangeFavorite(currentChoice);
   };
 
+  // Loading
+  if (isWeatherDataLoading) return <S.HomeLoadingWrapper><S.HomeLoadingSpinner/></S.HomeLoadingWrapper>;
   return (
     <S.HomeWrapper>
       {/* ----- Current weather section --------*/}

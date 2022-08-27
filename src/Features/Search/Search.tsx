@@ -74,8 +74,6 @@ const Search = () => {
     }
   };
 
-  console.log(data, isTyping, debouncedSearchTerm, isLoading)
-
   return (
     <>
       {/* ----Search input---- */}
@@ -98,7 +96,7 @@ const Search = () => {
         searchTerm && (
           <Drawer useCase="search" onClick={handleSearchFocus}>
             {/* Loading when typing or fetching */}
-            {isTyping && searchTerm ? (
+            {(isTyping || isLoading ) && searchTerm ? (
               <StyledLoaderContainer>
                 <StyledLoader />
               </StyledLoaderContainer>
@@ -121,7 +119,7 @@ const Search = () => {
         )
       ) : // ----------======== Mobile =========----------
         // Loader
-        isTyping ? (
+        (isTyping || isLoading ) && searchTerm ? (
         <StyledLoaderContainer>
           <StyledLoader />
         </StyledLoaderContainer>

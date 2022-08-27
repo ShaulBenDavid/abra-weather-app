@@ -1,10 +1,11 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
-import { useAppSelector } from "../../Redux/hooks";
-import { selectSearchChoice } from "../../Redux/Search/Search";
+import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
+import { selectSearchChoice, setIsLoadingWeatherData } from "../../Redux/Search/Search";
 import { weatherFetchApi } from "../Api/WeatherApi";
 // Types
 import { FetchingWeatherProps } from "../../Pages/Home/types";
 import { HourlyDataProps } from "../../Components/WeatherElement/HourlyWeather/types";
+import { useEffect } from "react";
 // 5 day type
 type ParseFiveDayWeatherProps = {
     EpochDate: number;
@@ -40,6 +41,8 @@ type ParseHoursDataProps = {
 const GetWeather = () => {
   // Get current place
   const currentChoice = useAppSelector(selectSearchChoice);
+
+  const dispatch = useAppDispatch();
 
     // Parse data
   const parseData = (res: ParseFiveDayWeatherProps[]) => {
@@ -103,8 +106,19 @@ const GetWeather = () => {
       staleTime: Infinity,
     }
   );
+
+  // Loading data
+  useEffect(() => {
+    if (fiveDayWeatherMutation.data?.length && weatherByHoursMutation.data?.length) {
+      dispatch(setIsLoadingWeatherData(false));
+    }
+  }, [fiveDayWeatherMutation.data, weatherByHoursMutation.data]);
     
-    return { dataByHour: weatherByHoursMutation.data ,data:fiveDayWeatherMutation.data, currentChoice };
+  return {
+    dataByHour: weatherByHoursMutation.data,
+    data: fiveDayWeatherMutation.data,
+    currentChoice
+  };
 }
 
 export default GetWeather;
