@@ -1,7 +1,9 @@
-import SunCloud from "../../../Assets/WeatherIcons/sun-cloud.svg";
-import useWeatherIcon from "../../../Utils/useWeatherIcon";
 import { TEMP_SYMBOL } from "../../../Utils/Constants";
 import getDates from "../../../Utils/getDates";
+import useCelcius from "../../../Utils/useCelsius";
+
+import SunCloud from "../../../Assets/WeatherIcons/sun-cloud.svg";
+import useWeatherIcon from "../../../Utils/useWeatherIcon";
 // Types
 import { CurrentWeatherProps } from "./types";
 // Styles
@@ -9,6 +11,9 @@ import * as S from "./style";
 
 const CurrentWeather: React.FC<CurrentWeatherProps> = ({ city, data }) => {
   const { minWeather, maxWeather, weatherCondition, date } = data;
+
+  // Weather convert
+  const { tempConverter } = useCelcius();
   // Current date
   const { getMonthShort, getDay } = getDates();
   const currentDate = new Date(0);
@@ -23,6 +28,7 @@ const CurrentWeather: React.FC<CurrentWeatherProps> = ({ city, data }) => {
     return strTime;
   }
 
+
   // Weather icon
   const weatherIcon: string = useWeatherIcon(data.weatherDayIcon);
 
@@ -33,11 +39,11 @@ const CurrentWeather: React.FC<CurrentWeatherProps> = ({ city, data }) => {
         <S.TempIcon src={weatherIcon} alt={SunCloud} />
         <S.TempNumber>
           <span>
-            {maxWeather}
+            {tempConverter(maxWeather)}
             {TEMP_SYMBOL}
           </span>
           <span>
-            - {minWeather}
+            - {tempConverter(minWeather)}
             {TEMP_SYMBOL}
           </span>
         </S.TempNumber>

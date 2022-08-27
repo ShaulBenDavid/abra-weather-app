@@ -12,27 +12,37 @@ import {
   StyledNightTemp,
   StyledDayTemp,
 } from "./style";
+import useCelcius from "../../../Utils/useCelsius";
 
 const DailyTemp: React.FC<DailtyTempProps> = ({ dayData }) => {
-  const { maxWeather, minWeather, weatherCondition, weatherDayIcon, date } = dayData;
+  const { maxWeather, minWeather, weatherCondition, weatherDayIcon, date } =
+    dayData;
+
+  // Weather convert
+  const { tempConverter } = useCelcius();
 
   // Date
   const newDate = new Date(0);
-  newDate.setUTCSeconds(date)
+  newDate.setUTCSeconds(date);
   const { getShortDay } = getDates();
 
-    // Weather icon
+  // Weather icon
   const weatherIcon: string = useWeatherIcon(weatherDayIcon);
   // Take only the first word
   const shortTcondition = weatherCondition.split(" ").slice(0, 1);
 
   return (
     <StyledDailyTempWrapper>
-      <StyledDayAndCondition>{getShortDay(newDate.getDay())} - {shortTcondition}</StyledDayAndCondition>
+      <StyledDayAndCondition>
+        {getShortDay(newDate.getDay())} - {shortTcondition}
+      </StyledDayAndCondition>
       <StyledIconCondition src={weatherIcon} alt={weatherIcon} />
       <StyledTemp>
-        <StyledDayTemp>{maxWeather}{TEMP_SYMBOL}</StyledDayTemp>
-        <StyledNightTemp>- {minWeather}</StyledNightTemp>
+        <StyledDayTemp>
+          {tempConverter(maxWeather)}
+          {TEMP_SYMBOL}
+        </StyledDayTemp>
+        <StyledNightTemp>- {tempConverter(minWeather)}</StyledNightTemp>
       </StyledTemp>
     </StyledDailyTempWrapper>
   );

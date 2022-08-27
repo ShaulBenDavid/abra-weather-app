@@ -33,7 +33,6 @@ const Favorites = () => {
     setSearchValue(newValue);
   };
 
-  console.log(filteredFav);
   // When loading data
   if (isLoading)
     return (

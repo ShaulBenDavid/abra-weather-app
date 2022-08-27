@@ -16,7 +16,7 @@ import { selectUser } from "../../Redux/User/User";
 
 import { AbraGetApi, AbraPostApi } from "../Api/AbraApi";
 
-import { FAV_ADDED_ALERT, FAV_REMOVED_ALERT } from "../../Utils/Constants";
+import { FAVORITES_END_POINT_URL, FAV_ADDED_ALERT, FAV_REMOVED_ALERT } from "../../Utils/Constants";
 // Types
 import { CurrentPlaceProps } from "../../Components/Ui/SearchResultItem/types";
 import { FavoritesProps } from "../../Pages/Favorites/types";
@@ -37,7 +37,7 @@ const UseFavorites = () => {
     useQuery<FavoritesProps[], Error>(
       ["Favorites"],
       async () => {
-        const res = await AbraGetApi("/favorites/", currentUser?.access_token);
+        const res = await AbraGetApi(FAVORITES_END_POINT_URL, currentUser?.access_token);
         return res.data.results;
       },
       {
@@ -56,7 +56,7 @@ const UseFavorites = () => {
   > = useMutation<CurrentPlaceProps, Error, CurrentPlaceProps | null>({
     mutationFn: (payload) => {
       payload && setCurrentCity(payload.city);
-      return AbraPostApi("/favorites/", payload, currentUser?.access_token);
+      return AbraPostApi(FAVORITES_END_POINT_URL, payload, currentUser?.access_token);
     },
     onSuccess: () => {
       client.invalidateQueries(["Favorites"]);
@@ -75,7 +75,6 @@ const UseFavorites = () => {
   useEffect(() => {
     if (addOrRemoveFavMutation.data?.status === 204) {
       dispatch(setFavAlert(`${currentCity}${FAV_REMOVED_ALERT}`));
-      console.log("remove");
     }
     if (addOrRemoveFavMutation.data?.status === 200) {
       dispatch(setFavAlert(`${currentCity}${FAV_ADDED_ALERT}`));

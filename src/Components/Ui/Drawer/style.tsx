@@ -1,5 +1,4 @@
 import styled, { keyframes, css } from "styled-components";
-import getMediaQuery from "../../../Utils/GetMediaQuery";
 
 // Types
 import { DrawerStyledProps } from "./types";

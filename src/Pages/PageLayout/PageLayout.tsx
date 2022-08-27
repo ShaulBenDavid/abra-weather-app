@@ -52,8 +52,6 @@ const PageLayout = () => {
     cancelFavDelete();
   };
 
-  console.log(favAlert)
-
   return (
     <>
       {matches ? (

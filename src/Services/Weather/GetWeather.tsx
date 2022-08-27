@@ -2,6 +2,7 @@ import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import { selectSearchChoice, setIsLoadingWeatherData } from "../../Redux/Search/Search";
 import { weatherFetchApi } from "../Api/WeatherApi";
+import { DAILY_WEATHER_END_POINT_URL, HOURLY_WEATHER_END_POINT_URL } from "../../Utils/Constants";
 // Types
 import { FetchingWeatherProps } from "../../Pages/Home/types";
 import { HourlyDataProps } from "../../Components/WeatherElement/HourlyWeather/types";
@@ -65,7 +66,7 @@ const GetWeather = () => {
     ["5DayWeather",currentChoice?.city],
     async () => {
       const res = await weatherFetchApi(
-        `/forecasts/v1/daily/5day/${currentChoice?.placeKey}`
+        `${DAILY_WEATHER_END_POINT_URL}${currentChoice?.placeKey}`
       );
       return parseData(res?.data.DailyForecasts);
     },
@@ -96,7 +97,7 @@ const GetWeather = () => {
   const weatherByHoursMutation: UseQueryResult<HourlyDataProps[], Error> = useQuery<HourlyDataProps[], Error>(["12HoursWeather",currentChoice?.city],
     async () => {
       const res = await weatherFetchApi(
-        `/forecasts/v1/hourly/12hour/${currentChoice?.placeKey}`
+        `${HOURLY_WEATHER_END_POINT_URL}${currentChoice?.placeKey}`
       );
       return parseHoursData(res?.data);
     },

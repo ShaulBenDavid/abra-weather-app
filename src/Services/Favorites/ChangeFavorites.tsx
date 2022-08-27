@@ -31,7 +31,6 @@ const ChangeFavorites = () => {
         // ------ If fav exist open window to validate delete ------ 
         // Window will open on page layout
         if (existingFav) {
-            console.log(1, existingFav);
             const payload = {
                 title: "Remove from favorites",
                 p: `Are you sure you want to remove ${favotriteItem.city}  from favorites list?`,

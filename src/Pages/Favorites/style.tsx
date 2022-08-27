@@ -10,6 +10,7 @@ export const StyledFavoritesWrapper = styled.div`
   height: 100vh;
   padding: 0 370px;
   overflow-x: hidden;
+  overflow-y: auto;
   /* Tablet */
   ${getMediaQuery.between("changePoint", "desktop")`
     padding: 0 50px;
@@ -81,7 +82,7 @@ export const StyledEmptyFavPage = styled(EmptyPage)`
   ${getMediaQuery.between("changePoint", "desktop")`
     margin-top: 66px;
   `}
-  /* mobile */
+  /* changePoint */
   ${getMediaQuery.lessThan("changePoint")`
     margin-top: 145px;
     p {
@@ -89,5 +90,10 @@ export const StyledEmptyFavPage = styled(EmptyPage)`
   font-weight: normal;
   line-height: 1.25;
     }
+  `}
+  /* mobile */
+  ${getMediaQuery.lessThan("mobile")`
+    margin-top: 145px;
+    width: 100%;
   `}
 `;

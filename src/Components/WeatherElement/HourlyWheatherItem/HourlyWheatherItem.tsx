@@ -3,6 +3,7 @@ import { TEMP_SYMBOL } from "../../../Utils/Constants";
 import useWeatherIcon from "../../../Utils/useWeatherIcon";
 // Types
 import { HourlyWeatherItemProps } from "./types";
+import useCelcius from "../../../Utils/useCelsius";
 // Styles
 import {
   StyledHourlyItemWrapper,
@@ -16,6 +17,9 @@ import {
 
 const HourlyWheatherItem: React.FC<HourlyWeatherItemProps> = ({ data }) => {
   const { weatherDayIcon, windSpeed, date, tempByHour } = data;
+
+  // Weather convert
+  const { tempConverter } = useCelcius();
   // Weather icon
   const weatherIcon: string = useWeatherIcon(weatherDayIcon);
 
@@ -35,7 +39,7 @@ const HourlyWheatherItem: React.FC<HourlyWeatherItemProps> = ({ data }) => {
     <StyledHourlyItemWrapper>
       <StyledWeatherTime>{formatAMPM(newDate.getHours())}</StyledWeatherTime>
       <StyledTemp>
-        {tempByHour}
+        {tempConverter(tempByHour)}
         {TEMP_SYMBOL}
       </StyledTemp>
       <StyledICondition src={weatherIcon} alt={SunCloudIcon} />

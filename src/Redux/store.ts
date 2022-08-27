@@ -2,6 +2,7 @@ import themeReducer from "./ThemeMode/ThemeMode";
 import userReducer from "./User/User";
 import searchReducer from "./Search/Search";
 import favoritesReducer from "./Favorites/Favorites.redux";
+import tempModeReducer from "./TempMode/TempMode.redux";
 
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer } from 'redux-persist'
@@ -19,13 +20,14 @@ const reducers = combineReducers({
     user: userReducer,
     search: searchReducer,
     favorites: favoritesReducer,
+    tempMode: tempModeReducer,
 })
 
 // Persist config
 export const config = {
     key: 'root',
     storage: storage,
-    whitelist: ['theme', 'user', 'search'],
+    whitelist: ['theme', 'user', 'search', "tempMode"],
 }
 
 const persistedReducer = persistReducer(config, reducers);

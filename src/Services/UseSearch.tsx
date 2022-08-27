@@ -5,6 +5,7 @@ import {
 } from "@tanstack/react-query";
 import useDebounce from "../Hooks/useDebounde";
 import { weatherFetchApi } from "./Api/WeatherApi";
+import { AUTOCOMPLETE_END_POINT_URL } from "../Utils/Constants";
 // Types
 import { SearchOptionsProps } from "../Features/Search/types";
 
@@ -46,7 +47,7 @@ export const UseAutocomplete = (searchTerm: string) => {
       ["City search", searchResults ? searchTerm : debouncedSearchTerm],
       async () => {
         const res = await weatherFetchApi(
-          "locations/v1/cities/autocomplete",
+          AUTOCOMPLETE_END_POINT_URL,
           searchResults ? { q: searchTerm } : { q: debouncedSearchTerm }
         );
         return parseData(res?.data);

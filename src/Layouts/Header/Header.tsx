@@ -1,5 +1,6 @@
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import { selectTheme, toggleMode } from "../../Redux/ThemeMode/ThemeMode";
+import { selectTempMode, toggleTempMode } from "../../Redux/TempMode/TempMode.redux";
 import { useLogoutHandler } from "../../Services/LogoutHandler";
 
 // Components
@@ -14,31 +15,35 @@ import * as S from "./style";
 const Header = () => {
   // Log out type handler
   const [handleUserLogout] = useLogoutHandler();
-  // Redux theme mode
-  const theme = useAppSelector(selectTheme);
-  const dispatch = useAppDispatch();
-  // Handle toggle
-  const handleToggle = () => dispatch(toggleMode());
   // HandleLogout
   const handleLogout = () => handleUserLogout();
 
-  // console.log(handleUserLogout)
+  // ------ Toggle buttons ---------
+  // Selector
+  const theme = useAppSelector(selectTheme);
+  const tempMode = useAppSelector(selectTempMode);
+  const dispatch = useAppDispatch();
+  // Handle toggle theme
+  const handleToggleTheme = () => dispatch(toggleMode());
+  // Handle toggle temp mode
+  const handleToggleTempMode = () => dispatch(toggleTempMode());
+
 
   return (
     <>
       {/* Header */}
       <S.NavigationWrapper>
-        {/* Left section */}
+        {/* ------ Left section ------- */}
         <S.RightSection>
           <S.NavBarLogo />
           {/* Nav Bar */}
           <NavBar />
         </S.RightSection>
-        {/* Search / Middle section */}
+        {/* ------ Search / Middle section ------- */}
         <S.MiddleSection>
           <Search />
         </S.MiddleSection>
-        {/* Right section */}
+        {/* ------ Right section -------- */}
         <S.LeftSection>
           {/* Switch to map button */}
           <S.SwitchButtonWrapper>
@@ -51,14 +56,20 @@ const Header = () => {
               <S.NavLinkButtonP>Switch to map</S.NavLinkButtonP>
             </Button>
           </S.SwitchButtonWrapper>
+
           {/* Type Switch box */}
           <S.SwitchBoxWrapper>
-            <ToggleSwitch switchType="temp" id="temp" />
+            <ToggleSwitch
+              switchType="temp"
+              id="temp"
+              checked={tempMode}
+              onChange={handleToggleTempMode}
+            />
             <ToggleSwitch
               switchType="mode"
               id="mode"
               checked={theme === "light" && true}
-              onChange={handleToggle}
+              onChange={handleToggleTheme}
             />
           </S.SwitchBoxWrapper>
           {/* Logout button */}

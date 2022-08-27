@@ -3,6 +3,7 @@ import { AbraPostApi } from "./Api/AbraApi";
 import { useAppDispatch, useAppSelector } from "../Redux/hooks";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import { logOut, selectUser, setUser, UserProps } from "../Redux/User/User";
+import { LOGIN_END_POINT_URL, VERIFY_AUTH_END_POINT_URL } from "../Utils/Constants";
 // Types
 import { LoginProps } from "../Pages/Login/types";
 import { PayloadAuthCheckProps } from "../App";
@@ -22,11 +23,10 @@ export const useAuthentication = () => {
   >({
     mutationFn: (payload: LoginProps): Promise<UserProps> => {
       setAuthError(undefined);
-      return AbraPostApi("/auth/login/" ,payload);
+      return AbraPostApi(LOGIN_END_POINT_URL ,payload);
     },
     // Success
     onSuccess: (response) => {
-      console.log(response)
       dispatch(setUser(response));
     },
     // Failed
@@ -51,7 +51,7 @@ export const useAuthentication = () => {
    const checkAuthMutation: UseMutationResult<string, Error, PayloadAuthCheckProps> =
    useMutation<string, Error, PayloadAuthCheckProps>({
      mutationFn: (payload: PayloadAuthCheckProps) =>{
-       return AbraPostApi("/auth/verify-token/", payload)
+       return AbraPostApi(VERIFY_AUTH_END_POINT_URL, payload)
      },
      onError: (err) => {
       dispatch(logOut());

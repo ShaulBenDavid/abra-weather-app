@@ -1,8 +1,18 @@
 import WeatherMapSvg from '../Assets/map-weather.svg';
 import StarsSvg from '../Assets/stars.svg';
-
+// ------ Base api url -------
 export const BASE_URL = "https://weather-abra.herokuapp.com/api";
 export const WEATHER_BASE_URL = "http://dataservice.accuweather.com";
+
+export const WEATHER_API_KEY = "ml7GI5sQ1rgIS96xpnG6RdP4RjUilmCb";
+
+// ------ End point url ------
+export const FAVORITES_END_POINT_URL = "/favorites/";
+export const LOGIN_END_POINT_URL = "/auth/login/";
+export const VERIFY_AUTH_END_POINT_URL = "/auth/verify-token/";
+export const AUTOCOMPLETE_END_POINT_URL = "locations/v1/cities/autocomplete";
+export const HOURLY_WEATHER_END_POINT_URL = "/forecasts/v1/hourly/12hour/";
+export const DAILY_WEATHER_END_POINT_URL = "/forecasts/v1/daily/5day/";
 
 // -------- Screen Size ---------
 export const DESKTOP_SIZE = "1920px";
