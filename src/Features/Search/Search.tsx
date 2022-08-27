@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 
 import useMediaQuery from "../../Hooks/useMediaQuery";
 
-import { useAppDispatch } from "../../Redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 
-import { setIsMobileSearchOpen } from "../../Redux/Search/Search";
+import { selectSearchValue, setIsMobileSearchOpen, setSearchValue } from "../../Redux/Search/Search";
 import { UseAutocomplete } from "../../Services/UseSearch";
 import { USE_MEDIA_QUERY } from "../../Utils/Constants";
 import CityImg from "../../Assets/city.svg";
@@ -24,31 +24,38 @@ import {
 const Search = () => {
   // Dispatch
   const dispatch = useAppDispatch();
+  // Search selector
+  const searchValue = useAppSelector(selectSearchValue);
   // States
+  const [searchTerm, setSearchTerm] = useState<string>(searchValue);
   const [isFocus, setIsFocus] = useState<boolean>(true);
-  const [searchTerm, setSearchTerm] = useState<string>("");
   const [isTyping, setIsTyping] = useState<boolean>(false);
 
   // Media query
   const matches = useMediaQuery(USE_MEDIA_QUERY);
 
-  // ------ AutoComplete search -------
+  // ------ AutoComplete search service -------
   const { data, debouncedSearchTerm, isLoading } = UseAutocomplete(searchTerm);
 
-  // Control when to show error
+  // Control when to show loader
   useEffect(() => {
-    setIsTyping(false);
+      setIsTyping(false);
   }, [debouncedSearchTerm, isLoading]);
   
   // Handle search value
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     !isTyping && setIsTyping(true);
+    // If there is data on the search show it
+    if (data?.length) {
+      setIsTyping(false);
+    }
     setSearchTerm(e.target.value);
   };
 
   // Clean search box
   const clearSearchBox = () => {
     setSearchTerm("");
+    dispatch(setSearchValue(''));
   };
 
   // Close mobile search when choosing
@@ -57,7 +64,17 @@ const Search = () => {
   // Handle search foccus and blur
   // control the search drawer to open only when focusing and the search have value
   const handleSearchFocus = (): void => setIsFocus(true);
-  const handleSearchBlur = (): void => setIsFocus(false);
+  const handleSearchBlur = (): void => {
+    setIsFocus(false)
+    // if search is not valid
+    if (!data?.length) {
+      dispatch(setSearchValue(searchTerm));
+    } else if (data?.length) {
+      dispatch(setSearchValue(''));
+    }
+  };
+
+  console.log(data, isTyping, debouncedSearchTerm, isLoading)
 
   return (
     <>
@@ -75,13 +92,13 @@ const Search = () => {
 
       {/* -------- Render mobile or desk search --------- */}
       {matches ? (
-        // ------ Desktop ----------
+        // ------========= Desktop ===========----------
         // Show only on when focusing and search hold value
         isFocus &&
         searchTerm && (
           <Drawer useCase="search" onClick={handleSearchFocus}>
             {/* Loading when typing or fetching */}
-            {isTyping || isLoading ? (
+            {isTyping && searchTerm ? (
               <StyledLoaderContainer>
                 <StyledLoader />
               </StyledLoaderContainer>
@@ -102,8 +119,9 @@ const Search = () => {
             )}
           </Drawer>
         )
-      ) : // ---------- Mobile ----------
-      (isTyping || isLoading) && searchTerm ? (
+      ) : // ----------======== Mobile =========----------
+        // Loader
+        isTyping ? (
         <StyledLoaderContainer>
           <StyledLoader />
         </StyledLoaderContainer>
@@ -114,7 +132,7 @@ const Search = () => {
           clearSearchBox={clearSearchBox}
           closeMobileSearch={handleMobileSearch}
         />
-      ): // Loading when typing
+      ): 
       (
         // Search failed or empty
         <StyledNoResultContainer>

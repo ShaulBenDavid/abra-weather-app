@@ -26,11 +26,10 @@ const Home = () => {
   // Media query
   const matches = useMediaQuery(USE_MEDIA_QUERY);
 
-
   // Add to fav or remove from fav
   const handleAddClick = () => {
     // else add fav
-    currentChoice && UseChangeFavorite(currentChoice)
+    currentChoice && UseChangeFavorite(currentChoice);
   };
 
   return (
@@ -62,9 +61,10 @@ const Home = () => {
           </S.HourlyWeatherSection>
         </>
       ) : (
-        // {/* If home page empty */ }
+        // ----- If home page empty ------
         <>
-          {searchValue ? (
+          {searchValue && matches ? (
+            // When the input hold wrong value
             <S.HomeFailedSearch src={CityImg}>
               {" "}
               {`We couldn’t find any city named "${searchValue}", please try again.`}
