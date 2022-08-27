@@ -20,7 +20,8 @@ import MobileLayout from "../../Layouts/MobileLayout";
 import Header from "../../Layouts/Header";
 import ValidationWindow from "../../Components/Ui/ValidationWindow";
 import UseFavorites from "../../Services/Favorites/UseFavorites";
-import Alert from "../../Components/Ui/Alert";
+// Styles
+import { StyledFvoriteAlert } from "./style";
 
 const PageLayout = () => {
   // Media query
@@ -31,13 +32,13 @@ const PageLayout = () => {
   const chosenFav = useAppSelector(selectChosenFav);
   const dispatch = useAppDispatch();
 
-  // --------- Logout modal -------
+  // ---------===== Logout modal =====-------
   // Handle Logout
   const handleLogout = () => dispatch(logOut());
   // cancel logout
   const cancelLogout = () => dispatch(manegeLogout());
 
-  // --------- Fav modal -----------
+  // ---------===== Fav modal =====-----------
   // Fav
   const { UseHandleFav, favAlert } = UseFavorites();
   // cancel fav delete
@@ -83,7 +84,7 @@ const PageLayout = () => {
         />
       )}
       {/* Fav alert */}
-      <Alert severity="success">{favAlert}</Alert>
+      { favAlert && <StyledFvoriteAlert severity="success">{favAlert}</StyledFvoriteAlert>}
       <Outlet />
     </>
   );

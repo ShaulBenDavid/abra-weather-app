@@ -10,19 +10,21 @@ const ChangeFavorites = () => {
     const client = useQueryClient();
     const dispatch = useDispatch()
   // Favorites action
-  const { UseHandleFav } = UseFavorites();
+    const { UseHandleFav } = UseFavorites();
+    
     
     // Check if the fav exist if is exist so it throw you a modal to validate delete
     // if he no exist it will add the fav
     const UseChangeFavorite = (favotriteItem: any): void => {
 
-    
+
+        client.invalidateQueries(["Favorites"]);
         // Get current favorites
-        const currentFav: FavoritesProps[] | undefined = client.getQueryData([
+        const currentFavs: FavoritesProps[] | undefined = client.getQueryData([
             "Favorites",
         ]);
         // Check if the current place is in the favorites
-        const existingFav = currentFav?.find(
+        const existingFav = currentFavs?.find(
             (fav) => fav.key === favotriteItem.placeKey
         );
 
