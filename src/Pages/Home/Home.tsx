@@ -42,7 +42,7 @@ const Home = () => {
         <>
           <S.CurrentWeatherSection>
             <CurrentWeather city={currentChoice.city} data={data[0]} />
-            {/* /* LayOut for desk or mobile */}
+            {/* /* Button for desk or mobile */}
             {!matches ? (
               <S.FavLightIconButton onClick={handleAddClick}>
                 <IconFavOutline style={{ width: "30px", height: "30px" }} />

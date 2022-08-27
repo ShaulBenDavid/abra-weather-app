@@ -14,16 +14,16 @@ const useWeatherIcon = (num: number) => {
     if ((1 <= num && num <= 3) || num === 5 || num === 30) {
         return SunIcon;
         // Sun and cloud
-    } else if (6 === num || num === 20 || num === 21 || num === 4) {
+    } else if (6 === num || num === 20 || num === 21 || num === 4 || num === 43 || (35 <= num && num <= 38)) {
         return SunCloudIcon;
         // Cloudy
     } else if ((6 <= num && num >= 11) || num === 19 || num === 31) {
         return CloudyIcon;
         // Raining
-    } else if ((12 <= num && num <= 14) || num === 18) {
+    } else if ((12 <= num && num <= 14) || num === 18 || num === 39 || num === 40) {
         return RainIcon;
         // Strom
-    } else if (15 <= num && num <= 17) {
+    } else if ((15 <= num && num <= 17) || num === 41 || num === 42) {
         return StromIcon;
         // Snowing
     } else if ((22 <= num && num <= 29) || num === 44) {

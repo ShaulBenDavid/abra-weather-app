@@ -19,7 +19,7 @@ const DailyTemp: React.FC<DailtyTempProps> = ({ dayData }) => {
   // Date
   const newDate = new Date(0);
   newDate.setUTCSeconds(date)
-  const { getDay } = getDates();
+  const { getShortDay } = getDates();
 
     // Weather icon
   const weatherIcon: string = useWeatherIcon(weatherDayIcon);
@@ -28,7 +28,7 @@ const DailyTemp: React.FC<DailtyTempProps> = ({ dayData }) => {
 
   return (
     <StyledDailyTempWrapper>
-      <StyledDayAndCondition>{getDay(newDate.getDay())} - {shortTcondition}</StyledDayAndCondition>
+      <StyledDayAndCondition>{getShortDay(newDate.getDay())} - {shortTcondition}</StyledDayAndCondition>
       <StyledIconCondition src={weatherIcon} alt={weatherIcon} />
       <StyledTemp>
         <StyledDayTemp>{maxWeather}{TEMP_SYMBOL}</StyledDayTemp>
