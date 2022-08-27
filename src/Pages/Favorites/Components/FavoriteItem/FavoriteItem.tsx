@@ -1,6 +1,7 @@
+import ChangeFavorites from "../../../../Services/Favorites/ChangeFavorites";
 // Components
 import { IconFavFull } from "../../../../Components/Ui/IconsComponent";
-import SetNewPlace from "../../../../Services/SetNewPlace";
+import SetNewPlace from "../../../../Services/Weather/SetNewPlace";
 // Types
 import { FavoriteItemProps } from "./types";
 // Styles
@@ -11,7 +12,6 @@ import {
   StyleFavCity,
   StyleFavCountry,
 } from "./style";
-import UseFavorites from "../../../../Services/UseFavorites";
 
 const FavoriteItem: React.FC<FavoriteItemProps> = ({
   placeKey,
@@ -21,8 +21,8 @@ const FavoriteItem: React.FC<FavoriteItemProps> = ({
 }) => {
   // Set new weather place
   const { setCurrentPlace } = SetNewPlace();
-
-  const { handleFav } = UseFavorites();
+  // Favorites handler
+  const { UseChangeFavorite } = ChangeFavorites();
 
   // Payload
   const payload = {
@@ -37,8 +37,7 @@ const FavoriteItem: React.FC<FavoriteItemProps> = ({
   };
 
   // Remove from fav
-  const handleRemoveFav = () => handleFav(payload);
-
+  const handleRemoveFav = () => UseChangeFavorite(payload);
 
   return (
     <StyledFavContainer hr={hr}>

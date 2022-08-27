@@ -6,7 +6,7 @@ import {
   StyledSearchCityName,
   StyledSearchCountryName,
 } from "./style";
-import SetNewPlace from "../../../Services/SetNewPlace";
+import SetNewPlace from "../../../Services/Weather/SetNewPlace";
 
 
 const SearchResultItem: React.FC<SearchItemProps> = ({

@@ -3,7 +3,12 @@ import { Outlet } from "react-router-dom";
 import useMediaQuery from "../../Hooks/useMediaQuery";
 import { USE_MEDIA_QUERY } from "../../Utils/Constants";
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
-import { selectChosenFav, selectFavValidation, setChoosingFav, setFavValidation } from "../../Redux/Favorites/Favorites.redux";
+import {
+  selectChosenFav,
+  selectFavValidation,
+  setChoosingFav,
+  setFavValidation,
+} from "../../Redux/Favorites/Favorites.redux";
 import {
   logOut,
   manegeLogout,
@@ -14,28 +19,29 @@ import { LOGOUT_VALIDATION } from "../../Utils/Constants";
 import MobileLayout from "../../Layouts/MobileLayout";
 import Header from "../../Layouts/Header";
 import ValidationWindow from "../../Components/Ui/ValidationWindow";
-import UseFavorites from "../../Services/UseFavorites";
+import UseFavorites from "../../Services/Favorites/UseFavorites";
 
 const PageLayout = () => {
   // Media query
   const matches = useMediaQuery(USE_MEDIA_QUERY);
   // Selectors
-  const favValidation = useAppSelector(selectFavValidation)
+  const favValidation = useAppSelector(selectFavValidation);
   const toLogout = useAppSelector(selectLogoutProccess);
-  const chosenFav = useAppSelector(selectChosenFav)
-  // Logout controller
+  const chosenFav = useAppSelector(selectChosenFav);
   const dispatch = useAppDispatch();
 
+  // --------- Logout modal -------
   // Handle Logout
   const handleLogout = () => dispatch(logOut());
   // cancel logout
   const cancelLogout = () => dispatch(manegeLogout());
-    // Fav
-    const { handleFav } = UseFavorites();
 
-  // cancel fav delete 
+  // --------- Fav modal -----------
+  // Fav
+  const { handleFav } = UseFavorites();
+  // cancel fav delete
   const cancelFavDelete = () => {
-    dispatch(setFavValidation(null))
+    dispatch(setFavValidation(null));
     dispatch(setChoosingFav(null));
   };
   // handle fav delete
@@ -43,8 +49,6 @@ const PageLayout = () => {
     chosenFav && handleFav(chosenFav);
     cancelFavDelete();
   };
-  
-
 
   return (
     <>

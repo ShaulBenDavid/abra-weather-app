@@ -1,8 +1,8 @@
-import { useAppDispatch } from "../Redux/hooks";
-import { setSearchChoice } from "../Redux/Search/Search";
+import { useAppDispatch } from "../../Redux/hooks";
+import { setSearchChoice } from "../../Redux/Search/Search";
 import { useNavigate } from "react-router-dom";
 // Types
-import { CurrentPlaceProps } from "../Components/Ui/SearchResultItem/types";
+import { CurrentPlaceProps } from "../../Components/Ui/SearchResultItem/types";
 
 
 const SetNewPlace = () => {

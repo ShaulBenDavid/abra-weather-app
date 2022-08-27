@@ -1,10 +1,10 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
-import { useAppSelector } from "../Redux/hooks";
-import { selectSearchChoice } from "../Redux/Search/Search";
-import { weatherFetchApi } from "./Api/WeatherApi";
+import { useAppSelector } from "../../Redux/hooks";
+import { selectSearchChoice } from "../../Redux/Search/Search";
+import { weatherFetchApi } from "../Api/WeatherApi";
 // Types
-import { FetchingWeatherProps } from "../Pages/Home/types";
-import { HourlyDataProps } from "../Components/WeatherElement/HourlyWeather/types";
+import { FetchingWeatherProps } from "../../Pages/Home/types";
+import { HourlyDataProps } from "../../Components/WeatherElement/HourlyWeather/types";
 // 5 day type
 type ParseFiveDayWeatherProps = {
     EpochDate: number;

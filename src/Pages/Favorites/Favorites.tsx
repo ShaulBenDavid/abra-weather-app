@@ -13,7 +13,7 @@ import {
   StyledEmptyFavPage,
   StyledFavSearch,
 } from "./style";
-import UseFavorites from "../../Services/UseFavorites";
+import UseFavorites from "../../Services/Favorites/UseFavorites";
 
 const Favorites = () => {
   // States

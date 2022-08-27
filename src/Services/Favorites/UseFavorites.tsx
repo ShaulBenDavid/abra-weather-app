@@ -5,12 +5,12 @@ import {
   useQueryClient,
   UseQueryResult,
 } from "@tanstack/react-query";
-import { useAppSelector } from "../Redux/hooks";
-import { selectUser } from "../Redux/User/User";
-import { AbraGetApi, AbraPostApi } from "./Api/AbraApi";
+import { useAppSelector } from "../../Redux/hooks";
+import { selectUser } from "../../Redux/User/User";
+import { AbraGetApi, AbraPostApi } from "../Api/AbraApi";
 // Types
-import { FavoritesProps } from "../Pages/Favorites/types";
-import { CurrentPlaceProps } from "../Components/Ui/SearchResultItem/types";
+import { FavoritesProps } from "../../Pages/Favorites/types";
+import { CurrentPlaceProps } from "../../Components/Ui/SearchResultItem/types";
 
 const UseFavorites = () => {
   const currentUser = useAppSelector(selectUser);
