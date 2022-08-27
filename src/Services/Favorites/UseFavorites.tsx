@@ -12,7 +12,7 @@ import {
 } from "../../Redux/Favorites/Favorites.redux";
 
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
-import { selectUser } from "../../Redux/User/User";
+import { logOut, selectUser } from "../../Redux/User/User";
 
 import { AbraGetApi, AbraPostApi } from "../Api/AbraApi";
 
@@ -21,6 +21,9 @@ import { FAVORITES_END_POINT_URL, FAV_ADDED_ALERT, FAV_REMOVED_ALERT } from "../
 import { CurrentPlaceProps } from "../../Components/Ui/SearchResultItem/types";
 import { FavoritesProps } from "../../Pages/Favorites/types";
 
+interface Error {
+  response: { status: number}
+}
 // delete or add fav from api
 const UseFavorites = () => {
   // Alert
@@ -44,6 +47,11 @@ const UseFavorites = () => {
         enabled: !!currentUser,
         cacheTime: 20 * (60 * 1000),
         staleTime: 20 * (60 * 1000),
+        onError: (err: Error) => {
+          if (err.response.status === 401) {
+            dispatch(logOut());
+          }
+        }
       }
     );
 
@@ -61,6 +69,11 @@ const UseFavorites = () => {
     onSuccess: () => {
       client.invalidateQueries(["Favorites"]);
     },
+    onError: (err: Error) => {
+      if (err.response.status === 401) {
+        dispatch(logOut());
+      }
+    }
   });
 
   const UseHandleFav = async (payload: CurrentPlaceProps) => {
