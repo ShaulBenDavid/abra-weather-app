@@ -10,7 +10,7 @@ const ChangeFavorites = () => {
     const client = useQueryClient();
     const dispatch = useDispatch()
   // Favorites action
-  const { handleFav } = UseFavorites();
+  const { UseHandleFav } = UseFavorites();
     
     // Check if the fav exist if is exist so it throw you a modal to validate delete
     // if he no exist it will add the fav
@@ -42,7 +42,7 @@ const ChangeFavorites = () => {
         }
 
         // else add fav
-        handleFav(favotriteItem);
+        UseHandleFav(favotriteItem);
         return;
     }
     return { UseChangeFavorite } as const;

@@ -32,6 +32,10 @@ export const LOGOUT_VALIDATION = {
     primaryButton: "Yes, log out",
     secondaryButton: "I want to stay",
 }
+
+// Favorites
+export const FAV_REMOVED_ALERT = ' has removed from favorites';
+export const FAV_ADDED_ALERT = ' has added from favorites';
 // Temp symbol
 export const TEMP_SYMBOL = "\u{00B0}";
 

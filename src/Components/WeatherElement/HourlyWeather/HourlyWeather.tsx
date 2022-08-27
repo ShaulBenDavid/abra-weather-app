@@ -12,7 +12,7 @@ import {
 } from "./style";
 
 const HourlyWeather: React.FC<HourlyWeatherProps> = ({ dataByHour }) => {
-  // Scrolling
+  // Scrolling to the sides
   const myRef: React.MutableRefObject<any> = useRef(null);
   const handleScroll = (num: any) => {
     myRef.current.scrollBy(num, 0);

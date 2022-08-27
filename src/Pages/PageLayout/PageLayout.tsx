@@ -20,6 +20,7 @@ import MobileLayout from "../../Layouts/MobileLayout";
 import Header from "../../Layouts/Header";
 import ValidationWindow from "../../Components/Ui/ValidationWindow";
 import UseFavorites from "../../Services/Favorites/UseFavorites";
+import Alert from "../../Components/Ui/Alert";
 
 const PageLayout = () => {
   // Media query
@@ -38,7 +39,7 @@ const PageLayout = () => {
 
   // --------- Fav modal -----------
   // Fav
-  const { handleFav } = UseFavorites();
+  const { UseHandleFav, favAlert } = UseFavorites();
   // cancel fav delete
   const cancelFavDelete = () => {
     dispatch(setFavValidation(null));
@@ -46,9 +47,11 @@ const PageLayout = () => {
   };
   // handle fav delete
   const handleFavDelete = () => {
-    chosenFav && handleFav(chosenFav);
+    chosenFav && UseHandleFav(chosenFav);
     cancelFavDelete();
   };
+
+  console.log(favAlert)
 
   return (
     <>
@@ -79,6 +82,8 @@ const PageLayout = () => {
           onClose={cancelFavDelete}
         />
       )}
+      {/* Fav alert */}
+      <Alert severity="success">{favAlert}</Alert>
       <Outlet />
     </>
   );

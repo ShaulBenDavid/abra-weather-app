@@ -11,4 +11,5 @@ export type CurrentPlaceProps = {
     city: string;
     country: string;
     key?: number;
+    status?: number;
 }

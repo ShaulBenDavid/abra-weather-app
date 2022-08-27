@@ -8,11 +8,11 @@ import { CurrentWeatherProps } from "./types";
 import * as S from "./style";
 
 const CurrentWeather: React.FC<CurrentWeatherProps> = ({ city, data }) => {
-  const { minWeather, maxWeather, weatherCondition } = data;
+  const { minWeather, maxWeather, weatherCondition, date } = data;
   // Current date
   const { getMonthShort, getDay } = getDates();
-  const currentDate = new Date();
-
+  const currentDate = new Date(0);
+  currentDate.setUTCSeconds(date);
   // Current hour
   function formatAMPM(date: Date) {
     let hours = date.getHours();

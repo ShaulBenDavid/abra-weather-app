@@ -12,7 +12,7 @@ export function weatherFetchApi<T extends string>(url: T, token: void): Promise<
 
 
 export async function weatherFetchApi<T extends string, P>(url: T, params: P) {
-  const response = await api.get(`${url}?apikey=GLysokCeRGUGZCOOcGmdnkw5THW0XtAR&details=true`, { params });
+  const response = await api.get(`${url}?apikey=dbG7LSO88G02RMXzNMzgHJSiKdGpAUhw&details=true`, { params });
   return response;
 }
 

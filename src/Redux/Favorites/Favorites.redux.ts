@@ -17,11 +17,13 @@ type ChoosingFavParams = {
 type FavoritesReducerParams = {
     readonly toggledFavValidation: null | FavValidationParams;
     readonly choosingFav: null | ChoosingFavParams;
+    readonly favAlert: string;
 }
 
 const initialState: FavoritesReducerParams = {
     toggledFavValidation: null,
     choosingFav: null,
+    favAlert: '',
 }
 
 const favoriteSlice = createSlice({
@@ -34,14 +36,19 @@ const favoriteSlice = createSlice({
         // the fav that in validation
         setChoosingFav: (state, action) => {
             state.choosingFav = action.payload;
+        },
+        setFavAlert: (state, action) => {
+            state.favAlert = action.payload;
         }
     }
 })
 
-export const { setFavValidation, setChoosingFav } = favoriteSlice.actions;
+export const { setFavValidation, setChoosingFav, setFavAlert } = favoriteSlice.actions;
 
 export const selectFavValidation = (state: RootState) => state.favorites.toggledFavValidation;
 
 export const selectChosenFav = (state: RootState) => state.favorites.choosingFav;
+
+export const selectFavAlert = (state: RootState) => state.favorites.favAlert;
 
 export default favoriteSlice.reducer;

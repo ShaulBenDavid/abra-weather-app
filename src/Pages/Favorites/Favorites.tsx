@@ -14,11 +14,12 @@ import {
   StyledFavSearch,
 } from "./style";
 import UseFavorites from "../../Services/Favorites/UseFavorites";
+import GetFavorites from "../../Services/Favorites/GetFavorites";
 
 const Favorites = () => {
   // States
   const [searchValue, setSearchValue] = useState<string>("");
-  const { data, isLoading } = UseFavorites();
+  const { data, isLoading } = GetFavorites();
 
   // ------ Filtered fav lise by search ------
   const filteredFav = useMemo(() => {
