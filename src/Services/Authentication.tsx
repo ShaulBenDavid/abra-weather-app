@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AbraPostApi } from "./Api/AbraApi";
 import { useAppDispatch, useAppSelector } from "../Redux/hooks";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
-import { logOut, selectUser, setUser, UserProps } from "../Redux/User/User";
+import { logOut, selectUser, setUser, UserProps } from "../Redux/User/User.redux";
 import { LOGIN_END_POINT_URL, VERIFY_AUTH_END_POINT_URL } from "../Utils/Constants";
 // Types
 import { LoginProps } from "../Pages/Login/types";

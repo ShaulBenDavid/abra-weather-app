@@ -1,6 +1,6 @@
 import React, { FormEventHandler, useEffect, useState } from "react";
 
-import { selectUser } from "../../Redux/User/User";
+import { selectUser } from "../../Redux/User/User.redux";
 import { useAppSelector } from "../../Redux/hooks";
 import { useNavigate } from "react-router-dom";
 import { useAuthentication } from "../../Services/Authentication";

@@ -12,7 +12,7 @@ import {
 } from "../../Redux/Favorites/Favorites.redux";
 
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
-import { logOut, selectUser } from "../../Redux/User/User";
+import { logOut, selectUser } from "../../Redux/User/User.redux";
 
 import { AbraGetApi, AbraPostApi } from "../Api/AbraApi";
 

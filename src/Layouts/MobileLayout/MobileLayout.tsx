@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
-import { selectLogoutProccess } from "../../Redux/User/User";
+import { selectLogoutProccess } from "../../Redux/User/User.redux";
 // Components
 import MobileNav from "../../Layouts/MobileNav";
 import Drawer from "../../Components/Ui/Drawer";

@@ -1,5 +1,5 @@
-import themeReducer from "./ThemeMode/ThemeMode";
-import userReducer from "./User/User";
+import themeReducer from "./ThemeMode/ThemeMode.redux";
+import userReducer from "./User/User.redux";
 import searchReducer from "./Search/Search";
 import favoritesReducer from "./Favorites/Favorites.redux";
 import tempModeReducer from "./TempMode/TempMode.redux";

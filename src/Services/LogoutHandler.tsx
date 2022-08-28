@@ -1,5 +1,5 @@
 import { useAppDispatch } from "../Redux/hooks";
-import { logOut, manegeLogout } from "../Redux/User/User";
+import { logOut, manegeLogout } from "../Redux/User/User.redux";
 import useMediaQuery from "../Hooks/useMediaQuery";
 import { DESKTOP_SIZE } from "../Utils/Constants";
 

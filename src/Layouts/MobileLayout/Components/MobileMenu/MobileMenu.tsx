@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../../../../Redux/hooks";
-import { selectTheme, toggleMode } from "../../../../Redux/ThemeMode/ThemeMode";
+import { selectTheme, toggleMode } from "../../../../Redux/ThemeMode/ThemeMode.redux";
 
 // Components
 import Button from "../../../../Components/Ui/Button";

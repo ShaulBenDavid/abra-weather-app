@@ -3,8 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 
 import { useAppSelector } from "./Redux/hooks";
-import { selectTheme } from "./Redux/ThemeMode/ThemeMode";
-import { selectUser } from "./Redux/User/User";
+import { selectTheme } from "./Redux/ThemeMode/ThemeMode.redux";
+import { selectUser } from "./Redux/User/User.redux";
 import ProtectedRoutes from "./Utils/ProtectedRoutes";
 import { useAuthentication } from "./Services/Authentication";
 // Components

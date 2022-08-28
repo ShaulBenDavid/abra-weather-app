@@ -13,7 +13,7 @@ const useWeatherIcon = (num: number) => {
     // Sun
     if ((1 <= num && num <= 3) || num === 5 || num === 30) {
         return SunIcon;
-        // Sun and cloud
+        // Sun and cloud 
     } else if (6 === num || num === 20 || num === 21 || num === 4 || num === 43 || (35 <= num && num <= 38)) {
         return SunCloudIcon;
         // Cloudy

@@ -13,7 +13,7 @@ import {
   logOut,
   manegeLogout,
   selectLogoutProccess,
-} from "../../Redux/User/User";
+} from "../../Redux/User/User.redux";
 import { LOGOUT_VALIDATION } from "../../Utils/Constants";
 // Components
 import MobileLayout from "../../Layouts/MobileLayout";

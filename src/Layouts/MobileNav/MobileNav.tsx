@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
-import { selectTheme } from "../../Redux/ThemeMode/ThemeMode";
+import { selectTheme } from "../../Redux/ThemeMode/ThemeMode.redux";
 
 import { setIsMobileSearchOpen } from "../../Redux/Search/Search";
 // Types
