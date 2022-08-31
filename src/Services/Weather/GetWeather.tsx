@@ -113,7 +113,7 @@ const GetWeather = () => {
     if (fiveDayWeatherMutation.data?.length && weatherByHoursMutation.data?.length) {
       dispatch(setIsLoadingWeatherData(false));
     }
-  }, [fiveDayWeatherMutation.data, weatherByHoursMutation.data]);
+  }, [fiveDayWeatherMutation.data, weatherByHoursMutation.data, currentChoice]);
     
   return {
     dataByHour: weatherByHoursMutation.data,
