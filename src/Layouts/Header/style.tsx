@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Button from "../../Components/Ui/Button";
 // Components
 import { IconLogo } from "../../Components/Ui/IconsComponent";
 import getMediaQuery from "../../Utils/GetMediaQuery";
@@ -75,7 +76,7 @@ export const HoverEffect = styled(WindowHover)`
 `;
 
 // Switch button wrapper map
-export const SwitchButtonWrapper = styled.div`
+export const SwitchMapButtonWrapper = styled.div`
   margin-left: 124px;
   /* 1280px Screen */
   ${getMediaQuery.lessThan("desktop")`

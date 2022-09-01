@@ -46,7 +46,7 @@ const Header = () => {
         {/* ------ Right section -------- */}
         <S.LeftSection>
           {/* Switch to map button */}
-          <S.SwitchButtonWrapper>
+          <S.SwitchMapButtonWrapper>
             <Button
               variant="link"
               style={{ color: "#fff", position: "relative" }}
@@ -55,7 +55,7 @@ const Header = () => {
               <S.HoverEffect>Switch to map</S.HoverEffect>
               <S.NavLinkButtonP>Switch to map</S.NavLinkButtonP>
             </Button>
-          </S.SwitchButtonWrapper>
+          </S.SwitchMapButtonWrapper>
 
           {/* Type Switch box */}
           <S.SwitchBoxWrapper>

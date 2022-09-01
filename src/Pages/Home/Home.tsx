@@ -11,7 +11,6 @@ import CurrentWeather from "../../Components/WeatherElement/CurrentWeather";
 import DailyTempsBar from "../../Components/WeatherElement/DailyTempsBar";
 import HourlyWeather from "../../Components/WeatherElement/HourlyWeather";
 import { IconFavOutline } from "../../Components/Ui/IconsComponent";
-// Types
 // Styles
 import * as S from "./style";
 
