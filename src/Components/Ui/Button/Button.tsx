@@ -6,7 +6,7 @@ import { ButtonProps } from "./types";
 
 const Button: React.FC<ButtonProps> = ({ children, variant, disabled, style, className, ...otherprops}) => {
   return (
-    <StyledButton disabled={disabled} variant={variant} style={style} className={className} {...otherprops}>
+    <StyledButton  className={className} disabled={disabled} variant={variant} style={style} {...otherprops}>
       {children}
     </StyledButton>
   );

@@ -69,6 +69,11 @@ export const NavBarLogo = styled(IconLogo)`
     max-height: 56px;
   `}
 `;
+// ---- Header button ----
+export const HeaderButton = styled(Button)`
+  position: relative;
+  color: #fff;
+`
 
 // Button hover effect
 export const HoverEffect = styled(WindowHover)`
@@ -76,7 +81,7 @@ export const HoverEffect = styled(WindowHover)`
 `;
 
 // Switch button wrapper map
-export const SwitchMapButtonWrapper = styled.div`
+export const SwitchMapButton = styled(HeaderButton)`
   margin-left: 124px;
   /* 1280px Screen */
   ${getMediaQuery.lessThan("desktop")`
@@ -113,7 +118,7 @@ export const SwitchBoxWrapper = styled.div`
 `;
 
 // Logout button wrapper
-export const LogoutButtonWrapper = styled.div`
+export const HeaderLogoutButton = styled(HeaderButton)`
   margin-left: 72px;
   /* 1280px Screen */
   ${getMediaQuery.between("mobile", "desktop")`

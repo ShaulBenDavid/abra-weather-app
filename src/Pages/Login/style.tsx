@@ -3,6 +3,7 @@ import styled from "styled-components";
 import getMediaQuery from "../../Utils/GetMediaQuery";
 import { IconLogo } from "../../Components/Ui/IconsComponent";
 import Alert from "../../Components/Ui/Alert";
+import Button from "../../Components/Ui/Button";
 // Page wrapper
 export const LoginWrapper = styled.div`
   width: 100%;
@@ -94,9 +95,9 @@ export const StyledLoginForm = styled.form`
   `} 
 `;
 // Button
-export const ButtonWrapper = styled.div`
+export const LoginButton = styled(Button)`
   margin-top: 8px;
-`;
+`
 // Line breaker
 export const BreakLineWrapper = styled.div`
   width: 100%;

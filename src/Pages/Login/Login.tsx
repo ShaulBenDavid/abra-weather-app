@@ -109,15 +109,13 @@ const Login = () => {
             errMessage="Invalid password. Please try again"
           />
           {/* Submit */}
-          <S.ButtonWrapper>
-            <Button
-              variant="primary"
-              type="submit"
-              disabled={formValid || loginMutation.isLoading}
-            >
-              {loginMutation.isLoading ? <LoadingSpinner /> : "Log in"}
-            </Button>
-          </S.ButtonWrapper>
+          <S.LoginButton
+            variant="primary"
+            type="submit"
+            disabled={formValid || loginMutation.isLoading}
+          >
+            {loginMutation.isLoading ? <LoadingSpinner /> : "Log in"}
+          </S.LoginButton>
         </S.StyledLoginForm>
         {/* Break line */}
         <S.BreakLineWrapper>

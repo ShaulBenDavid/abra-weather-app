@@ -1,10 +1,12 @@
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import { selectTheme, toggleMode } from "../../Redux/ThemeMode/ThemeMode.redux";
-import { selectTempMode, toggleTempMode } from "../../Redux/TempMode/TempMode.redux";
+import {
+  selectTempMode,
+  toggleTempMode,
+} from "../../Redux/TempMode/TempMode.redux";
 import { useLogoutHandler } from "../../Services/LogoutHandler";
 
 // Components
-import Button from "../../Components/Ui/Button";
 import { IconLogout, IconMap } from "../../Components/Ui/IconsComponent";
 import ToggleSwitch from "../../Components/Ui/ToggleSwitch";
 import NavBar from "./Components/NavBar";
@@ -28,7 +30,6 @@ const Header = () => {
   // Handle toggle temp mode
   const handleToggleTempMode = () => dispatch(toggleTempMode());
 
-
   return (
     <>
       {/* Header */}
@@ -39,25 +40,21 @@ const Header = () => {
           {/* Nav Bar */}
           <NavBar />
         </S.RightSection>
+
         {/* ------ Search / Middle section ------- */}
         <S.MiddleSection>
           <Search />
         </S.MiddleSection>
+
         {/* ------ Right section -------- */}
         <S.LeftSection>
           {/* Switch to map button */}
-          <S.SwitchMapButtonWrapper>
-            <Button
-              variant="link"
-              style={{ color: "#fff", position: "relative" }}
-            >
-              <IconMap />
-              <S.HoverEffect>Switch to map</S.HoverEffect>
-              <S.NavLinkButtonP>Switch to map</S.NavLinkButtonP>
-            </Button>
-          </S.SwitchMapButtonWrapper>
-
-          {/* Type Switch box */}
+          <S.SwitchMapButton variant="link">
+            <IconMap />
+            <S.HoverEffect>Switch to map</S.HoverEffect>
+            <S.NavLinkButtonP>Switch to map</S.NavLinkButtonP>
+          </S.SwitchMapButton>
+          {/* ---- Toggle Switch box ---- */}
           <S.SwitchBoxWrapper>
             <ToggleSwitch
               switchType="temp"
@@ -73,17 +70,11 @@ const Header = () => {
             />
           </S.SwitchBoxWrapper>
           {/* Logout button */}
-          <S.LogoutButtonWrapper>
-            <Button
-              variant="link"
-              style={{ color: "#fff", position: "relative" }}
-              onClick={() => handleLogout()}
-            >
-              <IconLogout />
-              <S.NavLinkButtonP>Log out</S.NavLinkButtonP>
-              <S.HoverEffect>Log out</S.HoverEffect>
-            </Button>
-          </S.LogoutButtonWrapper>
+          <S.HeaderLogoutButton variant="link" onClick={() => handleLogout()}>
+            <IconLogout />
+            <S.NavLinkButtonP>Log out</S.NavLinkButtonP>
+            <S.HoverEffect>Log out</S.HoverEffect>
+          </S.HeaderLogoutButton>
         </S.LeftSection>
       </S.NavigationWrapper>
     </>
