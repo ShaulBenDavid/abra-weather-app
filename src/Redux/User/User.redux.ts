@@ -19,6 +19,7 @@ export type UserStateProps = {
   readonly user: UserProps | null;
   readonly logoutProccess: boolean;
 };
+
 // State
 const initialState: UserStateProps = {
   user: null,

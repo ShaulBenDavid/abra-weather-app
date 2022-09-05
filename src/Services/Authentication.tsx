@@ -15,7 +15,7 @@ export const useAuthentication = () => {
   const currentUser = useAppSelector(selectUser);
 
 
-  // -----Login Mutation-----
+  // ----- Login Mutation -----
   const loginMutation: UseMutationResult<UserProps, Error, LoginProps> = useMutation<
     UserProps,
     Error,

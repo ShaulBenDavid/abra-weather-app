@@ -19,6 +19,7 @@ const HourlyWeather: React.FC<HourlyWeatherProps> = ({ dataByHour }) => {
   };
   return (
     <>
+      {/* Items */}
       <StyledHourlyWeatherWrapper ref={myRef}>
         {dataByHour.map((data) => 
           <HourlyWheatherItem key={data.date} data={data} />
