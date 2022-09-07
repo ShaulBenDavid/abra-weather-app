@@ -17,7 +17,7 @@ const ChangeFavorites = () => {
     // if he no exist it will add the fav
     const UseChangeFavorite = (favotriteItem: any): void => {
 
-
+        // Qurey items
         client.invalidateQueries(["Favorites"]);
         // Get current favorites
         const currentFavs: FavoritesProps[] | undefined = client.getQueryData([
