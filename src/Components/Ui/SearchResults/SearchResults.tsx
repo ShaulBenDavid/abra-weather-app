@@ -6,7 +6,7 @@ import useKeyPress from "../../../Hooks/useKeyPress";
 import SearchResultItem from "../SearchResultItem";
 // Types
 import { SearchResultsProps } from "./type";
-import { CurrentPlaceProps } from "../SearchResultItem/types";
+import { CurrentPlaceProps, LIST_ITEM_HEIGHT } from "../SearchResultItem/types";
 // Styles
 import { StyledSearchResultsContainer } from "./style";
 
@@ -26,7 +26,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
     // Scrolling
     const myRef: React.MutableRefObject<any> = useRef(null);
     const handleScroll = () => {
-      myRef.current.scrollTo(0, 54 * cursor);
+      myRef.current.scrollTo(0, LIST_ITEM_HEIGHT * cursor);
     };
   
   useEffect(() => {
@@ -59,20 +59,21 @@ const SearchResults: React.FC<SearchResultsProps> = ({
   // On enter handle current choice
   useEffect(() => {
     if (searchOptions.length && enterPress) {
-      const option = searchOptions[cursor];
-      const newPayload = {
-        placeKey: option.key,
-        country: option.country,
-        city: option.city,
-      };
-      handleClick(newPayload);
+      handleClick(cursor);
     }
   }, [enterPress, cursor]);
 
   // ----==== Handle search choice ====----
   const { setCurrentPlace } = SetNewPlace();
   // Handle click
-  const handleClick = (payload: CurrentPlaceProps): void => {
+  const handleClick = (idx: number): void => {
+    const option = searchOptions[idx];
+    const payload: CurrentPlaceProps = {
+      placeKey: Number(option.key),
+      country: option.country,
+      city: option.city,
+    };
+
     setCurrentPlace(payload);
     clearSearchBox();
     // Only toggle on mobile

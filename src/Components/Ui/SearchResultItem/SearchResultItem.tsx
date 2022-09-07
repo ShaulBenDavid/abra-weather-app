@@ -18,7 +18,7 @@ const SearchResultItem: React.FC<SearchItemProps> = ({
 }) => {
   // Handle choice
   const handleChoice = () => {
-    handleClick({ city, country, placeKey });
+    handleClick(idx);
   };
 
   // --- Handle hovered ---
