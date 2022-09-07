@@ -1,36 +1,38 @@
 //Types
-import { SearchItemProps, CurrentPlaceProps } from "./types";
+import { SearchItemProps } from "./types";
 // Styles
 import {
   StyledSearchItemWrapper,
   StyledSearchCityName,
   StyledSearchCountryName,
 } from "./style";
-import SetNewPlace from "../../../Services/Weather/SetNewPlace";
-
 
 const SearchResultItem: React.FC<SearchItemProps> = ({
   placeKey,
   city,
   country,
-  clearSearchBox,
-  closeMobileSearch
+  idx,
+  active,
+  handleClick,
+  setHovered,
 }) => {
+  // Handle choice
+  const handleChoice = () => {
+    handleClick({ city, country, placeKey });
+  };
 
-  const { setCurrentPlace } = SetNewPlace()
+  // --- Handle hovered ---
+  const handleMouseEnter = () => setHovered(idx);
 
-  // Handle click
-  const handleClick = ({ city, country, placeKey }: CurrentPlaceProps) => {
-    setCurrentPlace({ city, country, placeKey });
-  clearSearchBox()
-  // Only toggle on mobile
-  closeMobileSearch && closeMobileSearch()
-};
-  
+  const handleMouseLeave = () => setHovered(undefined);
+
   return (
     <StyledSearchItemWrapper
       href={`#${placeKey}`}
-      onMouseDown={() => handleClick({ city, country, placeKey })}
+      onMouseDown={handleChoice}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      active={active}
     >
       <StyledSearchCityName>{city},</StyledSearchCityName>
       <StyledSearchCountryName>{country}</StyledSearchCountryName>

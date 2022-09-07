@@ -1,5 +1,7 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 import getMediaQuery from "../../../Utils/GetMediaQuery";
+// Types
+import { SearchItemStyledProps } from "./types";
 
 export const StyledSearchItemWrapper = styled.a`
   all: unset;
@@ -8,9 +10,10 @@ export const StyledSearchItemWrapper = styled.a`
   column-gap: 2px;
   text-transform: capitalize;
   cursor: pointer;
-  &:hover {
+  
+  ${(props: SearchItemStyledProps) => props.active && css`
     background-color: rgba(242, 242, 242, 0.8);
-  }
+  `}
 
   /* Mobile */
   ${getMediaQuery.lessThan('changePoint')`

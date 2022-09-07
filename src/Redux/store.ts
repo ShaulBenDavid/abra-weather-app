@@ -2,7 +2,6 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer } from 'redux-persist'
 import storage from "redux-persist/lib/storage";
 import { getDefaultMiddleware } from '@reduxjs/toolkit';
-import { apiSlice } from "./APi/apiSlice";
 
 // Reducers
 import themeReducer from "./ThemeMode/ThemeMode.redux";
@@ -15,11 +14,10 @@ import tempModeReducer from "./TempMode/TempMode.redux";
 
 const customizedMiddleware = getDefaultMiddleware({
     serializableCheck: false
-}).concat(apiSlice.middleware);
+})
   
 // Reducers
 const reducers = combineReducers({
-    [apiSlice.reducerPath]: apiSlice.reducer,
     theme: themeReducer,
     user: userReducer,
     search: searchReducer,
