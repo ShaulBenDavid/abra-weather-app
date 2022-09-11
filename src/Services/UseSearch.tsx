@@ -1,9 +1,7 @@
 import {
   useQuery,
-  useQueryClient,
   UseQueryResult,
 } from "@tanstack/react-query";
-import useDebounce from "../Hooks/useDebounde";
 import { weatherFetchApi } from "./Api/WeatherApi";
 import { AUTOCOMPLETE_END_POINT_URL } from "../Utils/Constants";
 // Types
@@ -15,41 +13,31 @@ type ParseSearchDateProps = {
   };
   LocalizedName: string;
   Key: number;
-}
+};
 // -------- UseAutocomplete ----------
 
 export const UseAutocomplete = (searchTerm: string) => {
-
-    // Parse data
-    const parseData = (data: ParseSearchDateProps[]) => {
-      const optionArray = data;
-      return optionArray?.map((option: ParseSearchDateProps) => {
-        const newOption = {
-          country: option?.Country.LocalizedName,
-          city: option?.LocalizedName,
-          key: option?.Key,
-        };
-        return newOption;
-      });
-    };
-  
-  // Search cache results
-  const client = useQueryClient();
-  const searchResults = client.getQueryData(["City search", searchTerm], {
-    exact: true,
-  });
-  // debounce
-  const debouncedSearchTerm = useDebounce(searchTerm, 1500);
+  // Parse data
+  const parseData = (data: ParseSearchDateProps[]) => {
+    const optionArray = data;
+    return optionArray?.map((option: ParseSearchDateProps) => {
+      const newOption = {
+        country: option?.Country.LocalizedName,
+        city: option?.LocalizedName,
+        key: option?.Key,
+      };
+      return newOption;
+    });
+  };
 
   // Autocomplate query
   const { data, isLoading }: UseQueryResult<SearchOptionsProps[], Error> =
     useQuery<SearchOptionsProps[], Error>(
-      ["City search", searchResults ? searchTerm : debouncedSearchTerm],
+      ["City search", searchTerm],
       async () => {
-        const res = await weatherFetchApi(
-          AUTOCOMPLETE_END_POINT_URL,
-          searchResults ? { q: searchTerm } : { q: debouncedSearchTerm }
-        );
+        const res = await weatherFetchApi(AUTOCOMPLETE_END_POINT_URL, {
+          q: searchTerm,
+        });
         return parseData(res?.data);
       },
       {
@@ -58,5 +46,5 @@ export const UseAutocomplete = (searchTerm: string) => {
         staleTime: Infinity,
       }
     );
-  return { data, debouncedSearchTerm, isLoading };
+  return { data, isLoading };
 };

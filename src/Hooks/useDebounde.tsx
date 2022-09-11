@@ -1,18 +1,12 @@
-import { useEffect, useState } from "react";
+function useDebounce<T extends any[], P extends number>(cb: (...args: T) => void, delay: P) {
+  let timeout: ReturnType<typeof setTimeout>;
 
-function useDebounce<T extends string, P extends number>(value: T, delay: P) {
-  const [debouncedValue, setDebouncedValue] = useState(value);
-
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(value);
+  return (...args: T) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      cb(...args);
     }, delay);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  });
-  return debouncedValue;
+  };
 }
 
-export default useDebounce;
+export default useDebounce; 

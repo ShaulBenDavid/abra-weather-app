@@ -26,7 +26,7 @@ root.render(
     <QueryClientProvider client={client}>
       <ReactQueryDevtools initialIsOpen={false} />
       <Provider store={store}>
-        <PersistGate loading={<></>} persistor={persistor}>
+        <PersistGate loading={null} persistor={persistor}>
           <BrowserRouter>
             <GlobalStyles />
             <App />
