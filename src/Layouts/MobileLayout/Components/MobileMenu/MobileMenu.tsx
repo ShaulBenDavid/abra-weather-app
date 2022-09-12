@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../../../../Redux/hooks";
-import { selectTheme, toggleMode } from "../../../../Redux/ThemeMode/ThemeMode.redux";
+import { selectTheme, toggleMode, selectTempMode, toggleTempMode } from "../../../../Redux/ToggleSwitch/ToggleSwitch.redux";
 
 // Components
 import Button from "../../../../Components/Ui/Button";
@@ -8,10 +8,6 @@ import ToggleSwitch from "../../../../Components/Ui/ToggleSwitch";
 import { useLogoutHandler } from "../../../../Services/LogoutHandler";
 // Styles
 import * as S from "./style";
-import {
-  selectTempMode,
-  toggleTempMode,
-} from "../../../../Redux/TempMode/TempMode.redux";
 
 const MobileMenu = () => {
   const [handleUserLogout] = useLogoutHandler();

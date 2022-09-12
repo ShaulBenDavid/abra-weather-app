@@ -1,22 +1,13 @@
 import styled from "styled-components";
-import getMediaQuery from "../../Utils/GetMediaQuery";
 // Component
 import EmptyPage from "../../Components/Ui/EmptyPage";
 import LoadingSpinner from "../../Components/Ui/LoadingSpinner";
 import SearchBox from "../../Components/Ui/SearchBox";
-import SearchResults from "../../Components/Ui/SearchResults";
+import SearchResults from "../../Components/SearchElements/SearchResults";
 
 // Search Wrapper
 export const StyledSearch = styled(SearchBox)`
   margin: 0 auto;
-  /* Mobile */
-  ${getMediaQuery.between("mobile","changePoint")`
-      width: 354px;
-      margin: 0 auto;
-  `}
-  ${getMediaQuery.lessThan("mobile")`
-      width: 100%;
-  `}
 `;
 
 // Styled search results

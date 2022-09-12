@@ -63,11 +63,13 @@ const SearchResults: React.FC<SearchResultsProps> = ({
     }
   }, [enterPress, cursor]);
 
+
   // ----==== Handle search choice ====----
   const { setCurrentPlace } = SetNewPlace();
   // Handle click
   const handleClick = (idx: number): void => {
     const option = searchOptions[idx];
+    // Payload
     const payload: CurrentPlaceProps = {
       placeKey: Number(option.key),
       country: option.country,

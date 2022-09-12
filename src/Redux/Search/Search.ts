@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 // Types
 import { RootState } from "../store";
-import { CurrentPlaceProps } from '../../Components/Ui/SearchResultItem/types';
+import { CurrentPlaceProps } from '../../Components/SearchElements/SearchResultItem/types';
 
 type SearchProps = {
     readonly searchValue: string;

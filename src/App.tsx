@@ -3,8 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 
 import { useAppSelector } from "./Redux/hooks";
-import { selectTheme } from "./Redux/ThemeMode/ThemeMode.redux";
-import { selectUser } from "./Redux/User/User.redux";
+import { selectTheme } from "./Redux/ToggleSwitch/ToggleSwitch.redux";
 import ProtectedRoutes from "./Utils/ProtectedRoutes";
 import { useAuthentication } from "./Services/Authentication";
 // Components

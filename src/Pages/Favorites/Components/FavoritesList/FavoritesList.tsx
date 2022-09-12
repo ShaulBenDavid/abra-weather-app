@@ -14,7 +14,6 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ favorites }) => {
         if (arr.length - 1 !== idx || arr.length === 1) {
           addingBottomLine = true;
         }
-
         return (
           <FavoriteItem
             key={key}

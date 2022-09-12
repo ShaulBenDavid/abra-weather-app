@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import EmptyPage from "../../Components/Ui/EmptyPage";
 import LoadingSpinner from "../../Components/Ui/LoadingSpinner";
-import SearchBox from "../../Components/Ui/SearchBox";
 import getMediaQuery from "../../Utils/GetMediaQuery";
 
 // Page wrapper
@@ -37,18 +36,6 @@ export const SearchAndTitleContainer = styled.div`
       margin-top: 30px;
       margin-bottom: 40px;
   `}
-`;
-// Fav search
-export const StyledFavSearch = styled(SearchBox)`
-  /* Mobile */
-  ${getMediaQuery.lessThan("changePoint")`
-      width: 354px;
-      margin: 0 auto;
-  `}
-  ${getMediaQuery.lessThan("mobile")`
-      width: 100%;
-  `}
-
 `;
 
 // Loader

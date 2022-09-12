@@ -1,9 +1,11 @@
 import { useMemo, useState } from "react";
 
 import { FAVORITES_EMPTY_DETAILS } from "../../Utils/Constants";
-import FavStarsImg from "../../Assets/stars.svg";
+import UseFavorites from "../../Services/Favorites/UseFavorites";
 // Components
+import FavStarsImg from "../../Assets/stars.svg";
 import FavoritesList from "./Components/FavoritesList";
+import SearchBox from "../../Components/Ui/SearchBox";
 // Styles
 import {
   StyledFavoritesWrapper,
@@ -11,9 +13,7 @@ import {
   StyledFavLoader,
   StyledFavLoaderContainer,
   StyledEmptyFavPage,
-  StyledFavSearch,
 } from "./style";
-import UseFavorites from "../../Services/Favorites/UseFavorites";
 
 const Favorites = () => {
   // States
@@ -49,7 +49,7 @@ const Favorites = () => {
           {/* Search */}
           <SearchAndTitleContainer>
             <h1>Favorites</h1>
-            <StyledFavSearch variant="favSearch" onChange={handleChange} />
+            <SearchBox variant="favSearch" onChange={handleChange} />
           </SearchAndTitleContainer>
           {/* Fav list */}
           {filteredFav?.length ? (

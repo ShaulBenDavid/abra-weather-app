@@ -18,7 +18,7 @@ import { AbraGetApi, AbraPostApi } from "../Api/AbraApi";
 
 import { FAVORITES_END_POINT_URL, FAV_ADDED_ALERT, FAV_REMOVED_ALERT } from "../../Utils/Constants";
 // Types
-import { CurrentPlaceProps } from "../../Components/Ui/SearchResultItem/types";
+import { CurrentPlaceProps } from "../../Components/SearchElements/SearchResultItem/types";
 import { FavoritesProps } from "../../Pages/Favorites/types";
 
 interface Error {

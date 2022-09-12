@@ -74,8 +74,12 @@ export const StyledSearchContainer = styled.label`
     `}
 
   /* Mobile */
-  ${getMediaQuery.lessThan('changePoint')`
-    width: 354px;
+  ${getMediaQuery.lessThan("changePoint")`
+      width: 354px;
+      margin: 0 auto;
+  `}
+  ${getMediaQuery.lessThan("mobile")`
+      width: 100%;
   `}
 
   /* Input */

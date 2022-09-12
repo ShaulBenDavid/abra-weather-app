@@ -14,7 +14,7 @@ import { UseAutocomplete } from "../../Services/UseSearch";
 import { USE_MEDIA_QUERY } from "../../Utils/Constants";
 import CityImg from "../../Assets/city.svg";
 // Components
-import SearchResults from "../../Components/Ui/SearchResults";
+import SearchResults from "../../Components/SearchElements/SearchResults";
 import Drawer from "../../Components/Ui/Drawer";
 // Styles
 import {

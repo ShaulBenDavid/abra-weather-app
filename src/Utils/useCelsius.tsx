@@ -1,5 +1,5 @@
 import { useAppSelector } from "../Redux/hooks";
-import { selectTempMode } from "../Redux/TempMode/TempMode.redux";
+import { selectTempMode } from "../Redux/ToggleSwitch/ToggleSwitch.redux";
 
 
 // Convert the temp celcius if the button toggled

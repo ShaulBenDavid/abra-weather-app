@@ -1,9 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
-import { selectTheme, toggleMode } from "../../Redux/ThemeMode/ThemeMode.redux";
-import {
-  selectTempMode,
-  toggleTempMode,
-} from "../../Redux/TempMode/TempMode.redux";
+import { selectTheme, toggleMode, selectTempMode, toggleTempMode } from "../../Redux/ToggleSwitch/ToggleSwitch.redux";
 import { useLogoutHandler } from "../../Services/LogoutHandler";
 
 // Components

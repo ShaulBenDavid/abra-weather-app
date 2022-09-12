@@ -1,4 +1,4 @@
-import { CurrentPlaceProps } from "../../../../Components/Ui/SearchResultItem/types";
+import { CurrentPlaceProps } from "../../../../Components/SearchElements/SearchResultItem/types";
 
 export interface FavoriteItemProps extends CurrentPlaceProps {
     hr?: boolean;
