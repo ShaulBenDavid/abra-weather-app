@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
-import { selectLogoutProccess } from "../../Redux/User/User.redux";
+import { selectIsMobileSearchOpen, setIsMobileSearchOpen } from "../../Redux/Search/Search";
+import { selectValidationField } from "../../Redux/ActionValidation/ActionValidation.redux";
 // Components
 import MobileNav from "../../Layouts/MobileNav";
 import Drawer from "../../Components/Ui/Drawer";
 import MobileMenu from "./Components/MobileMenu";
 import BurgerButton from "./Components/BurgerButton";
 import MobileSearch from "./Components/MobileSearch";
-import { selectIsMobileSearchOpen, setIsMobileSearchOpen } from "../../Redux/Search/Search";
 // Styles
 
 const MobileLayOut = () => {
   // Selectors
-  const isLogoutOpen = useAppSelector(selectLogoutProccess);
+  const isValidationOpen = useAppSelector(selectValidationField);
   const isMobileSearchOpen = useAppSelector(selectIsMobileSearchOpen);
   const dispatch = useAppDispatch();
   // States
@@ -27,9 +27,9 @@ const MobileLayOut = () => {
 
   useEffect(() => {
     if (isMenuOpen) {
-      if (isLogoutOpen) handleMenu();
+      if (isValidationOpen) handleMenu();
     }
-  }, [isLogoutOpen, isMenuOpen])
+  }, [isValidationOpen, isMenuOpen])
   
   return (
     <>

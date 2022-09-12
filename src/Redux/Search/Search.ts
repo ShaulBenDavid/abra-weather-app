@@ -2,11 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 // Types
 import { RootState } from "../store";
-import { CurrentPlaceProps } from '../../Components/SearchElements/SearchResultItem/types';
+import { FavoriteItemPayloadProps } from "../../Pages/Favorites/Components/FavoriteItem/types";
 
 type SearchProps = {
     readonly searchValue: string;
-    readonly searchChoice: CurrentPlaceProps | null;
+    readonly searchChoice: FavoriteItemPayloadProps | null;
     readonly isMobileSearchOpen: boolean;
     readonly isLoadingWeatherData: boolean;
 }

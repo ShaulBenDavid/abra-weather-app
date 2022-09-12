@@ -17,13 +17,11 @@ export type UserProps = {
 };
 export type UserStateProps = {
   readonly user: UserProps | null;
-  readonly logoutProccess: boolean;
 };
 
 // State
 const initialState: UserStateProps = {
   user: null,
-  logoutProccess: false,
 };
 
 // reducer
@@ -39,19 +37,12 @@ export const userSlice = createSlice({
     // Logout
     logOut: (state) => {
       state.user = null;
-      state.logoutProccess = false;
     },
-    // Logout start depends on screen size
-    manegeLogout: (state) => {
-      state.logoutProccess = !state.logoutProccess;
-    }
   },
 });
 
-export const { setUser, logOut, manegeLogout } = userSlice.actions;
+export const { setUser, logOut } = userSlice.actions;
 
 export const selectUser = (state: RootState) => state.user.user;
-
-export const selectLogoutProccess = (state: RootState) => state.user.logoutProccess;
 
 export default userSlice.reducer;

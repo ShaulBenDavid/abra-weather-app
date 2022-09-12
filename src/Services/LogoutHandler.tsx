@@ -1,7 +1,8 @@
 import { useAppDispatch } from "../Redux/hooks";
-import { logOut, manegeLogout } from "../Redux/User/User.redux";
+import { logOut } from "../Redux/User/User.redux";
 import useMediaQuery from "../Hooks/useMediaQuery";
-import { DESKTOP_SIZE } from "../Utils/Constants";
+import { DESKTOP_SIZE, LOGOUT_VALIDATION } from "../Utils/Constants";
+import { setValidationField } from "../Redux/ActionValidation/ActionValidation.redux";
 
 export const useLogoutHandler = () => {
   // State
@@ -13,14 +14,15 @@ export const useLogoutHandler = () => {
 
   // Check function - this function check if the user make logout that is not on desktop design
   // so the user get a window to do logout
-  const handleUserLogout = (): void => {
+  const handleUserLogout = (force: boolean = false): void => {
+    // Force = force logout
     // logout if user on desktop
-    if (matches) {
+    if (matches || force) {
       makeLogout();
       return;
     }
     // open window
-      dispatch(manegeLogout());
+    dispatch(setValidationField(LOGOUT_VALIDATION));
     return;
   };
 

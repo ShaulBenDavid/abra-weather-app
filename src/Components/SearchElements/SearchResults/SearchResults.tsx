@@ -1,4 +1,4 @@
-import { createRef, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import SetNewPlace from "../../../Services/Weather/SetNewPlace";
 import useKeyPress from "../../../Hooks/useKeyPress";
@@ -6,7 +6,8 @@ import useKeyPress from "../../../Hooks/useKeyPress";
 import SearchResultItem from "../SearchResultItem";
 // Types
 import { SearchResultsProps } from "./type";
-import { CurrentPlaceProps, LIST_ITEM_HEIGHT } from "../SearchResultItem/types";
+import { LIST_ITEM_HEIGHT } from "../SearchResultItem/types";
+import { ChoosingFavParams } from "../../../Redux/Favorites/Favorites.redux";
 // Styles
 import { StyledSearchResultsContainer } from "./style";
 
@@ -23,16 +24,16 @@ const SearchResults: React.FC<SearchResultsProps> = ({
   const upPress = useKeyPress("ArrowUp");
   const enterPress = useKeyPress("Enter");
 
-    // Scrolling
-    const myRef: React.MutableRefObject<any> = useRef(null);
-    const handleScroll = () => {
-      myRef.current.scrollTo(0, LIST_ITEM_HEIGHT * cursor);
-    };
-  
+  // Scrolling
+  const myRef: React.MutableRefObject<any> = useRef(null);
+  const handleScroll = () => {
+    myRef.current.scrollTo(0, LIST_ITEM_HEIGHT * cursor);
+  };
+
   useEffect(() => {
     handleScroll();
-  },[cursor])
-  
+  }, [cursor]);
+
   // Arrow press down
   useEffect(() => {
     if (searchOptions.length && downPress) {
@@ -63,14 +64,13 @@ const SearchResults: React.FC<SearchResultsProps> = ({
     }
   }, [enterPress, cursor]);
 
-
   // ----==== Handle search choice ====----
   const { setCurrentPlace } = SetNewPlace();
   // Handle click
   const handleClick = (idx: number): void => {
     const option = searchOptions[idx];
     // Payload
-    const payload: CurrentPlaceProps = {
+    const payload: ChoosingFavParams = {
       placeKey: Number(option.key),
       country: option.country,
       city: option.city,

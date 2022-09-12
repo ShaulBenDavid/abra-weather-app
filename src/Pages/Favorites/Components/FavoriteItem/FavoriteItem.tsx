@@ -3,7 +3,7 @@ import ChangeFavorites from "../../../../Services/Favorites/ChangeFavorites";
 import { IconFavFull } from "../../../../Components/Ui/IconsComponent";
 import SetNewPlace from "../../../../Services/Weather/SetNewPlace";
 // Types
-import { FavoriteItemProps } from "./types";
+import { FavoriteItemPayloadProps, FavoriteItemProps } from "./types";
 // Styles
 import {
   StyledFavContainer,
@@ -25,7 +25,7 @@ const FavoriteItem: React.FC<FavoriteItemProps> = ({
   const { UseChangeFavorite } = ChangeFavorites();
 
   // Payload
-  const payload = {
+  const payload: FavoriteItemPayloadProps = {
     city,
     country,
     placeKey,

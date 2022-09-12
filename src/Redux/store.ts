@@ -8,6 +8,7 @@ import toggleSwitchsReducer from "./ToggleSwitch/ToggleSwitch.redux";
 import userReducer from "./User/User.redux";
 import searchReducer from "./Search/Search";
 import favoritesReducer from "./Favorites/Favorites.redux";
+import actionValidationReducer from "./ActionValidation/ActionValidation.redux";
 
 
 
@@ -21,13 +22,14 @@ const reducers = combineReducers({
     user: userReducer,
     search: searchReducer,
     favorites: favoritesReducer,
+    actionValidation: actionValidationReducer,
 })
 
 // Persist config
 export const config = {
     key: 'root',
     storage: storage,
-    blacklist: ['favorites'],
+    blacklist: ['favorites', 'actionValidation'],
 }
 
 const persistedReducer = persistReducer(config, reducers);

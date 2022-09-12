@@ -5,16 +5,13 @@ import { USE_MEDIA_QUERY } from "../../Utils/Constants";
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import {
   selectChosenFav,
-  selectFavValidation,
   setChoosingFav,
-  setFavValidation,
 } from "../../Redux/Favorites/Favorites.redux";
 import {
-  logOut,
-  manegeLogout,
-  selectLogoutProccess,
-} from "../../Redux/User/User.redux";
-import { LOGOUT_VALIDATION } from "../../Utils/Constants";
+  selectValidationField,
+  setValidationField,
+} from "../../Redux/ActionValidation/ActionValidation.redux";
+import { useLogoutHandler } from "../../Services/LogoutHandler";
 // Components
 import MobileLayout from "../../Layouts/MobileLayout";
 import Header from "../../Layouts/Header";
@@ -27,29 +24,29 @@ const PageLayout = () => {
   // Media query
   const matches = useMediaQuery(USE_MEDIA_QUERY);
   // Selectors
-  const favValidation = useAppSelector(selectFavValidation);
-  const toLogout = useAppSelector(selectLogoutProccess);
   const chosenFav = useAppSelector(selectChosenFav);
   const dispatch = useAppDispatch();
 
-  // ---------===== Logout modal =====-------
-  // Handle Logout
-  const handleLogout = () => dispatch(logOut());
-  // cancel logout
-  const cancelLogout = () => dispatch(manegeLogout());
+  const validationField = useAppSelector(selectValidationField);
 
-  // ---------===== Fav modal =====-----------
-  // Fav
-  const { UseHandleFav, favAlert } = UseFavorites();
-  // cancel fav delete
-  const cancelFavDelete = () => {
-    dispatch(setFavValidation(null));
-    dispatch(setChoosingFav(null));
+  // -----=== Validation box ===-----
+  // cancel validation
+  const cancelValidation = () => {
+    dispatch(setValidationField(null));
+    // If its fav validation, to cancel the chosen fav
+    validationField?.title !== "Log out" && dispatch(setChoosingFav(null));
   };
+  // ------ Logout modal -------
+  const [handleUserLogout] = useLogoutHandler();
+  // Handle Logout
+  const handleLogout = () => handleUserLogout(true);
+  // ------ Fav modal --------
+  // Handle Fav
+  const { UseHandleFav, favAlert } = UseFavorites();
   // handle fav delete
   const handleFavDelete = () => {
     chosenFav && UseHandleFav(chosenFav);
-    cancelFavDelete();
+    cancelValidation();
   };
 
   return (
@@ -65,24 +62,20 @@ const PageLayout = () => {
           <MobileLayout />
         </>
       )}
-      {/* Logout */}
-      {toLogout && (
+      {/* Validation box */}
+      {validationField && (
         <ValidationWindow
-          {...LOGOUT_VALIDATION}
-          onClick={handleLogout}
-          onClose={cancelLogout}
-        />
-      )}
-      {/* Remove from fav */}
-      {favValidation && (
-        <ValidationWindow
-          {...favValidation}
-          onClick={handleFavDelete}
-          onClose={cancelFavDelete}
+          {...validationField}
+          onClick={
+            validationField.title === "Log out" ? handleLogout : handleFavDelete
+          }
+          onClose={cancelValidation}
         />
       )}
       {/* Fav alert */}
-      { favAlert && <StyledFvoriteAlert severity="success">{favAlert}</StyledFvoriteAlert>}
+      {favAlert && (
+        <StyledFvoriteAlert severity="success">{favAlert}</StyledFvoriteAlert>
+      )}
       <Outlet />
     </>
   );
