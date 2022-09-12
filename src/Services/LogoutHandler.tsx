@@ -1,10 +1,12 @@
 import { useAppDispatch } from "../Redux/hooks";
 import { logOut } from "../Redux/User/User.redux";
+import { setValidationField } from "../Redux/ActionValidation/ActionValidation.redux";
 import useMediaQuery from "../Hooks/useMediaQuery";
 import { DESKTOP_SIZE, LOGOUT_VALIDATION } from "../Utils/Constants";
-import { setValidationField } from "../Redux/ActionValidation/ActionValidation.redux";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const useLogoutHandler = () => {
+  const client = useQueryClient();
   // State
   const dispatch = useAppDispatch();
   // Media query
@@ -19,6 +21,8 @@ export const useLogoutHandler = () => {
     // logout if user on desktop
     if (matches || force) {
       makeLogout();
+      // Clear the cache when the user is not conected
+      client.clear();
       return;
     }
     // open window
