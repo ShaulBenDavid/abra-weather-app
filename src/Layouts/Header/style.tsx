@@ -48,6 +48,7 @@ export const NavigationWrapper = styled.header`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  z-index: 1;
   /* 1280px Screen */
   ${getMediaQuery.between("mobile", "desktop")`
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);

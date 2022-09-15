@@ -12,6 +12,7 @@ export const AppWrapper = styled.div`
     linear-gradient(to bottom, #fff, #fff);
   height: 100vh;
   overflow: hidden;
+  /* z-index: 0; */
   /* 414px Screen/  */
   ${getMediaQuery.lessThan("mobile")`
     height: 100%;

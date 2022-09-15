@@ -10,6 +10,7 @@ export const StyledFavoritesWrapper = styled.div`
   padding: 0 370px;
   overflow-x: hidden;
   overflow-y: auto;
+  z-index: 1;
   /* Tablet */
   ${getMediaQuery.between("changePoint", "desktop")`
     padding: 0 50px;

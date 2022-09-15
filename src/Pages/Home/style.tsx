@@ -10,6 +10,7 @@ export const HomeWrapper = styled.div`
   overflow-y: auto;
   height: 100vh;
   padding: 0 370px;
+  z-index: 1;
   /* Tablet */
   ${getMediaQuery.between("changePoint", "desktop")`
     padding: 0 50px;

@@ -13,6 +13,7 @@ import Login from "./Pages/Login";
 //Styles
 import { darkMode, lightMode } from "./GlobalStyle/theme";
 import { AppWrapper } from "./style";
+import Clouds from "./Components/Ui/Clouds";
 // Types
 export type PayloadAuthCheckProps = {
   token: string | undefined;
@@ -38,6 +39,7 @@ const App: React.FC = () => {
     <>
       <ThemeProvider theme={themes[theme]}>
         <AppWrapper>
+          <Clouds numberOfClouds={9} />
           <Routes>
             {/* Protected routes */}
             <Route path="/" element={<ProtectedRoutes />}>

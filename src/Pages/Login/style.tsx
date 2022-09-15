@@ -14,6 +14,7 @@ export const LoginWrapper = styled.div`
   justify-content: center;
   align-items: center;
   overflow-y: auto;
+  z-index: 1;
   /* 414px Screen */
   ${getMediaQuery.lessThan("mobile")`
     justify-content: flex-end;
