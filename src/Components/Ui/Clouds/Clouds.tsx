@@ -6,6 +6,7 @@ import { StyledCloudsWrapper, StyledCloudImg } from "./style";
 import { useMemo } from "react";
 
 const Clouds: React.FC<CloudsProps> = ({ numberOfClouds }) => {
+  // Creating a random clouds
   const clouds: CloudProps[] = useMemo(() => {
     const newClouds: CloudProps[] = [];
     for (let i = 0; i < numberOfClouds; i++) {

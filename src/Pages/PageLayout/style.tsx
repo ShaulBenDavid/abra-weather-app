@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import Alert from "../../Components/Ui/Alert";
 import getMediaQuery from "../../Utils/GetMediaQuery";
 

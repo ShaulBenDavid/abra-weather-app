@@ -96,5 +96,12 @@ export const DailyTempsBarSection = styled.section`
 // ------ Hourly Weather section ------
 export const HourlyWeatherSection = styled.section`
   margin-top: 140px;
-  margin-bottom: 80px;
 `;
+
+// ------ Weather chart section ------
+export const WeatherChartSection = styled.section`
+  margin-top: 100px;
+  padding-bottom: 85px;
+`;
+
+

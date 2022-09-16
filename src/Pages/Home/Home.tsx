@@ -11,6 +11,7 @@ import CurrentWeather from "../../Components/WeatherElement/CurrentWeather";
 import DailyTempsBar from "../../Components/WeatherElement/DailyTempsBar";
 import HourlyWeather from "../../Components/WeatherElement/HourlyWeather";
 import { IconFavOutline } from "../../Components/Ui/IconsComponent";
+import WeatherChart from "../../Components/WeatherElement/WeatherChart";
 // Styles
 import * as S from "./style";
 
@@ -61,6 +62,10 @@ const Home = () => {
           <S.HourlyWeatherSection>
             <HourlyWeather dataByHour={dataByHour} />
           </S.HourlyWeatherSection>
+          {/* ----- Weather Chart ----- */}
+          <S.WeatherChartSection>
+            <WeatherChart />
+          </S.WeatherChartSection>
         </>
       ) : (
         // ----- If home page empty ------
