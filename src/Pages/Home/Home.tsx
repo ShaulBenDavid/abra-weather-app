@@ -64,7 +64,7 @@ const Home = () => {
           </S.HourlyWeatherSection>
           {/* ----- Weather Chart ----- */}
           <S.WeatherChartSection>
-            <WeatherChart />
+            <WeatherChart data={data} />
           </S.WeatherChartSection>
         </>
       ) : (

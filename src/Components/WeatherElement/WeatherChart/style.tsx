@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import ReactApexChart from "react-apexcharts";
+
 // Title
 export const StyledChartTitle = styled.h2`
   color: ${({ theme }) => theme.white};
@@ -15,6 +17,21 @@ export const StyledChartContainer = styled.div`
   background-color: rgba(255, 255, 255, 0.3);
   padding: 16px 50px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  position: relative;
 `;
+
+// Chart item
+
+export const StyledApexChart = styled(ReactApexChart)`
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 158px;
+
+  svg:not(:root) {
+    overflow: visible;
+  }
+`
