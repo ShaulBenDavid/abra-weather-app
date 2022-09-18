@@ -1,5 +1,8 @@
-import {  useAppSelector } from "../../Redux/hooks";
-import { selectLoadingWeather, selectSearchValue } from "../../Redux/Search/Search";
+import { useAppSelector } from "../../Redux/hooks";
+import {
+  selectLoadingWeather,
+  selectSearchValue,
+} from "../../Redux/Search/Search";
 import useMediaQuery from "../../Hooks/useMediaQuery";
 
 import { HOME_EMPTY_DETAILS, USE_MEDIA_QUERY } from "../../Utils/Constants";
@@ -10,12 +13,20 @@ import CityImg from "../../Assets/city.svg";
 import CurrentWeather from "../../Components/WeatherElement/CurrentWeather";
 import DailyTempsBar from "../../Components/WeatherElement/DailyTempsBar";
 import HourlyWeather from "../../Components/WeatherElement/HourlyWeather";
-import { IconFavOutline } from "../../Components/Ui/IconsComponent";
+import {
+  IconFavOutline,
+  IconMapDark,
+} from "../../Components/Ui/IconsComponent";
 import WeatherChart from "../../Components/WeatherElement/WeatherChart";
 // Styles
 import * as S from "./style";
+import Drawer from "../../Components/Ui/Drawer";
+import { useState } from "react";
 
 const Home = () => {
+  // States
+  const [chartIsOpen, setChartIsOpen] = useState<boolean>(false);
+
   // Selector
   const searchValue = useAppSelector(selectSearchValue);
   const isWeatherDataLoading = useAppSelector(selectLoadingWeather);
@@ -27,14 +38,24 @@ const Home = () => {
   // Media query
   const matches = useMediaQuery(USE_MEDIA_QUERY);
 
+  // ---- Click handlers ----
   // Add to fav or remove from fav
   const handleAddClick = () => {
     // else add fav
     currentChoice && UseChangeFavorite(currentChoice);
   };
+  // Add to fav or remove from fav
+  const handleToggleChart = () => {
+    setChartIsOpen(!chartIsOpen);
+  };
 
   // Loading
-  if (isWeatherDataLoading) return <S.HomeLoadingWrapper><S.HomeLoadingSpinner/></S.HomeLoadingWrapper>;
+  if (isWeatherDataLoading)
+    return (
+      <S.HomeLoadingWrapper>
+        <S.HomeLoadingSpinner />
+      </S.HomeLoadingWrapper>
+    );
   return (
     <S.HomeWrapper>
       {/* ----- Current weather section --------*/}
@@ -58,14 +79,37 @@ const Home = () => {
           <S.DailyTempsBarSection>
             <DailyTempsBar data={data} />
           </S.DailyTempsBarSection>
+          {/* --- Chart toggle button for mobile --- */}
+          {!matches && (
+            <S.ChartToggleButton variant="inverted" onClick={handleToggleChart}>
+              5 Days Forecast
+            </S.ChartToggleButton>
+          )}
           {/* ------ Hourly weather ------ */}
           <S.HourlyWeatherSection>
             <HourlyWeather dataByHour={dataByHour} />
           </S.HourlyWeatherSection>
-          {/* ----- Weather Chart ----- */}
-          <S.WeatherChartSection>
-            <WeatherChart data={data} />
-          </S.WeatherChartSection>
+          {/* --- Map toggle button for mobile --- */}
+          {!matches && (
+            <S.MapToggleButton variant="white" onClick={() => {}}>
+              <IconMapDark />
+              Map
+            </S.MapToggleButton>
+          )}
+          {/* -----= Weather Chart for desk =----- */}
+          {matches && (
+            <S.WeatherChartSection>
+              <WeatherChart data={data} />
+            </S.WeatherChartSection>
+          )}
+          {/* --- Weather Chart for mobile --- */}
+          {chartIsOpen && (
+            <Drawer>
+              <S.WeatherChartSection>
+                <WeatherChart data={data} />
+              </S.WeatherChartSection>
+            </Drawer>
+          )}
         </>
       ) : (
         // ----- If home page empty ------

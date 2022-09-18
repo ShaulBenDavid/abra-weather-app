@@ -6,9 +6,9 @@ import { selectTempMode } from "../Redux/ToggleSwitch/ToggleSwitch.redux";
 const useCelcius = () => {
     const tempMode = useAppSelector(selectTempMode);
     
-    const tempConverter = (fahrenheit: number) => {
+    const tempConverter = (fahrenheit: number): number => {
         if (tempMode) return fahrenheit;
-      return ((fahrenheit - 32) * 5 / 9).toFixed(0);
+      return Number(((fahrenheit - 32) * 5 / 9).toFixed(0));
     }
 
     return { tempConverter };

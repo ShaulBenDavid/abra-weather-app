@@ -13,6 +13,7 @@ import { ReactComponent as IconLayout } from '../../../Assets/Icons/layout.svg';
 import { ReactComponent as IconLogout } from '../../../Assets/Icons/log-out.svg';
 import { ReactComponent as IconMapWeather } from '../../../Assets/Icons/map-weather.svg';
 import { ReactComponent as IconMap } from '../../../Assets/Icons/map.svg';
+import { ReactComponent as IconMapDark } from '../../../Assets/Icons/mapDark.svg';
 import { ReactComponent as IconMenu } from '../../../Assets/Icons/menu.svg';
 import { ReactComponent as IconMoonDark } from '../../../Assets/Icons/moon-dark.svg';
 import { ReactComponent as IconMoonFlat } from '../../../Assets/Icons/moon-flat.svg';
@@ -40,6 +41,7 @@ export {
     IconLogout,
     IconMapWeather,
     IconMap,
+    IconMapDark,
     IconMenu,
     IconMoonDark,
     IconMoonFlat,

@@ -1,12 +1,13 @@
 import { TEMP_SYMBOL } from "../../../../Utils/Constants";
 import useCelcius from "../../../../Utils/useCelsius";
 
+
 const useApexChart = (maxTemps: number[], minTemps: number[]) => {
   // Temp convert
   const { tempConverter } = useCelcius();
 
   // --- chart Data / Settings ---
-  const chartData: any = {
+  const chartData = {
     series: [
       {
         name: "High",

@@ -47,16 +47,16 @@ export const HomeLoadingWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 export const HomeLoadingSpinner = styled(LoadingSpinner)`
   width: 80px;
   height: 80px;
 
   &::after {
-  width: 70px;
-  height: 70px;
+    width: 70px;
+    height: 70px;
   }
-`
+`;
 
 // ----- Current weather section -----
 export const CurrentWeatherSection = styled.section`
@@ -91,11 +91,36 @@ export const FavLightIconButton = styled.button`
 // ------ Temp bar section -------
 export const DailyTempsBarSection = styled.section`
   margin-top: 88px;
+  /* Mobile */
+  ${getMediaQuery.lessThan("changePoint")`
+      margin: 48px 0;
+  `}
+`;
+
+// Chart toggle button for mobile
+export const ChartToggleButton = styled(Button)`
+  margin: 0 auto;
+  margin-bottom: 48px;
+  width: 264px;
 `;
 
 // ------ Hourly Weather section ------
 export const HourlyWeatherSection = styled.section`
   margin-top: 140px;
+  /* Mobile */
+  ${getMediaQuery.lessThan("changePoint")`
+  margin-top: 0;
+  margin-bottom: 60px;
+  `}
+`;
+
+// Map toggle button for mobile
+export const MapToggleButton = styled(Button)`
+  margin: 0 auto;
+  margin-bottom: 116px;
+  width: 114px;
+  font-weight: bold;
+  color: ${({ theme }) => theme.black};
 `;
 
 // ------ Weather chart section ------
@@ -103,5 +128,3 @@ export const WeatherChartSection = styled.section`
   margin-top: 100px;
   padding-bottom: 85px;
 `;
-
-

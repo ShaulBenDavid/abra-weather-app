@@ -1,10 +1,17 @@
 import styled from "styled-components";
 
 import ReactApexChart from "react-apexcharts";
+import getMediaQuery from "../../../Utils/GetMediaQuery";
 
 // Title
 export const StyledChartTitle = styled.h2`
   color: ${({ theme }) => theme.white};
+  margin-bottom: 24px;
+  /* Mobile */
+  ${getMediaQuery.lessThan("changePoint")`
+    color: ${({ theme }) => theme.secondary};
+    margin-bottom: 36px;
+  `}
 `;
 
 // Chart container
