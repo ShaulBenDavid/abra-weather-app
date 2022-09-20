@@ -35,7 +35,7 @@ export const StyledChartContainer = styled.div`
     background-color: inherit;
     padding: 0;
     margin-bottom: 32px;
-    z-index: 3;
+    z-index: 1;
   `}
 `;
 
@@ -54,6 +54,6 @@ export const StyledApexChart = styled(ReactApexChart)`
   /* Mobile */
   ${getMediaQuery.lessThan("changePoint")`
     top: 98px;
-    z-index: 1;
+    z-index: -1;
   `}
 `;

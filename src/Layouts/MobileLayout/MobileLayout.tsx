@@ -10,6 +10,7 @@ import MobileMenu from "./Components/MobileMenu";
 import BurgerButton from "./Components/BurgerButton";
 import MobileSearch from "./Components/MobileSearch";
 // Styles
+import { StyledMobileSearchDrawer } from './style';
 
 const MobileLayOut = () => {
   // Selectors
@@ -44,9 +45,9 @@ const MobileLayOut = () => {
       )}
       {/* Mobile Search */}
       {isMobileSearchOpen && (
-        <Drawer onClick={handleSearch} >
+        <StyledMobileSearchDrawer onClick={handleSearch} >
           <MobileSearch onClick={handleSearch} />
-        </Drawer>
+        </StyledMobileSearchDrawer>
       )}
     </>
   );

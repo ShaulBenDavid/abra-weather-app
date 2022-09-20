@@ -10,14 +10,14 @@ import {
   StyledXButton,
 } from "./style";
 
-const Drawer = ({ children, onClick, useCase }: DrawerProps) => {
+const Drawer = ({ children, onClick, useCase, className }: DrawerProps) => {
   // Cancel the Wrapper onclick
   const handleClick = (event: React.SyntheticEvent): void => {
     event.stopPropagation();
   };
   return ReactDOM.createPortal(
     <StyledDrawerBackground onClick={onClick} useCase={useCase} >
-      <StyledDrawerWrapper onClick={handleClick} useCase={useCase}>
+      <StyledDrawerWrapper onClick={handleClick} useCase={useCase} className={className}>
         {children}
         <StyledXButton useCase={useCase} onClick={onClick}>
           <XImage />

@@ -13,18 +13,38 @@ export const StyledChartItemContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   text-align: center;
+  position: relative;
+  border-radius: 20px;
+overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.3);
+    z-index: -1;
+    display: none;
+  }
 
   /* Hover */
   &:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
+    &::after {
+      display: block;
+    }
   }
   /* Mobile */
   ${getMediaQuery.lessThan("changePoint")`
     width: ${CHART_ITEM_WIDTH_MOBILE};
     /* Hover */
   &:hover {
-    background-color: #f2f2f2;
+    &::after {
+      background-color: #f2f2f2;
+      display: block;
+    }
   }
   `}
 `;
