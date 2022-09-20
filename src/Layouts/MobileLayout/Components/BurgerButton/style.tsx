@@ -3,7 +3,7 @@ import styled from "styled-components";
 // Burger button
 export const StyledBurgerButton = styled.button`
     all: unset;
-    position: absolute;
+    position: fixed;
     top: 30px;
     right: 30px;
     width: 30px;

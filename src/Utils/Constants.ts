@@ -4,7 +4,7 @@ import StarsSvg from '../Assets/stars.svg';
 export const BASE_URL = "https://weather-abra.herokuapp.com/api";
 export const WEATHER_BASE_URL = "http://dataservice.accuweather.com";
 
-export const WEATHER_API_KEY = "QCHZvnP6Pbc2NYDA1oZNLKl9P8ntqag9";
+export const WEATHER_API_KEY = "Hoi07hjhOSUFixq1RSm1ZrbCLRueBVnt";
 
 // ------ End point url ------
 export const FAVORITES_END_POINT_URL = "/favorites/";

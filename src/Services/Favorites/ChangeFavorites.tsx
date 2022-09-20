@@ -13,23 +13,27 @@ const ChangeFavorites = () => {
   // Favorites action
   const { UseHandleFav } = UseFavorites();
 
-  // Check if the fav exist if is exist so it throw you a modal to validate delete
-  // if he no exist it will add the fav
-  const UseChangeFavorite = (favotriteItem: ChoosingFavParams): void => {
-    // Qurey items
-    client.invalidateQueries(["Favorites"]);
-    // Get current favorites
-    const currentFavs: FavoritesProps[] | undefined = client.getQueryData([
-      "Favorites",
-    ]);
-    // Check if the current place is in the favorites
-    const existingFav = currentFavs?.find(
-      (fav) => fav.key === favotriteItem.placeKey
-    );
+    // ---- Check if the favorite exist ---- 
+  const checkExistingFavorite = (favotriteItem: ChoosingFavParams) => {
+        // Qurey items
+        client.invalidateQueries(["Favorites"]);
+        // Get current favorites
+        const currentFavs: FavoritesProps[] | undefined = client.getQueryData([
+          "Favorites",
+        ]);
+        
+        // Check if the current place is in the favorites
+        const existingFav = currentFavs?.find(
+          (fav) => fav.key === favotriteItem.placeKey
+        );
+    return existingFav;
+  }
 
+  // ---- Handle removing or adding of favorite ----
+  const UseChangeFavorite = (favotriteItem: ChoosingFavParams): void => {
     // ------ If fav exist open window to validate delete ------
     // Window will open on page layout
-    if (existingFav) {
+    if (checkExistingFavorite(favotriteItem)) {
       const payload = {
         title: "Remove from favorites",
         p: `Are you sure you want to remove ${favotriteItem.city}  from favorites list?`,
@@ -45,7 +49,7 @@ const ChangeFavorites = () => {
     UseHandleFav(favotriteItem);
     return;
   };
-  return { UseChangeFavorite } as const;
+  return { UseChangeFavorite, checkExistingFavorite } as const;
 };
 
 export default ChangeFavorites;

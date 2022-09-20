@@ -9,6 +9,7 @@ import LoadingSpinner from "../../Components/Ui/LoadingSpinner";
 export const HomeWrapper = styled.div`
   overflow-y: auto;
   height: 100vh;
+  height: -webkit-fill-available;
   padding: 0 370px;
   z-index: 1;
   /* Tablet */
@@ -81,6 +82,7 @@ export const FavIconButton = styled(IconFavDark)`
 // Adding to fav button
 export const FavAddingButton = styled(Button)`
   width: 213px;
+  font-weight: bold;
 `;
 export const FavLightIconButton = styled.button`
   all: unset;
@@ -117,7 +119,7 @@ export const HourlyWeatherSection = styled.section`
 // Map toggle button for mobile
 export const MapToggleButton = styled(Button)`
   margin: 0 auto;
-  margin-bottom: 116px;
+  margin-bottom: 128px;
   width: 114px;
   font-weight: bold;
   color: ${({ theme }) => theme.black};

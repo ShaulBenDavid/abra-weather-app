@@ -7,6 +7,7 @@ import getMediaQuery from "../../Utils/GetMediaQuery";
 export const StyledFavoritesWrapper = styled.div`
   overflow-y: auto;
   height: 100vh;
+  height: -webkit-fill-available;
   padding: 0 370px;
   overflow-x: hidden;
   overflow-y: auto;

@@ -16,6 +16,7 @@ import HourlyWeather from "../../Components/WeatherElement/HourlyWeather";
 import {
   IconFavOutline,
   IconMapDark,
+  IconFavFull,
 } from "../../Components/Ui/IconsComponent";
 import WeatherChart from "../../Components/WeatherElement/WeatherChart";
 // Styles
@@ -30,10 +31,11 @@ const Home = () => {
   // Selector
   const searchValue = useAppSelector(selectSearchValue);
   const isWeatherDataLoading = useAppSelector(selectLoadingWeather);
-  // Weather data
+  // --- Weather data ---
   const { data, currentChoice, dataByHour } = GetWeather();
   // Favorites handler
-  const { UseChangeFavorite } = ChangeFavorites();
+  const { UseChangeFavorite, checkExistingFavorite } = ChangeFavorites();
+  const favoriteIsExist = currentChoice && checkExistingFavorite(currentChoice);
 
   // Media query
   const matches = useMediaQuery(USE_MEDIA_QUERY);
@@ -49,7 +51,7 @@ const Home = () => {
     setChartIsOpen(!chartIsOpen);
   };
 
-  // Loading
+  // -- Loading --
   if (isWeatherDataLoading)
     return (
       <S.HomeLoadingWrapper>
@@ -63,19 +65,23 @@ const Home = () => {
         <>
           <S.CurrentWeatherSection>
             <CurrentWeather city={currentChoice.city} data={data[0]} />
-            {/* /* Button for desk or mobile */}
+            {/* /* Add or remove to favorite Button for desk or mobile */}
             {!matches ? (
               <S.FavLightIconButton onClick={handleAddClick}>
-                <IconFavOutline style={{ width: "30px", height: "30px" }} />
+                {favoriteIsExist ? (
+                  <IconFavFull style={{ width: "30px", height: "30px" }} />
+                ) : (
+                  <IconFavOutline style={{ width: "30px", height: "30px" }} />
+                )}
               </S.FavLightIconButton>
             ) : (
               <S.FavAddingButton variant="white" onClick={handleAddClick}>
                 <S.FavIconButton />
-                Add to favorites
+                {favoriteIsExist ? "Remove favorite" : "Add to favorites"}
               </S.FavAddingButton>
             )}
           </S.CurrentWeatherSection>
-          {/* 4 day temp */}
+          {/* ---- 4 day temp ---- */}
           <S.DailyTempsBarSection>
             <DailyTempsBar data={data} />
           </S.DailyTempsBarSection>
@@ -105,7 +111,7 @@ const Home = () => {
           {/* --- Weather Chart for mobile --- */}
           {chartIsOpen && !matches && (
             <Drawer onClick={handleToggleChart}>
-                <WeatherChart data={data} />
+              <WeatherChart data={data} />
             </Drawer>
           )}
         </>

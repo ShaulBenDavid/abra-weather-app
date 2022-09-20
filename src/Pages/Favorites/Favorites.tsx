@@ -46,7 +46,7 @@ const Favorites = () => {
       {/* ----- Show fav if you have ----  */}
       {data?.length ? (
         <>
-          {/* Search */}
+          {/* Search box */}
           <SearchAndTitleContainer>
             <h1>Favorites</h1>
             <SearchBox variant="favSearch" onChange={handleChange} />

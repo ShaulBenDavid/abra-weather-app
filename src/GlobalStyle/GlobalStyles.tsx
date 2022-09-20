@@ -7,6 +7,9 @@ export default createGlobalStyle`
     margin: 0;
     padding: 0;
   }
+  html {
+    height: -webkit-fill-available;
+  }
   body {
     margin: 0;
     padding: 0;
