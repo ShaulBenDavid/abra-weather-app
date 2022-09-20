@@ -1,3 +1,4 @@
+import { lightMode } from "../../../../GlobalStyle/theme";
 import { TEMP_SYMBOL } from "../../../../Utils/Constants";
 import useCelcius from "../../../../Utils/useCelsius";
 
@@ -97,6 +98,25 @@ const useApexChart = (maxTemps: number[], minTemps: number[]) => {
           },
         },
       },
+      responsive: [
+        {
+          breakpoint: 1207,
+          height: 190,
+          options: {
+            colors: [lightMode.gray],
+            chart: {
+              height: 190,
+            },
+            dataLabels: {
+              offsetY: -8,
+              style: {
+                fontSize: "14px",
+                colors: [lightMode.secondary],
+              },
+            },
+          }
+        }
+      ]
     },
   };
 

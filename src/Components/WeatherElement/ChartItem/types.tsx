@@ -3,3 +3,4 @@ export interface ChartItemProps {
 }
 
 export const CHART_ITEM_WIDTH: string = "146px";
+export const CHART_ITEM_WIDTH_MOBILE: string = "78px";

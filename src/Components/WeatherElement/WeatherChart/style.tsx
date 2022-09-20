@@ -27,6 +27,16 @@ export const StyledChartContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   position: relative;
+  /* Mobile */
+  ${getMediaQuery.lessThan("changePoint")`
+    height: 323px;
+    -webkit-backdrop-filter:none;
+    backdrop-filter: none;
+    background-color: inherit;
+    padding: 0;
+    margin-bottom: 32px;
+    z-index: 3;
+  `}
 `;
 
 // Chart item
@@ -41,4 +51,9 @@ export const StyledApexChart = styled(ReactApexChart)`
   svg:not(:root) {
     overflow: visible;
   }
-`
+  /* Mobile */
+  ${getMediaQuery.lessThan("changePoint")`
+    top: 98px;
+    z-index: 1;
+  `}
+`;

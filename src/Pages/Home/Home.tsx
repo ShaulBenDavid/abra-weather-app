@@ -103,11 +103,9 @@ const Home = () => {
             </S.WeatherChartSection>
           )}
           {/* --- Weather Chart for mobile --- */}
-          {chartIsOpen && (
-            <Drawer>
-              <S.WeatherChartSection>
+          {chartIsOpen && !matches && (
+            <Drawer onClick={handleToggleChart}>
                 <WeatherChart data={data} />
-              </S.WeatherChartSection>
             </Drawer>
           )}
         </>

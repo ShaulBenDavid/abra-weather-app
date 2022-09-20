@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
 
-import ReactApexChart from "react-apexcharts";
 import useApexChart from "./Services/useApexChart";
+import useMediaQuery from "../../../Hooks/useMediaQuery";
 // Components
 import ChartItem from "../ChartItem";
 // Types
-import { WeatherChartProps } from "./types";
+import { WeatherChartProps, CHART_DESKTOP_WIDTH, CHART_MOBILE_WIDTH } from "./types";
+import { USE_MEDIA_QUERY } from "../../../Utils/Constants";
 // Styles
 import { StyledChartTitle, StyledChartContainer, StyledApexChart } from "./style";
-import { CHART_ITEM_WIDTH } from "../ChartItem/types";
 
 const WeatherChart: React.FC<WeatherChartProps> = ({ data }) => {
   const [highTemps, setHighTemps] = useState<number[]>([]);
   const [lowTemps, setLowTemps] = useState<number[]>([]);
+  // Use media query 
+  const matches = useMediaQuery(USE_MEDIA_QUERY)
+
   // Chart service
   const { chartData } = useApexChart(highTemps, lowTemps);
   const { options, series } = chartData;
@@ -21,7 +24,6 @@ const WeatherChart: React.FC<WeatherChartProps> = ({ data }) => {
   useEffect(() => {
     let newHighTemp: number[] = [];
     let newLowTemp: number[] = [];
-
     data.forEach((item) => {
       newHighTemp.push(item.maxWeather);
       newLowTemp.push(item.minWeather);
@@ -44,8 +46,8 @@ const WeatherChart: React.FC<WeatherChartProps> = ({ data }) => {
           options={options}
           series={series}
           type="line"
-          height={350}
-          style={{ width: `calc(100% - 100px - ${CHART_ITEM_WIDTH})` }}
+          height={matches ? 350 : 190}
+          style={{ width: matches ? CHART_DESKTOP_WIDTH : CHART_MOBILE_WIDTH}}
         />
       </StyledChartContainer>
     </>
