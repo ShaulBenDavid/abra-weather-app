@@ -14,7 +14,7 @@ const showIn = keyframes`
 `;
 // Drawer background
 export const StyledDrawerBackground = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   height: 100vh;
   width: 100%;
@@ -25,6 +25,7 @@ export const StyledDrawerBackground = styled.div`
   background-color: rgba(140, 140, 140, 0.2);
   overflow: hidden;
   z-index: 4;
+
   /* Search Drawer */
   ${(props: DrawerStyledProps) =>
     props.useCase === "search" &&

@@ -99,6 +99,7 @@ const UseFavorites = () => {
     // Show alert only for 4 second
     const timer = setTimeout(() => {
       dispatch(setFavAlert(""));
+      return;
     }, 1000 * 4);
     // Removed
     if (addOrRemoveFavMutation.data?.status === 204) {

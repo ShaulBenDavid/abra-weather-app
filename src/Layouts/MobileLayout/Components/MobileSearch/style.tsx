@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import getMediaQuery from "../../../../Utils/GetMediaQuery";
 // Wrapper
 export const MobileSearchWrapper = styled.div`
   width: 100%;
@@ -11,6 +12,10 @@ export const MobileSearchContainer = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+
+  ${getMediaQuery.lessThan("mobile")`
+    width: 100%;
+  `}
 `;
 // Exit button
 export const ArrowButton = styled.button`

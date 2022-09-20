@@ -9,12 +9,19 @@ import {
   StyledDrawerBackground,
   StyledXButton,
 } from "./style";
+import { useEffect } from "react";
 
 const Drawer = ({ children, onClick, useCase, className }: DrawerProps) => {
   // Cancel the Wrapper onclick
   const handleClick = (event: React.SyntheticEvent): void => {
     event.stopPropagation();
   };
+
+  useEffect((): any => {
+    document.body.style.overflow = 'hidden';
+    return ()=> document.body.style.overflow = 'unset';
+ }, []);
+  
   return ReactDOM.createPortal(
     <StyledDrawerBackground onClick={onClick} useCase={useCase} >
       <StyledDrawerWrapper onClick={handleClick} useCase={useCase} className={className}>
