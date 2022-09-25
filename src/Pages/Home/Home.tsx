@@ -13,6 +13,7 @@ import CityImg from "../../Assets/city.svg";
 import CurrentWeather from "../../Components/WeatherElement/CurrentWeather";
 import DailyTempsBar from "../../Components/WeatherElement/DailyTempsBar";
 import HourlyWeather from "../../Components/WeatherElement/HourlyWeather";
+import Map from "../../Features/Map";
 import {
   IconFavOutline,
   IconMapDark,
@@ -27,6 +28,7 @@ import { useState } from "react";
 const Home = () => {
   // States
   const [chartIsOpen, setChartIsOpen] = useState<boolean>(false);
+  const [mapIsOpen, setMapIsOpen] = useState<boolean>(true);
 
   // Selector
   const searchValue = useAppSelector(selectSearchValue);
@@ -51,6 +53,10 @@ const Home = () => {
     setChartIsOpen(!chartIsOpen);
   };
 
+  // ---- Map ----
+  if (mapIsOpen) {
+    return <Map />;
+  }
   // -- Loading --
   if (isWeatherDataLoading)
     return (
