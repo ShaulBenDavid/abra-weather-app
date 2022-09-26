@@ -47,7 +47,7 @@ const Header = () => {
           {/* Switch to map button */}
           <S.SwitchMapButton variant="link">
             <IconMap />
-            <S.HoverEffect>Switch to map</S.HoverEffect>
+            <S.HoverEffect variant="header">Switch to map</S.HoverEffect>
             <S.NavLinkButtonP>Switch to map</S.NavLinkButtonP>
           </S.SwitchMapButton>
           {/* ---- Toggle Switch box ---- */}
@@ -69,7 +69,7 @@ const Header = () => {
           <S.HeaderLogoutButton variant="link" onClick={() => handleLogout()}>
             <IconLogout />
             <S.NavLinkButtonP>Log out</S.NavLinkButtonP>
-            <S.HoverEffect>Log out</S.HoverEffect>
+            <S.HoverEffect variant="header">Log out</S.HoverEffect>
           </S.HeaderLogoutButton>
         </S.LeftSection>
       </S.NavigationWrapper>

@@ -2,7 +2,6 @@ import { TEMP_SYMBOL } from "../../../Utils/Constants";
 import getDates from "../../../Utils/getDates";
 import useCelcius from "../../../Utils/useCelsius";
 
-import SunCloud from "../../../Assets/WeatherIcons/sun-cloud.svg";
 import useWeatherIcon from "../../../Utils/useWeatherIcon";
 // Types
 import { CurrentWeatherProps } from "./types";
@@ -36,7 +35,7 @@ const CurrentWeather: React.FC<CurrentWeatherProps> = ({ city, data }) => {
     <S.CurrentWeatherContainer>
       <S.PlaceTitle>{city}</S.PlaceTitle>
       <S.CurrentTempContainer>
-        <S.TempIcon src={weatherIcon} alt={SunCloud} />
+        <S.TempIcon src={weatherIcon} alt="weather icon" />
         <S.TempNumber>
           <span>
             {tempConverter(maxWeather)}

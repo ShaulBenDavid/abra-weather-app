@@ -3,7 +3,7 @@ import Button from "../../Components/Ui/Button";
 // Components
 import { IconLogo } from "../../Components/Ui/IconsComponent";
 import getMediaQuery from "../../Utils/GetMediaQuery";
-import WindowHover from "./Components/HoverWindow";
+import Marker from "../../Components/Ui/Marker";
 
 // -------- Sections --------
 export const RightSection = styled.div`
@@ -77,7 +77,7 @@ export const HeaderButton = styled(Button)`
 `
 
 // Button hover effect
-export const HoverEffect = styled(WindowHover)`
+export const HoverEffect = styled(Marker)`
   opacity: 0;
 `;
 
