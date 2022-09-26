@@ -1,40 +1,36 @@
 import { memo } from "react";
-import { GoogleMap, useJsApiLoader, Marker, OverlayView } from "@react-google-maps/api";
+import { GoogleMap, useJsApiLoader, OverlayView } from "@react-google-maps/api";
 
+import GetGeoLocation from "../../Services/Weather/GetGeoLocation";
 // Types
 import { MapProps } from "./types";
 import MapMarker from "./Components/MapMarker";
 // Styles
+import { containerStyle } from "./style";
 
-const containerStyle = {
-  width: "100%",
-  height: "100%",
-};
-
-const center = {
-  lat: 40.730610,
-  lng: -73.935242,
-};
-
-
-const Map: React.FC<MapProps> = () => {
+const Map: React.FC<MapProps> = ({ data, placeKey }) => {
+  // Fetching map
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyAX_C5c9R2FUJQJUyCZ0TLm35RX7jMXN2E",
   });
 
+  const geoLocation: any = GetGeoLocation(placeKey);
 
-  return isLoaded ? (
+  return isLoaded && geoLocation ? (
     <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={center}
-          zoom={10}
+      mapContainerStyle={containerStyle}
+      center={geoLocation.data}
+      zoom={10}
     >
       {/* Child components, such as markers, info windows, etc. */}
-      <Marker position={center} visible={true}/>
-      <OverlayView mapPaneName="markerLayer" position={center}>
+      <OverlayView mapPaneName="markerLayer" position={geoLocation.data}>
         {/* Marker */}
-        <MapMarker />
+        <MapMarker
+          iconNum={data.weatherDayIcon}
+          maxTemp={data.maxWeather}
+          minTemp={data.minWeather}
+        />
       </OverlayView>
     </GoogleMap>
   ) : (

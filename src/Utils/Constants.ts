@@ -11,6 +11,7 @@ export const VERIFY_AUTH_END_POINT_URL = "/auth/verify-token/";
 export const AUTOCOMPLETE_END_POINT_URL = "locations/v1/cities/autocomplete";
 export const HOURLY_WEATHER_END_POINT_URL = "/forecasts/v1/hourly/12hour/";
 export const DAILY_WEATHER_END_POINT_URL = "/forecasts/v1/daily/5day/";
+export const GEO_LOCATION_END_POINT_URL = "/locations/v1/";
 
 // -------- Screen Size ---------
 export const DESKTOP_SIZE = "1920px";

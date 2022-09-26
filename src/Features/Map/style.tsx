@@ -1,1 +1,5 @@
-import styled from "styled-components";
+export const containerStyle = {
+    width: "100%",
+    height: "100%",
+  };
+  

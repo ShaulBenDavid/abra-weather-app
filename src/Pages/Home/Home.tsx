@@ -54,8 +54,8 @@ const Home = () => {
   };
 
   // ---- Map ----
-  if (mapIsOpen) {
-    return <Map />;
+  if (mapIsOpen && data && currentChoice) {
+    return <Map data={data[0]} placeKey={currentChoice.placeKey} />;
   }
   // -- Loading --
   if (isWeatherDataLoading)

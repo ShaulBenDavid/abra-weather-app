@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 // Marker
-export const StyledMapMarker = styled.div`
+export const StyledMapMarker = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,7 +10,7 @@ export const StyledMapMarker = styled.div`
 `;
 
 // Marker icon
-export const StyledIconWrapper = styled.div`
+export const StyledIconWrapper = styled.span`
   width: 78px;
   height: 78px;
   border-radius: 5px;
