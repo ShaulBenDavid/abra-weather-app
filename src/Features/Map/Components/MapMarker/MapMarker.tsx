@@ -6,7 +6,7 @@ import Marker from "../../../../Components/Ui/Marker";
 import { TEMP_SYMBOL } from "../../../../Utils/Constants";
 import { MapMarkerProps } from "./types";
 // Styles
-import { StyledMapMarker, StyledMarkerIcon, StyledIconWrapper } from "./style";
+import { StyledMapMarker, StyledMarkerIcon, StyledIconWrapper, StyledTempNumber } from "./style";
 
 const MapMarker: React.FC<MapMarkerProps> = ({ iconNum, maxTemp, minTemp }) => {
   // Weather icon
@@ -25,11 +25,11 @@ const MapMarker: React.FC<MapMarkerProps> = ({ iconNum, maxTemp, minTemp }) => {
             style={{ width: "30px" }}
           />
         </StyledIconWrapper>
-        <span>
+        <StyledTempNumber>
           {`${tempConverter(minTemp)}${TEMP_SYMBOL} - ${tempConverter(
             maxTemp
           )}${TEMP_SYMBOL}`}
-        </span>
+        </StyledTempNumber>
       </StyledMapMarker>
     </Marker>
   );

@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import getMediaQuery from "../../../Utils/GetMediaQuery";
 import { MarkerProps } from "./types";
 // Wrapper
 export const StyledMarkerWrapper = styled.span`
@@ -51,9 +52,14 @@ export const StyledWindow = styled.div`
   /* Map */
   ${(props: MarkerProps) =>
     props.variant === "map" &&
-    css`
+  css`
+      box-shadow: inset -6px 4px 4px 0 rgba(255, 255, 255, 0.1), inset 2px -3px 6px 0 rgba(0, 0, 0, 0.1), 0 2px 60px 0 rgba(0, 0, 0, 0.3);
       padding: 8px;
       max-height: 94px;
+      ${getMediaQuery.lessThan("changePoint")`
+        padding: 6;
+        max-height: 83px;
+      `}
       ${StyledWindowArrow} {
         top: -15%;
       }
