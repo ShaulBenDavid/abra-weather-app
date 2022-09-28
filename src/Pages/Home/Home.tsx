@@ -6,8 +6,11 @@ import {
 import useMediaQuery from "../../Hooks/useMediaQuery";
 import { useState } from "react";
 
-import { selectMapIsOpen, toggleMapIsOpen } from "../../Redux/ToggleSwitch/ToggleSwitch.redux";
-import { HOME_EMPTY_DETAILS, USE_MEDIA_QUERY } from "../../Utils/Constants";
+import {
+  selectMapIsOpen,
+  toggleMapIsOpen,
+} from "../../Redux/ToggleSwitch/ToggleSwitch.redux";
+import {  USE_MEDIA_QUERY } from "../../Utils/Constants";
 import GetWeather from "../../Services/Weather/GetWeather";
 import ChangeFavorites from "../../Services/Favorites/ChangeFavorites";
 // Conponents
@@ -17,6 +20,7 @@ import DailyTempsBar from "../../Components/WeatherElement/DailyTempsBar";
 import HourlyWeather from "../../Components/WeatherElement/HourlyWeather";
 import Map from "../../Features/Map";
 import Drawer from "../../Components/Ui/Drawer";
+import EmptyHome from "./Components/EmptyHome";
 import {
   IconFavOutline,
   IconMapDark,
@@ -55,8 +59,8 @@ const Home = () => {
     setChartIsOpen(!chartIsOpen);
   };
 
-    // Handle toggle Map
-    const handleToggleMap = () => dispatch(toggleMapIsOpen());
+  // Handle toggle Map
+  const handleToggleMap = () => dispatch(toggleMapIsOpen());
 
   // ---- Map ----
   if (mapIsOpen && data && currentChoice) {
@@ -136,7 +140,8 @@ const Home = () => {
               {`We couldn’t find any city named "${searchValue}", please try again.`}
             </S.HomeFailedSearch>
           ) : (
-            <S.EmptyHomePage {...HOME_EMPTY_DETAILS} />
+            // Empty home for mobile and desk
+            <EmptyHome />
           )}
         </>
       )}

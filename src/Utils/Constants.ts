@@ -1,5 +1,7 @@
 import WeatherMapSvg from '../Assets/map-weather.svg';
 import StarsSvg from '../Assets/stars.svg';
+import LogoSvg from '../Assets/Icons/appLogo.svg';
+
 // ------ Base api url -------
 export const BASE_URL = "https://weather-abra.herokuapp.com/api";
 export const WEATHER_BASE_URL = "http://dataservice.accuweather.com";
@@ -26,6 +28,12 @@ export const HOME_EMPTY_DETAILS = {
     src: WeatherMapSvg,
     title: "Set up location",
     p: "To identify your location please allow WeatherApp to know your location."
+}
+// Empty home details - monile
+export const HOME_EMPTY_DETAILS_MOBILE = {
+    src: LogoSvg,
+    title: "Set up location",
+    p: "We probably could not find your current location. Please turn on the location by phone or select a city in the search button"
 }
 
 // Empty favorites details

@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import getMediaQuery from "../../../Utils/GetMediaQuery";
-
 export const EmptyPageContainer = styled.section`
   width: 296px;
   height: 266px;

@@ -33,15 +33,6 @@ export const HomeFailedSearch = styled(EmptyPage)`
   `}
 `;
 
-// Empty home page
-export const EmptyHomePage = styled(EmptyPage)`
-  margin-top: 200px;
-  /* Less than 1920px */
-  ${getMediaQuery.between("changePoint", "desktop")`
-    margin-top: 52px;
-  `}
-`;
-
 // Home loading spinner
 export const HomeLoadingWrapper = styled.div`
   width: 100%;
