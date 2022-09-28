@@ -1,10 +1,12 @@
-import { useAppSelector } from "../../Redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import {
   selectLoadingWeather,
   selectSearchValue,
 } from "../../Redux/Search/Search";
 import useMediaQuery from "../../Hooks/useMediaQuery";
+import { useState } from "react";
 
+import { selectMapIsOpen, toggleMapIsOpen } from "../../Redux/ToggleSwitch/ToggleSwitch.redux";
 import { HOME_EMPTY_DETAILS, USE_MEDIA_QUERY } from "../../Utils/Constants";
 import GetWeather from "../../Services/Weather/GetWeather";
 import ChangeFavorites from "../../Services/Favorites/ChangeFavorites";
@@ -14,6 +16,7 @@ import CurrentWeather from "../../Components/WeatherElement/CurrentWeather";
 import DailyTempsBar from "../../Components/WeatherElement/DailyTempsBar";
 import HourlyWeather from "../../Components/WeatherElement/HourlyWeather";
 import Map from "../../Features/Map";
+import Drawer from "../../Components/Ui/Drawer";
 import {
   IconFavOutline,
   IconMapDark,
@@ -22,17 +25,16 @@ import {
 import WeatherChart from "../../Components/WeatherElement/WeatherChart";
 // Styles
 import * as S from "./style";
-import Drawer from "../../Components/Ui/Drawer";
-import { useState } from "react";
 
 const Home = () => {
   // States
   const [chartIsOpen, setChartIsOpen] = useState<boolean>(false);
-  const [mapIsOpen, setMapIsOpen] = useState<boolean>(true);
 
   // Selector
   const searchValue = useAppSelector(selectSearchValue);
   const isWeatherDataLoading = useAppSelector(selectLoadingWeather);
+  const mapIsOpen = useAppSelector(selectMapIsOpen);
+  const dispatch = useAppDispatch();
   // --- Weather data ---
   const { data, currentChoice, dataByHour } = GetWeather();
   // Favorites handler
@@ -52,6 +54,9 @@ const Home = () => {
   const handleToggleChart = () => {
     setChartIsOpen(!chartIsOpen);
   };
+
+    // Handle toggle Map
+    const handleToggleMap = () => dispatch(toggleMapIsOpen());
 
   // ---- Map ----
   if (mapIsOpen && data && currentChoice) {
@@ -103,7 +108,7 @@ const Home = () => {
           </S.HourlyWeatherSection>
           {/* --- Map toggle button for mobile --- */}
           {!matches && (
-            <S.MapToggleButton variant="white" onClick={() => {}}>
+            <S.MapToggleButton variant="white" onClick={handleToggleMap}>
               <IconMapDark />
               Map
             </S.MapToggleButton>

@@ -8,8 +8,9 @@ import LoadingSpinner from "../../Components/Ui/LoadingSpinner";
 // Wrapper
 export const HomeWrapper = styled.div`
   overflow-y: auto;
-  height: 100vh;
+  height: calc(100vh - 94px);
   height: -webkit-fill-available;
+  height: -moz-available;
   padding: 0 370px;
   z-index: 1;
   /* Tablet */

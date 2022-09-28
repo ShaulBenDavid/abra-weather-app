@@ -16,15 +16,19 @@ const Drawer = ({ children, onClick, useCase, className }: DrawerProps) => {
   const handleClick = (event: React.SyntheticEvent): void => {
     event.stopPropagation();
   };
-
+  // Cancel scroling when the drawer is open
   useEffect((): any => {
-    document.body.style.overflow = 'hidden';
-    return ()=> document.body.style.overflow = 'unset';
- }, []);
-  
+    document.body.style.overflow = "hidden";
+    return () => (document.body.style.overflow = "unset");
+  }, []);
+
   return ReactDOM.createPortal(
-    <StyledDrawerBackground onClick={onClick} useCase={useCase} >
-      <StyledDrawerWrapper onClick={handleClick} useCase={useCase} className={className}>
+    <StyledDrawerBackground onClick={onClick} useCase={useCase}>
+      <StyledDrawerWrapper
+        onClick={handleClick}
+        useCase={useCase}
+        className={className}
+      >
         {children}
         <StyledXButton useCase={useCase} onClick={onClick}>
           <XImage />

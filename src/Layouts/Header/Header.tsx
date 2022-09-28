@@ -1,5 +1,11 @@
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
-import { selectTheme, toggleMode, selectTempMode, toggleTempMode } from "../../Redux/ToggleSwitch/ToggleSwitch.redux";
+import {
+  selectTheme,
+  toggleMode,
+  selectTempMode,
+  toggleTempMode,
+  toggleMapIsOpen,
+} from "../../Redux/ToggleSwitch/ToggleSwitch.redux";
 import { useLogoutHandler } from "../../Services/LogoutHandler";
 
 // Components
@@ -25,6 +31,8 @@ const Header = () => {
   const handleToggleTheme = () => dispatch(toggleMode());
   // Handle toggle temp mode
   const handleToggleTempMode = () => dispatch(toggleTempMode());
+  // Handle toggle Map
+  const handleToggleMap = () => dispatch(toggleMapIsOpen());
 
   return (
     <>
@@ -45,7 +53,7 @@ const Header = () => {
         {/* ------ Right section -------- */}
         <S.LeftSection>
           {/* Switch to map button */}
-          <S.SwitchMapButton variant="link">
+          <S.SwitchMapButton variant="link" onClick={handleToggleMap}>
             <IconMap />
             <S.HoverEffect variant="header">Switch to map</S.HoverEffect>
             <S.NavLinkButtonP>Switch to map</S.NavLinkButtonP>

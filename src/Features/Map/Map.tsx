@@ -2,6 +2,8 @@ import { memo } from "react";
 import { GoogleMap, useJsApiLoader, OverlayView } from "@react-google-maps/api";
 
 import GetGeoLocation from "../../Services/Weather/GetGeoLocation";
+import { toggleMapIsOpen } from "../../Redux/ToggleSwitch/ToggleSwitch.redux";
+import { useAppDispatch } from "../../Redux/hooks";
 import useMediaQuery from "../../Hooks/useMediaQuery";
 // Components
 import MapMarker from "./Components/MapMarker";
@@ -13,6 +15,9 @@ import { USE_MEDIA_QUERY } from "../../Utils/Constants";
 import { ContainerStyle, StyledMapWrapper, StyledlayoutButton } from "./style";
 
 const Map: React.FC<MapProps> = ({ data, placeKey }) => {
+  const { weatherDayIcon, maxWeather, minWeather } = data;
+
+  const dispatch = useAppDispatch();
   // Media query
   const matches = useMediaQuery(USE_MEDIA_QUERY);
   // Fetching map
@@ -23,6 +28,9 @@ const Map: React.FC<MapProps> = ({ data, placeKey }) => {
 
   // Get lat and lng
   const geoLocation = GetGeoLocation(placeKey);
+
+  // Handle toggle Map
+  const handleToggleMap = () => dispatch(toggleMapIsOpen());
 
   return isLoaded && geoLocation ? (
     <StyledMapWrapper>
@@ -35,15 +43,15 @@ const Map: React.FC<MapProps> = ({ data, placeKey }) => {
         <OverlayView mapPaneName="markerLayer" position={geoLocation.data}>
           {/* --- Marker --- */}
           <MapMarker
-            iconNum={data.weatherDayIcon}
-            maxTemp={data.maxWeather}
-            minTemp={data.minWeather}
+            iconNum={weatherDayIcon}
+            maxTemp={maxWeather}
+            minTemp={minWeather}
           />
         </OverlayView>
       </GoogleMap>
       {/* -- Toggle map button for mobile use only -- */}
       {!matches && (
-        <StyledlayoutButton variant="white">
+        <StyledlayoutButton variant="white" onClick={handleToggleMap}>
           <IconLayout /> Layout
         </StyledlayoutButton>
       )}

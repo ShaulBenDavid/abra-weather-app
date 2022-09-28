@@ -5,11 +5,13 @@ import { RootState } from "../store";
 type ThemeModeProps = {
   readonly theme: string;
   readonly tempMode: boolean;
+  readonly mapIsOpen: boolean;
 };
 // State
 const initialState: ThemeModeProps = {
   theme: "light",
   tempMode: true,
+  mapIsOpen: false,
 };
 
 export const toggleSwitchsSlice = createSlice({
@@ -24,13 +26,17 @@ export const toggleSwitchsSlice = createSlice({
     toggleTempMode: (state) => {
       state.tempMode = !state.tempMode;
     },
+    toggleMapIsOpen: (state) => {
+      state.mapIsOpen = !state.mapIsOpen;
+    },
   },
 });
 
-export const { toggleMode, toggleTempMode } = toggleSwitchsSlice.actions;
+export const { toggleMode, toggleTempMode, toggleMapIsOpen } = toggleSwitchsSlice.actions;
 
 // Selector
 export const selectTheme = (state: RootState) => state.toggleSwitchs.theme;
+export const selectMapIsOpen = (state: RootState) => state.toggleSwitchs.mapIsOpen;
 export const selectTempMode = (state: RootState) =>
   state.toggleSwitchs.tempMode;
 
