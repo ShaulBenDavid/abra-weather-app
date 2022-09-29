@@ -4,11 +4,9 @@ import getMediaQuery from "../../../../Utils/GetMediaQuery";
 import EmptyPage from "../../../../Components/Ui/EmptyPage";
 import Button from "../../../../Components/Ui/Button";
 
-
-// Empty home page
-export const StyledEmptyHomePage = styled(EmptyPage)`
+// Empty home page wrapper
+export const EmptyHomePageWrapper = styled.div`
   margin-top: 200px;
-  margin-bottom: 40px;
   /* Less than 1920px */
   ${getMediaQuery.between("changePoint", "desktop")`
     margin-top: 52px;
@@ -18,22 +16,24 @@ export const StyledEmptyHomePage = styled(EmptyPage)`
     margin-top: 63px;
   `}
 `;
+// Empty home page
+export const StyledEmptyHomePage = styled(EmptyPage)`
+  margin-bottom: 40px;
+`;
 
 // Empty home Buttons
 // Wrapper
 export const StyledButtonsWrapper = styled.div`
-    width: 264px;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    gap: 16px;
-`
+  width: 264px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 16px;
+`;
 // --- Geo location ---
 export const StyledGeoLocationButton = styled(Button)`
-    color: ${({ theme }) => theme.black};
-    font-weight: bold;
-`
+  color: ${({ theme }) => theme.black};
+  font-weight: bold;
+`;
 // --- Search button ---
-export const StyledSearchButton = styled(Button)`
-    
-`
+export const StyledSearchButton = styled(Button)``;

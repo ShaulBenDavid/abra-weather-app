@@ -1,4 +1,7 @@
-import { GEO_LOCATION_END_POINT_URL } from "../../Utils/Constants";
+import {
+  COORDS_SEARCH_END_POINT_URL,
+  GEO_LOCATION_END_POINT_URL,
+} from "../../Utils/Constants";
 import { weatherFetchApi } from "../Api/WeatherApi";
 // Types
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
@@ -15,10 +18,11 @@ type ParseGeoLocationFetchProps = {
     Longitude: number;
   };
 };
+
 // ------- Get geo location --------
 const GetGeoLocation = (placeKey: number) => {
   // Parse data
-  const parseData = (
+  const parseCoordsData = (
     res: ParseGeoLocationFetchProps
   ): GeoLocationFetchProps => {
     return {
@@ -27,24 +31,26 @@ const GetGeoLocation = (placeKey: number) => {
     };
   };
 
-  // ----- Query fetching Geo location -----
-  const { data }: UseQueryResult<GeoLocationFetchProps, Error> =
-    useQuery<GeoLocationFetchProps, Error>(
-      ["GeoLocation", placeKey],
-      async () => {
-        const res = await weatherFetchApi(
-          `${GEO_LOCATION_END_POINT_URL}${placeKey}`
-        );
-        return parseData(res?.data);
-      },
-      {
-        enabled: !!placeKey,
-        cacheTime: Infinity,
-        staleTime: Infinity,
-      }
-    );
+  // ----- Query fetching coords by the current choice -----
+  const getCoords: UseQueryResult<GeoLocationFetchProps, Error> = useQuery<
+    GeoLocationFetchProps,
+    Error
+  >(
+    ["GeoLocation", placeKey],
+    async () => {
+      const res = await weatherFetchApi(
+        `${GEO_LOCATION_END_POINT_URL}${placeKey}`
+      );
+      return parseCoordsData(res?.data);
+    },
+    {
+      enabled: !!placeKey,
+      cacheTime: Infinity,
+      staleTime: Infinity,
+    }
+  );
 
-  return { data};
+  return { coordsData: getCoords.data };
 };
 
 export default GetGeoLocation;

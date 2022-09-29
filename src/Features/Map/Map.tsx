@@ -27,20 +27,20 @@ const Map: React.FC<MapProps> = ({ data, placeKey }) => {
   });
 
   // Get lat and lng
-  const geoLocation = GetGeoLocation(placeKey);
+  const { coordsData } = GetGeoLocation(placeKey);
 
   // Handle toggle Map
   const handleToggleMap = () => dispatch(toggleMapIsOpen());
 
-  return isLoaded && geoLocation ? (
+  return isLoaded && coordsData ? (
     <StyledMapWrapper>
       <GoogleMap
         mapContainerStyle={ContainerStyle}
-        center={geoLocation.data}
+        center={coordsData}
         zoom={10}
       >
         {/* Child components, such as markers, info windows, etc. */}
-        <OverlayView mapPaneName="markerLayer" position={geoLocation.data}>
+        <OverlayView mapPaneName="markerLayer" position={coordsData}>
           {/* --- Marker --- */}
           <MapMarker
             iconNum={weatherDayIcon}
