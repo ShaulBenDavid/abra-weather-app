@@ -2,10 +2,20 @@ import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../Redux/hooks";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
 
+import { FirebasePopupProps, signInWithGooglePopup } from "./Firebase";
 import { AbraPostApi } from "./Api/AbraApi";
-import { logOut, selectUser, setUser, UserProps } from "../Redux/User/User.redux";
-import { LOGIN_END_POINT_URL, VERIFY_AUTH_END_POINT_URL } from "../Utils/Constants";
+import {
+  logOut,
+  selectUser,
+  setUser,
+  UserProps,
+} from "../Redux/User/User.redux";
 // Types
+import {
+  GOOGLE_LOGIN_END_POINT_URL,
+  LOGIN_END_POINT_URL,
+  VERIFY_AUTH_END_POINT_URL,
+} from "../Utils/Constants";
 import { LoginProps } from "../Pages/Login/types";
 import { PayloadAuthCheckProps } from "../App";
 
@@ -15,21 +25,39 @@ export const useAuthentication = () => {
   const [authError, setAuthError] = useState<string | undefined>(undefined);
   const currentUser = useAppSelector(selectUser);
 
+  // ---=== Mutations ===---
+  // ======================================================
   // ----- Login Mutation -----
-  const loginMutation: UseMutationResult<UserProps, Error, LoginProps> = useMutation<
-    UserProps,
+  const loginMutation: UseMutationResult<UserProps, Error, LoginProps> =
+    useMutation<UserProps, Error, LoginProps>({
+      mutationFn: (payload: LoginProps): Promise<UserProps> => {
+        setAuthError(undefined);
+        return AbraPostApi(LOGIN_END_POINT_URL, payload);
+      },
+      // Success
+      onSuccess: (response) => {
+        dispatch(setUser(response));
+      },
+      // Failed
+      onError: (err: any) => {
+        let newErr: string = "";
+        let resError = err.response.data;
+        for (let idx in resError) {
+          newErr += resError[idx] + " ";
+        }
+        setAuthError(newErr);
+      },
+    });
+  // ======================================================
+  // --- Login with google ---
+  const googleLoginMutation: UseMutationResult<
+    LoginProps,
     Error,
-    LoginProps
-  >({
-    mutationFn: (payload: LoginProps): Promise<UserProps> => {
-      setAuthError(undefined);
-      return AbraPostApi(LOGIN_END_POINT_URL ,payload);
-    },
-    // Success
-    onSuccess: (response) => {
-      console.log(response)
-      dispatch(setUser(response));
-    },
+    FirebasePopupProps
+  > = useMutation<LoginProps, Error, FirebasePopupProps>({
+    mutationFn: (payload: FirebasePopupProps): Promise<LoginProps> =>
+      AbraPostApi(GOOGLE_LOGIN_END_POINT_URL, payload),
+    onSuccess: (response) => dispatch(setUser(response)),
     // Failed
     onError: (err: any) => {
       let newErr: string = "";
@@ -38,35 +66,50 @@ export const useAuthentication = () => {
         newErr += resError[idx] + " ";
       }
       setAuthError(newErr);
-    }
+    },
   });
+  // ======================================================
+  // --------- Check Auth Mutation ---------
+  const checkAuthMutation: UseMutationResult<
+    string,
+    Error,
+    PayloadAuthCheckProps
+  > = useMutation<string, Error, PayloadAuthCheckProps>({
+    mutationFn: (payload: PayloadAuthCheckProps) => {
+      return AbraPostApi(VERIFY_AUTH_END_POINT_URL, payload);
+    },
+    onError: () => {
+      dispatch(logOut());
+    },
+  });
+
+  // ---=== Actions ===---
 
   // ---------- New Login --------------
   const fetchLogin = async (payload: LoginProps) => {
     loginMutation.mutate(payload);
   };
 
-  // ======================================================
-
-   // --------- Check Auth Mutation ---------
-   const checkAuthMutation: UseMutationResult<string, Error, PayloadAuthCheckProps> =
-   useMutation<string, Error, PayloadAuthCheckProps>({
-     mutationFn: (payload: PayloadAuthCheckProps) =>{
-      return AbraPostApi(VERIFY_AUTH_END_POINT_URL, payload)
-     },
-     onError: () => {
-      dispatch(logOut());
-     }
-   },
-   );
+  // --- Login with google popup ---
+  const loginWithGoogle = async () => {
+    const payload = await signInWithGooglePopup();
+    payload?.code && googleLoginMutation.mutate(payload);
+  };
 
   // ----- Check if user auth -----
   const checkUserAuth = async () => {
     const payload = {
       token: currentUser?.access_token,
     };
-    currentUser && checkAuthMutation.mutate(payload)
+    currentUser && checkAuthMutation.mutate(payload);
   };
 
-  return { fetchLogin, authError, checkUserAuth, loginMutation } as const;
+  return {
+    fetchLogin,
+    authError,
+    checkUserAuth,
+    loginMutation,
+    loginWithGoogle,
+    googleLoginMutation,
+  } as const;
 };

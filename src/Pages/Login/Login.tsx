@@ -4,6 +4,7 @@ import { selectUser } from "../../Redux/User/User.redux";
 import { useAppSelector } from "../../Redux/hooks";
 import { useNavigate } from "react-router-dom";
 import { useAuthentication } from "../../Services/Authentication";
+import { signInWithFacebookPopup } from "../../Services/Firebase";
 // Components
 import Button from "../../Components/Ui/Button";
 import FromInput from "../../Components/Ui/FromInput";
@@ -30,7 +31,8 @@ const Login = () => {
   const [formField, setFormField] = useState<FormFieldProps>(INPUT_DEFAULT);
   const [formValid, setFormValid] = useState<boolean>(true);
   const { username, password } = formField;
-  const { fetchLogin, authError, loginMutation } = useAuthentication();
+  // Services
+  const { fetchLogin, authError, loginMutation, loginWithGoogle } = useAuthentication();
   // Block contected user to get in to login page
   const navigate = useNavigate();
   useEffect(() => {
@@ -60,19 +62,21 @@ const Login = () => {
     }
   }, [username, password]);
 
-
   // Handle submit
   const handleSubmit: FormEventHandler<HTMLFormElement> = (
     event: React.SyntheticEvent
   ) => {
     event.preventDefault();
-
     const payload = {
       email: username,
       password,
     };
     fetchLogin(payload);
   };
+
+  // ----- login with google or facebook -----
+  const handleGoogleLogin = () => loginWithGoogle();
+  
 
   return (
     <S.LoginWrapper>
@@ -127,11 +131,11 @@ const Login = () => {
 
         {/* Logins buttons wrapper */}
         <S.LoginButtonWrapper>
-          <Button variant="link" type="submit">
+          <Button variant="link" type="submit" onClick={signInWithFacebookPopup}>
             <IconFacebookLogo />
             Log in with Facebook
           </Button>
-          <Button variant="link" type="submit">
+          <Button variant="link" type="submit" onClick={handleGoogleLogin}>
             <IconGoogleLogo />
             Log in with Google
           </Button>

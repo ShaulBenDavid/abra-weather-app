@@ -9,6 +9,7 @@ export const WEATHER_BASE_URL = "http://dataservice.accuweather.com";
 // ------ End point url ------
 export const FAVORITES_END_POINT_URL = "/favorites/";
 export const LOGIN_END_POINT_URL = "/auth/login/";
+export const GOOGLE_LOGIN_END_POINT_URL = "/auth/login/google/";
 export const VERIFY_AUTH_END_POINT_URL = "/auth/verify-token/";
 
 export const AUTOCOMPLETE_END_POINT_URL = "locations/v1/cities/autocomplete";
