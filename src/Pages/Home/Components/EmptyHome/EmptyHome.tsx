@@ -1,6 +1,6 @@
 // Types
-import { useState } from "react";
 import useMediaQuery from "../../../../Hooks/useMediaQuery";
+import useSearchByCoords from "../../../../Services/Weather/UseSearchByCoords";
 import {
   HOME_EMPTY_DETAILS,
   HOME_EMPTY_DETAILS_MOBILE,
@@ -12,11 +12,11 @@ import {
   StyledButtonsWrapper,
   StyledGeoLocationButton,
   StyledSearchButton,
-  EmptyHomePageWrapper
+  EmptyHomePageWrapper,
+  StyledSpinner
 } from "./style";
 
 const EmptyHome = () => {
-  const [coords, setCoords] = useState({});
   // Matches
   const matches = useMediaQuery(USE_MEDIA_QUERY);
   const getDetails = () => {
@@ -24,23 +24,12 @@ const EmptyHome = () => {
     return { ...HOME_EMPTY_DETAILS_MOBILE };
   };
 
-  // ---- Get geo location ----
-  const getGeoLocation = () =>  {
-   if (navigator.geolocation) {
-     console.log(1)
-     navigator.geolocation.getCurrentPosition(showPosition);
-   }
-  }
-  const showPosition = (position: GeolocationPosition) => {
-    const newPosition = position.coords.latitude + "," + position.coords.longitude;
-    setCoords(newPosition);
-    console.log(2)
-  }
-  console.log(coords)
+  // Search service by coords
+  const { handleSearchByCoords, loading } = useSearchByCoords();
 
   // Handle location click
   const handleLocationClick = () => {
-    getGeoLocation();
+    handleSearchByCoords();
   };
 
   return (
@@ -51,7 +40,7 @@ const EmptyHome = () => {
       {!matches && (
         <StyledButtonsWrapper>
           <StyledGeoLocationButton variant="white" onClick={handleLocationClick}>
-            Open location services
+            {loading ? <StyledSpinner /> :"Open location services"}
           </StyledGeoLocationButton>
           <StyledSearchButton variant="inverted">
             Search city

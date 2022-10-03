@@ -3,6 +3,7 @@ import getMediaQuery from "../../../../Utils/GetMediaQuery";
 // Components
 import EmptyPage from "../../../../Components/Ui/EmptyPage";
 import Button from "../../../../Components/Ui/Button";
+import LoadingSpinner from "../../../../Components/Ui/LoadingSpinner";
 
 // Empty home page wrapper
 export const EmptyHomePageWrapper = styled.div`
@@ -37,3 +38,12 @@ export const StyledGeoLocationButton = styled(Button)`
 `;
 // --- Search button ---
 export const StyledSearchButton = styled(Button)``;
+
+// Loading spinner
+export const StyledSpinner = styled(LoadingSpinner)`
+  &::after {
+    border-radius: 50%;
+    border: 6px solid #222;
+    border-color: #222 transparent #222 transparent;
+  }
+`;
