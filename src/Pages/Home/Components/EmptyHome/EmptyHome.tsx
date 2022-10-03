@@ -1,5 +1,7 @@
 // Types
 import useMediaQuery from "../../../../Hooks/useMediaQuery";
+import { useAppDispatch } from "../../../../Redux/hooks";
+import { setIsMobileSearchOpen } from "../../../../Redux/Search/Search";
 import useSearchByCoords from "../../../../Services/Weather/UseSearchByCoords";
 import {
   HOME_EMPTY_DETAILS,
@@ -13,10 +15,11 @@ import {
   StyledGeoLocationButton,
   StyledSearchButton,
   EmptyHomePageWrapper,
-  StyledSpinner
+  StyledSpinner,
 } from "./style";
 
 const EmptyHome = () => {
+  const dispatch = useAppDispatch();
   // Matches
   const matches = useMediaQuery(USE_MEDIA_QUERY);
   const getDetails = () => {
@@ -26,6 +29,9 @@ const EmptyHome = () => {
 
   // Search service by coords
   const { handleSearchByCoords, loading } = useSearchByCoords();
+
+  // handle mobile search
+  const handleMobileSearch = () => dispatch(setIsMobileSearchOpen());
 
   // Handle location click
   const handleLocationClick = () => {
@@ -39,10 +45,13 @@ const EmptyHome = () => {
       {/* Buttons only for mobile */}
       {!matches && (
         <StyledButtonsWrapper>
-          <StyledGeoLocationButton variant="white" onClick={handleLocationClick}>
-            {loading ? <StyledSpinner /> :"Open location services"}
+          <StyledGeoLocationButton
+            variant="white"
+            onClick={handleLocationClick}
+          >
+            {loading ? <StyledSpinner /> : "Open location services"}
           </StyledGeoLocationButton>
-          <StyledSearchButton variant="inverted">
+          <StyledSearchButton variant="inverted" onClick={handleMobileSearch}>
             Search city
           </StyledSearchButton>
         </StyledButtonsWrapper>
