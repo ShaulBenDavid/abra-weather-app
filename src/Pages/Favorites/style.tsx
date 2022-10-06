@@ -6,8 +6,11 @@ import getMediaQuery from "../../Utils/GetMediaQuery";
 // Page wrapper
 export const StyledFavoritesWrapper = styled.div`
   overflow-y: auto;
-  min-height: 100vh;
-  height: -webkit-fill-available;
+  height: 100vh;
+  min-height: -webkit-fill-available;
+  max-height: -webkit-fill-available;
+  min-height: -moz-available;
+  max-height: -moz-available;
   padding: 0 370px;
   overflow-x: hidden;
   overflow-y: auto;

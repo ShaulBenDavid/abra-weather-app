@@ -19,6 +19,16 @@ import {
 import { LoginProps } from "../Pages/Login/types";
 import { PayloadAuthCheckProps } from "../App";
 
+// Parse error
+const parseError = (err: any): string => {
+  let newErr: string = "";
+  let resError = err.response.data;
+  for (let idx in resError) {
+    newErr += resError[idx] + " ";
+  }
+  return newErr;
+};
+
 // Login hook
 export const useAuthentication = () => {
   const dispatch = useAppDispatch();
@@ -40,11 +50,7 @@ export const useAuthentication = () => {
       },
       // Failed
       onError: (err: any) => {
-        let newErr: string = "";
-        let resError = err.response.data;
-        for (let idx in resError) {
-          newErr += resError[idx] + " ";
-        }
+        const newErr = parseError(err);
         setAuthError(newErr);
       },
     });
@@ -55,16 +61,14 @@ export const useAuthentication = () => {
     Error,
     FirebasePopupProps
   > = useMutation<LoginProps, Error, FirebasePopupProps>({
-    mutationFn: (payload: FirebasePopupProps): Promise<LoginProps> =>
-      AbraPostApi(GOOGLE_LOGIN_END_POINT_URL, payload),
+    mutationFn: (payload: FirebasePopupProps): Promise<LoginProps> => {
+      setAuthError(undefined);
+      return AbraPostApi(GOOGLE_LOGIN_END_POINT_URL, payload);
+    },
     onSuccess: (response) => dispatch(setUser(response)),
     // Failed
     onError: (err: any) => {
-      let newErr: string = "";
-      let resError = err.response.data;
-      for (let idx in resError) {
-        newErr += resError[idx] + " ";
-      }
+      const newErr = parseError(err);
       setAuthError(newErr);
     },
   });
@@ -84,7 +88,6 @@ export const useAuthentication = () => {
   });
 
   // ---=== Actions ===---
-
   // ---------- New Login --------------
   const fetchLogin = async (payload: LoginProps) => {
     loginMutation.mutate(payload);

@@ -23,7 +23,7 @@ const Map: React.FC<MapProps> = ({ data, placeKey }) => {
   // Fetching map
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "AIzaSyAX_C5c9R2FUJQJUyCZ0TLm35RX7jMXN2E",
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY!,
   });
 
   // Get lat and lng

@@ -10,6 +10,6 @@ export const StyledFavListContainer = styled.ul`
   /* Mobile */
   ${getMediaQuery.lessThan("changePoint")`
       row-gap: 15px;
-      padding-bottom: 50px;
+      padding-bottom: 70px;
   `}
 `;

@@ -9,8 +9,10 @@ import LoadingSpinner from "../../Components/Ui/LoadingSpinner";
 export const HomeWrapper = styled.div`
   overflow-y: auto;
   height: calc(100vh - 94px);
-  height: -webkit-fill-available;
-  height: -moz-available;
+  max-height: -webkit-fill-available;
+  max-height: -webkit-fill-available;
+  min-height: -moz-available;
+  max-height: -moz-available;
   padding: 0 370px;
   z-index: 1;
   /* Tablet */
@@ -19,6 +21,7 @@ export const HomeWrapper = styled.div`
   `}
   /* Mobile */
   ${getMediaQuery.lessThan("changePoint")`
+    height: 100vh;
     padding: 0 30px;
   `}
 `;
