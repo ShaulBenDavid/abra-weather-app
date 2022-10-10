@@ -1,9 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 
 import useMediaQuery from "../../Hooks/useMediaQuery";
-
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
-
 import useDebounce from "../../Hooks/useDebounde";
 import {
   selectSearchValue,
@@ -33,7 +31,7 @@ const Search = () => {
   // States
   const [searchTerm, setSearchTerm] = useState<string>(searchValue);
   const [isFocus, setIsFocus] = useState<boolean>(true);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [typing, setTyping] = useState<boolean>(false);
   // Media query
   const matches = useMediaQuery(USE_MEDIA_QUERY);
 
@@ -42,13 +40,13 @@ const Search = () => {
 
   // Control when to show loader
   useEffect(() => {
-    setLoading(false);
+    setTyping(false);
   }, [searchTerm, data, isLoading]);
 
   // ---- Handle search value ----
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    !loading && setLoading(true);
+    !typing && setTyping(true);
     setSearchTerm(value);
   };
   // Debounce search
@@ -98,7 +96,7 @@ const Search = () => {
         searchTerm && (
           <Drawer useCase="search" onClick={handleSearchFocus}>
             {/* Loading when typing or fetching */}
-            {(loading || isLoading) && searchTerm ? (
+            {(typing || isLoading) && searchTerm ? (
               <StyledLoaderContainer>
                 <StyledLoader />
               </StyledLoaderContainer>
@@ -121,7 +119,7 @@ const Search = () => {
         )
       ) : // ----------======== Mobile =========----------
       // Loader
-      (loading || isLoading) && searchTerm ? (
+      (typing || isLoading) && searchTerm ? (
         <StyledLoaderContainer>
           <StyledLoader />
         </StyledLoaderContainer>

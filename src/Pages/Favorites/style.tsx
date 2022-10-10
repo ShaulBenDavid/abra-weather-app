@@ -1,7 +1,9 @@
 import styled from "styled-components";
+import getMediaQuery from "../../Utils/GetMediaQuery";
+// Components
 import EmptyPage from "../../Components/Ui/EmptyPage";
 import LoadingSpinner from "../../Components/Ui/LoadingSpinner";
-import getMediaQuery from "../../Utils/GetMediaQuery";
+import SearchBox from "../../Components/Ui/SearchBox";
 
 // Page wrapper
 export const StyledFavoritesWrapper = styled.div`
@@ -25,21 +27,29 @@ export const StyledFavoritesWrapper = styled.div`
   `}
 `;
 // Search container
-export const SearchAndTitleContainer = styled.div`
-  margin-top: 80px;
+export const StyledFavSearchBox = styled(SearchBox)`
   margin-bottom: 65px;
-  display: flex;
-  flex-direction: column;
-  row-gap: 24px;
   /* Tablet */
   ${getMediaQuery.between("changePoint", "desktop")`
-      margin-top: 64px;
       margin-bottom: 61px;
     `}
   /* Mobile */
   ${getMediaQuery.lessThan("changePoint")`
-      margin-top: 30px;
       margin-bottom: 40px;
+  `}
+`;
+
+// Favorite title
+export const StyledFavoriteTitle = styled.h1`
+  margin-top: 80px;
+  margin-bottom: 24px;
+  /* Tablet */
+  ${getMediaQuery.between("changePoint", "desktop")`
+      margin-top: 64px;
+    `}
+  /* Mobile */
+  ${getMediaQuery.lessThan("changePoint")`
+      margin-top: 30px;
   `}
 `;
 
@@ -79,8 +89,8 @@ export const StyledEmptyFavPage = styled(EmptyPage)`
     margin-top: 145px;
     p {
       font-size: 0.875rem;
-  font-weight: normal;
-  line-height: 1.25;
+      font-weight: normal;
+      line-height: 1.25;
     }
   `}
   /* mobile */

@@ -9,10 +9,11 @@ import SearchBox from "../../Components/Ui/SearchBox";
 // Styles
 import {
   StyledFavoritesWrapper,
-  SearchAndTitleContainer,
+  StyledFavSearchBox,
   StyledFavLoader,
   StyledFavLoaderContainer,
   StyledEmptyFavPage,
+  StyledFavoriteTitle,
 } from "./style";
 
 const Favorites = () => {
@@ -47,10 +48,8 @@ const Favorites = () => {
       {data?.length ? (
         <>
           {/* Search box */}
-          <SearchAndTitleContainer>
-            <h1>Favorites</h1>
-            <SearchBox variant="favSearch" onChange={handleChange} />
-          </SearchAndTitleContainer>
+          <StyledFavoriteTitle>Favorites</StyledFavoriteTitle>
+          <StyledFavSearchBox variant="favSearch" onChange={handleChange} />
           {/* Fav list */}
           {filteredFav?.length ? (
             <FavoritesList favorites={filteredFav} />
