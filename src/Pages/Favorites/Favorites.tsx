@@ -5,7 +5,6 @@ import UseFavorites from "../../Services/Favorites/UseFavorites";
 // Components
 import FavStarsImg from "../../Assets/stars.svg";
 import FavoritesList from "./Components/FavoritesList";
-import SearchBox from "../../Components/Ui/SearchBox";
 // Styles
 import {
   StyledFavoritesWrapper,
