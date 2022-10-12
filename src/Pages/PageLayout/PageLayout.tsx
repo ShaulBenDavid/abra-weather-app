@@ -1,4 +1,3 @@
-import { Suspense, lazy } from "react";
 import { Outlet } from "react-router-dom";
 
 import useMediaQuery from "../../Hooks/useMediaQuery";

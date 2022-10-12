@@ -1,10 +1,10 @@
+import { useState, Suspense, lazy } from "react";
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import {
   selectLoadingWeather,
   selectSearchValue,
 } from "../../Redux/Search/Search";
 import useMediaQuery from "../../Hooks/useMediaQuery";
-import { useState } from "react";
 
 import {
   selectMapIsOpen,
@@ -78,24 +78,24 @@ const Home = () => {
       {/* ----- Current weather section --------*/}
       {data && currentChoice && dataByHour ? (
         <>
-          <S.CurrentWeatherSection>
-            <CurrentWeather city={currentChoice.city} data={data[0]} />
-            {/* /* Add or remove to favorite Button for desk or mobile */}
-            {!matches ? (
-              <S.FavLightIconButton onClick={handleAddClick}>
-                {favoriteIsExist ? (
-                  <IconFavFull style={{ width: "30px", height: "30px" }} />
-                ) : (
-                  <IconFavOutline style={{ width: "30px", height: "30px" }} />
-                )}
-              </S.FavLightIconButton>
-            ) : (
-              <S.FavAddingButton variant="white" onClick={handleAddClick}>
-                <S.FavIconButton />
-                {favoriteIsExist ? "Remove favorite" : "Add to favorites"}
-              </S.FavAddingButton>
-            )}
-          </S.CurrentWeatherSection>
+            <S.CurrentWeatherSection>
+              <CurrentWeather city={currentChoice.city} data={data[0]} />
+              {/* /* Add or remove to favorite Button for desk or mobile */}
+              {!matches ? (
+                <S.FavLightIconButton onClick={handleAddClick}>
+                  {favoriteIsExist ? (
+                    <IconFavFull style={{ width: "30px", height: "30px" }} />
+                  ) : (
+                    <IconFavOutline style={{ width: "30px", height: "30px" }} />
+                  )}
+                </S.FavLightIconButton>
+              ) : (
+                <S.FavAddingButton variant="white" onClick={handleAddClick}>
+                  <S.FavIconButton />
+                  {favoriteIsExist ? "Remove favorite" : "Add to favorites"}
+                </S.FavAddingButton>
+              )}
+            </S.CurrentWeatherSection>
           {/* ---- 4 day temp ---- */}
           <S.DailyTempsBarSection>
             <DailyTempsBar data={data} />

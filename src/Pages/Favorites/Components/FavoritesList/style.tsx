@@ -7,6 +7,7 @@ export const StyledFavListContainer = styled.ul`
   display: flex;
   flex-direction: column;
   row-gap: 24px;
+  padding-bottom: 110px;
   /* Mobile */
   ${getMediaQuery.lessThan("changePoint")`
       row-gap: 15px;

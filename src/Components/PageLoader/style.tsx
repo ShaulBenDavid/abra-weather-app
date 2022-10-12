@@ -1,4 +1,6 @@
 import styled from "styled-components";
+// components
+import LoadingSpinner from "../Ui/LoadingSpinner";
 
 // Page lodaer wrapper
 export const StyledPageLoaderWrapper = styled.div`
@@ -14,6 +16,13 @@ export const StyledPageLoaderWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }) => theme.primary};
-  z-index: 10;
+`;
+
+export const StyledLoadingSpinner = styled(LoadingSpinner)`
+  width: 80px;
+  height: 80px;
+  &::after {
+    width: 70px;
+    height: 70px;
+  }
 `;

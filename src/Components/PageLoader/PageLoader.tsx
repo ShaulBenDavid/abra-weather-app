@@ -1,12 +1,10 @@
-// Components
-import LoadingSpinner from "../Ui/LoadingSpinner";
 // Styles
-import { StyledPageLoaderWrapper } from "./style";
+import { StyledPageLoaderWrapper, StyledLoadingSpinner } from "./style";
 
 const PageLoader = () => {
   return (
     <StyledPageLoaderWrapper>
-      <LoadingSpinner />
+      <StyledLoadingSpinner />
     </StyledPageLoaderWrapper>
   );
 };
