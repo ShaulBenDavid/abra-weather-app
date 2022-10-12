@@ -1,4 +1,4 @@
-import { useState, Suspense, lazy } from "react";
+import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import {
   selectLoadingWeather,
