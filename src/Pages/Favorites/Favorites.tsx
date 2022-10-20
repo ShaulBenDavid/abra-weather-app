@@ -1,10 +1,12 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
-import { FAVORITES_EMPTY_DETAILS } from "../../Utils/Constants";
+import useFilteredFavorites from "../../Utils/useFilteredFavorites";
 import UseFavorites from "../../Services/Favorites/UseFavorites";
 // Components
 import FavStarsImg from "../../Assets/stars.svg";
 import FavoritesList from "./Components/FavoritesList";
+// Types
+import { FAVORITES_EMPTY_DETAILS } from "../../Utils/Constants";
 // Styles
 import {
   StyledFavoritesWrapper,
@@ -20,12 +22,8 @@ const Favorites = () => {
   const [searchValue, setSearchValue] = useState<string>("");
   const { data, isLoading } = UseFavorites();
 
-  // ------ Filtered fav lise by search ------
-  const filteredFav = useMemo(() => {
-    return data?.filter((fav) => {
-      return fav.city.toLowerCase().includes(searchValue.toLowerCase());
-    });
-  }, [data, searchValue]);
+  // ------ Filtered fav list by search ------
+  const { filteredFav } =  useFilteredFavorites(data, searchValue);
 
   // handle search change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
