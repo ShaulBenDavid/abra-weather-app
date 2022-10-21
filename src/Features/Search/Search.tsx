@@ -3,50 +3,59 @@ import React, { useCallback, useEffect, useState } from "react";
 import useMediaQuery from "../../Hooks/useMediaQuery";
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import useDebounce from "../../Hooks/useDebounde";
+import useFilteredFavorites from "../../Utils/useFilteredFavorites";
 import {
   selectSearchValue,
   setIsMobileSearchOpen,
   setSearchValue,
 } from "../../Redux/Search/Search";
 import { UseAutocomplete } from "../../Services/UseSearch";
-import { USE_MEDIA_QUERY } from "../../Utils/Constants";
-import CityImg from "../../Assets/city.svg";
 // Components
+import CityImg from "../../Assets/city.svg";
 import SearchResults from "../../Components/SearchElements/SearchResults";
 import Drawer from "../../Components/Ui/Drawer";
+import FavoritesList from "../../Pages/Favorites/Components/FavoritesList";
+import FavStarsImg from "../../Assets/stars.svg";
+// Types
+import { USE_MEDIA_QUERY } from "../../Utils/Constants";
+import { SearchProps } from "./types";
 // Styles
 import {
   StyledSearch,
-  StyledNoResultContainer,
   StyledLoader,
   StyledLoaderContainer,
   StyledEmptySearch,
 } from "./style";
 
-const Search = () => {
+const Search: React.FC<SearchProps> = ({ favoriteData }) => {
   // Dispatch
   const dispatch = useAppDispatch();
   // Search selector
   const searchValue = useAppSelector(selectSearchValue);
   // States
-  const [searchTerm, setSearchTerm] = useState<string>(searchValue);
+  const [searchTerm, setSearchTerm] = useState<string>(
+    favoriteData ? "" : searchValue
+  );
   const [isFocus, setIsFocus] = useState<boolean>(true);
   const [typing, setTyping] = useState<boolean>(false);
   // Media query
   const matches = useMediaQuery(USE_MEDIA_QUERY);
 
   // ------ AutoComplete search service -------
-  const { data, isLoading } = UseAutocomplete(searchTerm);
+  const { data, isLoading } = UseAutocomplete(favoriteData ? "" : searchTerm);
+  // ------ Filtered fav list by search ------
+  const { filteredFav } = useFilteredFavorites(favoriteData, favoriteData ? searchTerm : "");
 
   // Control when to show loader
   useEffect(() => {
-    setTyping(false);
+    !favoriteData && setTyping(false);
   }, [searchTerm, data, isLoading]);
 
   // ---- Handle search value ----
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    !typing && setTyping(true);
+    !typing && !favoriteData && setTyping(true);
+
     setSearchTerm(value);
   };
   // Debounce search
@@ -80,16 +89,16 @@ const Search = () => {
       <div>
         <StyledSearch
           type="text"
-          variant="mainSearch"
-          onChange={handleDebounce}
-          onFocus={handleSearchFocus}
-          onBlur={handleSearchBlur}
+          variant={favoriteData ? "favSearch" : "mainSearch"}
+          onChange={favoriteData ? handleSearchChange : handleDebounce}
+          onFocus={favoriteData ? undefined : handleSearchFocus}
+          onBlur={favoriteData ? undefined : handleSearchBlur}
         />
       </div>
       {/* Search results */}
 
-      {/* -------- Render mobile or desk search --------- */}
-      {matches ? (
+      {/* -------- Render mobile or desk search or favorite --------- */}
+      {matches && !favoriteData ? (
         // ------========= Desktop ===========----------
         // Show only on when focusing and search hold value
         isFocus &&
@@ -108,37 +117,42 @@ const Search = () => {
               />
             ) : (
               // no results
-              <StyledNoResultContainer>
-                <StyledEmptySearch src={CityImg}>
-                  We couldn’t find any city named "<span>{searchTerm}</span>",
-                  please try again.
-                </StyledEmptySearch>
-              </StyledNoResultContainer>
+              <StyledEmptySearch src={CityImg}>
+                We couldn’t find any city named "<span>{searchTerm}</span>",
+                please try again.
+              </StyledEmptySearch>
             )}
           </Drawer>
         )
-      ) : // ----------======== Mobile =========----------
+      ) : // ----------======== Mobile / Favorites =========----------
       // Loader
-      (typing || isLoading) && searchTerm ? (
+      (typing || isLoading) && searchTerm && !favoriteData ? (
         <StyledLoaderContainer>
           <StyledLoader />
         </StyledLoaderContainer>
-      ) : searchTerm && data?.length ? (
-        // Search options
-        <SearchResults
-          searchOptions={data}
-          clearSearchBox={clearSearchBox}
-          closeMobileSearch={handleMobileSearch}
-        />
+        // Search results for autocomplete / Favorites
+      ) : (searchTerm && data?.length) || filteredFav?.length ? (
+        data?.length ? (
+          <SearchResults
+            searchOptions={data}
+            clearSearchBox={clearSearchBox}
+            closeMobileSearch={handleMobileSearch}
+          />
+        ) : (
+          filteredFav && <FavoritesList favorites={filteredFav} />
+        )
       ) : (
-        // Search failed or empty
-        <StyledNoResultContainer>
-          <StyledEmptySearch src={CityImg}>
-            {searchTerm === ""
-              ? "Please search any city in the search button."
-              : `We couldn’t find any city named "${searchTerm}", please try again.`}
-          </StyledEmptySearch>
-        </StyledNoResultContainer>
+        // Empty results for favorite search and auto search
+        <StyledEmptySearch
+          src={favoriteData ? FavStarsImg : CityImg}
+          customStyle={favoriteData ? true : false}
+        >
+          {searchTerm === "" && !favoriteData
+            ? "Please search any city in the search button."
+            : `We couldn’t find any city named "${searchTerm}" ${
+                favoriteData && "in the Favorites list"
+              }, please try again.`}
+        </StyledEmptySearch>
       )}
     </>
   );

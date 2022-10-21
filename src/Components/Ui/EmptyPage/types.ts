@@ -4,18 +4,5 @@ export interface EmptyPageProps {
     p?: string;
     children?: React.ReactNode;
     className?: string;
+    customStyle?: boolean;
 }
-
-// export type EmptyPageProps = EmptyFailedTypes | EmptyPageTypes;
-// // empty
-// export type EmptyPageTypes = {
-//     src: string;
-//     title: string;
-//     p: string;
-// }
-
-// // empty faild
-// export type EmptyFailedTypes = {
-//     src: string;
-//     children?: React.ReactNode;
-// }

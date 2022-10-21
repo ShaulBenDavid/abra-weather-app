@@ -26,18 +26,6 @@ export const StyledFavoritesWrapper = styled.div`
     padding: 0 30px;
   `}
 `;
-// Search container
-export const StyledFavSearchBox = styled(SearchBox)`
-  margin-bottom: 65px;
-  /* Tablet */
-  ${getMediaQuery.between("changePoint", "desktop")`
-      margin-bottom: 61px;
-    `}
-  /* Mobile */
-  ${getMediaQuery.lessThan("changePoint")`
-      margin-bottom: 40px;
-  `}
-`;
 
 // Favorite title
 export const StyledFavoriteTitle = styled.h1`
