@@ -27,6 +27,7 @@ import {
   StyledEmptySearch,
 } from "./style";
 
+// Search feature for auto and favorite search
 const Search: React.FC<SearchProps> = ({ favoriteData }) => {
   // Dispatch
   const dispatch = useAppDispatch();
